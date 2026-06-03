@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import { Reveal } from "@/components/Motion";
 import ContactForm from "@/components/ContactForm";
-import { ArrowRight, Mail, MapPin, Phone } from "@/components/Icons";
+import { ArrowRight, Clock, Mail, MapPin, Phone } from "@/components/Icons";
 import { locations, site } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact AmpleHealth in Carmichael (916-966-8500) and Sacramento (916-418-4595), or email hello@ample.health.",
+    "Contact AmpleHealth in Carmichael (916-966-8500) and Sacramento (916-418-4595), or email hello@ample.health. Open Monday–Friday 8am–5pm.",
 };
 
 export default function ContactPage() {
@@ -49,6 +49,17 @@ export default function ContactPage() {
                       {loc.phone}
                     </a>
                   </p>
+                  <div className="flex items-start gap-3">
+                    <Clock className="mt-0.5 h-5 w-5 flex-none text-ink-muted" />
+                    <div className="space-y-0.5">
+                      {loc.hours.map((h) => (
+                        <p key={h.days} className="text-sm">
+                          <span className="font-medium text-ink">{h.days}:</span>{" "}
+                          <span>{h.times}</span>
+                        </p>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
                 {/* Google Maps placeholder */}

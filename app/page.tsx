@@ -213,9 +213,9 @@ export default function HomePage() {
         </div>
 
         <Stagger className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {providers.map((p) => (
+          {providers.slice(0, 4).map((p) => (
             <StaggerItem key={p.name}>
-              <div className="group">
+              <Link href={`/team/${p.slug}`} className="group block">
                 <Placeholder
                   tone={p.tone}
                   ratio="3 / 4"
@@ -230,7 +230,7 @@ export default function HomePage() {
                   {p.credentials}
                 </p>
                 <p className="text-sm text-ink-muted">{p.title}</p>
-              </div>
+              </Link>
             </StaggerItem>
           ))}
         </Stagger>
