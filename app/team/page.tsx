@@ -88,7 +88,7 @@ export default function TeamPage() {
         description="18 physicians, nurse practitioners, physician assistants, and dedicated support staff — all united by one standard and one shared purpose."
       />
 
-      <div className="container-page py-20 md:py-28 space-y-24">
+      <div className="container-page py-20 md:py-28 space-y-16">
         {sections.map((section, si) => {
           const group = providers.filter((p) => p.group === section.key);
           return (
@@ -105,7 +105,9 @@ export default function TeamPage() {
 
               <Stagger
                 className={`grid gap-x-6 gap-y-12 ${
-                  section.key === "care-admin"
+                  section.key === "physicians"
+                    ? "grid-cols-2 lg:grid-cols-4"
+                    : section.key === "care-admin"
                     ? "sm:grid-cols-2 lg:grid-cols-4"
                     : "sm:grid-cols-2 lg:grid-cols-3"
                 }`}
