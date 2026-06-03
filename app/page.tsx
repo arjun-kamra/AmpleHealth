@@ -3,6 +3,7 @@ import Hero from "@/components/home/Hero";
 import CTABand from "@/components/CTABand";
 import { Reveal, Stagger, StaggerItem } from "@/components/Motion";
 import Placeholder from "@/components/Placeholder";
+import ProviderPhoto from "@/components/ProviderPhoto";
 import Stars from "@/components/Stars";
 import { ArrowRight, Check } from "@/components/Icons";
 import {
@@ -216,13 +217,12 @@ export default function HomePage() {
           {providers.slice(0, 4).map((p) => (
             <StaggerItem key={p.name}>
               <Link href={`/team/${p.slug}`} className="group block">
-                <Placeholder
+                <ProviderPhoto
+                  slug={p.slug}
+                  name={p.name}
                   tone={p.tone}
                   ratio="3 / 4"
-                  monogram={p.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="transition-transform duration-300 group-hover:-translate-y-1"
                 />
                 <h3 className="mt-4 text-xl font-semibold">{p.name}</h3>

@@ -3,7 +3,7 @@ import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import CTABand from "@/components/CTABand";
 import { Reveal, Stagger, StaggerItem } from "@/components/Motion";
-import Placeholder from "@/components/Placeholder";
+import ProviderPhoto from "@/components/ProviderPhoto";
 import { ArrowRight } from "@/components/Icons";
 import { providers, type Provider } from "@/lib/data";
 
@@ -48,10 +48,11 @@ function ProviderCard({ p }: { p: Provider }) {
     <StaggerItem>
       <article className="group flex h-full flex-col">
         <Link href={`/team/${p.slug}`}>
-          <Placeholder
+          <ProviderPhoto
+            slug={p.slug}
+            name={p.name}
             tone={p.tone}
             ratio="3 / 4"
-            monogram={monogram}
             className="transition-transform duration-300 group-hover:-translate-y-1.5"
           />
         </Link>

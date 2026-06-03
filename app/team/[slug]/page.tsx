@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import CTABand from "@/components/CTABand";
 import { Reveal } from "@/components/Motion";
-import Placeholder from "@/components/Placeholder";
+import ProviderPhoto, { ProviderAvatar } from "@/components/ProviderPhoto";
 import { ArrowRight, Check } from "@/components/Icons";
 import { providers, site } from "@/lib/data";
 
@@ -47,14 +47,13 @@ export default function ProviderPage({ params }: { params: { slug: string } }) {
 
           <div className="mt-8 grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr]">
             <Reveal delay={0.05}>
-              <Placeholder
+              <ProviderPhoto
+                slug={provider.slug}
+                name={provider.name}
                 tone={provider.tone}
                 ratio="3 / 4"
-                monogram={provider.name
-                  .split(" ")
-                  .map((n) => n[0])
-                  .join("")}
-                label={`${provider.name}, ${provider.credentials}`}
+                priority
+                sizes="(max-width: 1024px) 90vw, 420px"
                 className="max-w-sm"
               />
             </Reveal>
@@ -142,15 +141,12 @@ export default function ProviderPage({ params }: { params: { slug: string } }) {
                   href={`/team/${p.slug}`}
                   className="card-surface inline-flex items-center gap-2 px-4 py-2.5 text-sm transition-colors hover:border-brand/40"
                 >
-                  <span
-                    className="grid h-7 w-7 place-items-center rounded-lg font-serif text-xs font-semibold text-white"
-                    style={{ backgroundColor: p.tone }}
-                  >
-                    {p.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </span>
+                  <ProviderAvatar
+                    slug={p.slug}
+                    name={p.name}
+                    tone={p.tone}
+                    size={28}
+                  />
                   <span>
                     <span className="font-medium">{p.name}</span>
                     <span className="ml-1 text-ink-muted">{p.credentials}</span>
