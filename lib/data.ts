@@ -198,6 +198,7 @@ export type Provider = {
   name: string;
   credentials: string;
   title: string;
+  group: "physicians" | "np-pa" | "care-admin";
   shortBio: string;
   fullBio: string[];
   highlights: string[];
@@ -205,13 +206,15 @@ export type Provider = {
 };
 
 export const providers: Provider[] = [
+  // ── PHYSICIANS ────────────────────────────────────────────────────────────
   {
     slug: "dheeraj-kamra",
     name: "Dheeraj Kamra",
     credentials: "MD, FACP",
     title: "Founder & Internist",
+    group: "physicians",
     shortBio:
-      "Board-certified internist and Fellow of the American College of Physicians leading the team at AmpleHealth. Dr. Kamra combines an evidence-based approach with genuine relationship-driven care across the clinic, hospital, and home.",
+      "Board-certified internist and Fellow of the American College of Physicians. Dr. Kamra founded AmpleHealth to deliver evidence-based, relationship-driven internal medicine across the clinic, hospital, and home.",
     fullBio: [
       "Dr. Dheeraj Kamra is the founder of AmpleHealth and a board-certified internist serving Carmichael and Sacramento, California. He became interested in medicine because of his father, an anesthesiologist in India, who inspired a lifelong commitment to clinical excellence.",
       "Dr. Kamra completed his surgical residency at the Post Graduate Institute of Medical Education & Research (PGI) in Chandigarh, India — one of the most prestigious medical institutions in South Asia. He subsequently trained at the University of Rochester in New York and Drexel University College of Medicine in Philadelphia, where he deepened his expertise in internal medicine.",
@@ -232,8 +235,9 @@ export const providers: Provider[] = [
     name: "Mythli Nagaraj",
     credentials: "MD",
     title: "Physician",
+    group: "physicians",
     shortBio:
-      "USMLE-certified physician with a Diplomate of the American Board of Integrative and Holistic Medicine. Dr. Nagaraj brings advanced functional medicine training and a patient-centered, whole-person philosophy to her practice at AmpleHealth.",
+      "USMLE-certified physician and Diplomate of the American Board of Integrative and Holistic Medicine. Dr. Nagaraj brings advanced functional medicine training and a whole-person philosophy to every patient encounter.",
     fullBio: [
       "Dr. Mythli Nagaraj is a physician at AmpleHealth who joined the practice in January 2024. She holds an active California medical license, DEA certification, and is certified in both BLS and ACLS.",
       "Dr. Nagaraj is a Diplomate of the American Board of Integrative and Holistic Medicine and has completed advanced coursework in Functional Medicine through the Institute for Functional Medicine. This training informs a whole-person, root-cause approach to patient care that goes beyond symptom management.",
@@ -255,8 +259,9 @@ export const providers: Provider[] = [
     name: "Rekha Pareek",
     credentials: "MD",
     title: "Nephrologist",
+    group: "physicians",
     shortBio:
-      "Nephrologist with 23+ years of clinical experience. Dr. Pareek specializes in kidney care, home dialysis therapies, complex electrolyte disorders, Obesity Medicine, and metabolic syndrome.",
+      "Nephrologist with 23+ years of clinical experience specializing in kidney care, home dialysis therapies, complex electrolyte disorders, Obesity Medicine, and metabolic syndrome.",
     fullBio: [
       "Dr. Rekha Pareek is a nephrologist with more than 23 years of clinical experience caring for patients with kidney disease and complex metabolic conditions. She brings a depth of expertise that few physicians in the region can match.",
       "Dr. Pareek earned her medical degree from RNT Medical College in Udaipur, India, before completing her Internal Medicine residency at Graduate Hospital in Philadelphia. She then pursued subspecialty fellowship training at Drexel University Hospital, where she developed her expertise in nephrology.",
@@ -274,21 +279,54 @@ export const providers: Provider[] = [
     tone: "#104872",
   },
   {
+    slug: "jamshid-faraji",
+    name: "Jamshid Faraji",
+    credentials: "MD",
+    title: "Internal Medicine Physician & Lipidology Specialist",
+    group: "physicians",
+    shortBio:
+      "Board-certified Internal Medicine Physician and Lipidology Specialist with over four decades of clinical experience in California. Dr. Faraji specializes in lipid disorders, cardiovascular risk reduction, preventive cardiology, diabetes, hypertension, and complex chronic conditions.",
+    fullBio: [
+      "Dr. Jamshid Faraji brings more than four decades of clinical excellence to AmpleHealth. He earned his medical degree from the National University of Iran in Tehran and completed his Internal Medicine residency at Pahlavi University in Shiraz, Iran.",
+      "He further advanced his training at Bristol Royal Infirmary in the United Kingdom, where he completed MRCP Part I, and subsequently completed an additional Internal Medicine residency at LAC+USC Medical Center in Los Angeles. Dr. Faraji has been practicing in California since 1982.",
+      "His clinical specialties include lipid disorders, cardiovascular risk reduction, preventive cardiology, diabetes, hypertension, and the management of complex chronic conditions. He is also skilled in office procedures including joint aspirations and injections, skin biopsies, and minor surgical interventions.",
+      "Dr. Faraji is known throughout his career for his thoughtful clinical judgment, his ability to synthesize complex medical histories, and his commitment to personalized, evidence-based care. His decades of experience bring a perspective to patient care that is both deep and nuanced.",
+    ],
+    highlights: [
+      "Board-certified Internal Medicine & Lipidology Specialist",
+      "40+ years of clinical experience in California (practicing since 1982)",
+      "MD from National University of Iran, Tehran",
+      "MRCP Part I — Bristol Royal Infirmary, UK",
+      "Residency at LAC+USC Medical Center, Los Angeles",
+      "Office procedures: joint aspirations, skin biopsies, minor surgery",
+      "Specializes in lipids, cardiovascular risk & preventive cardiology",
+    ],
+    tone: "#0B324F",
+  },
+
+  // ── NURSE PRACTITIONERS & PHYSICIAN ASSISTANTS ───────────────────────────
+  {
     slug: "alice-phillips",
     name: "Alice Phillips",
     credentials: "FNP",
     title: "Family Nurse Practitioner",
+    group: "np-pa",
     shortBio:
-      "Alice provides comprehensive primary care with a focus on preventive health and chronic disease management for patients across the lifespan.",
+      "Family Nurse Practitioner with 40+ years of experience. MSN from UCSF cum laude. Former Medical Director of Cameron Park Clinic and clinical instructor for NP and PA programs including UC Davis School of Medicine. At AmpleHealth since 2023.",
     fullBio: [
-      "Alice Phillips is a Family Nurse Practitioner at AmpleHealth, providing comprehensive primary care across the lifespan. She is dedicated to building long-term relationships with patients and focusing on the preventive care that keeps people healthy.",
-      "Alice's clinical focus includes chronic disease management, wellness exams, and acute care. She is known for her approachable, thoughtful manner and her ability to make complex medical information accessible to her patients.",
-      "[Full biography coming soon — contact the office for more information.]",
+      "Alice Phillips is a Family Nurse Practitioner with more than 40 years of clinical experience, bringing a breadth of knowledge and a deeply patient-centered approach to her practice at AmpleHealth.",
+      "She earned her Master of Science in Nursing (MSN) from the University of California, San Francisco, graduating cum laude, and her Bachelor of Science in Nursing (BSN) from California State University, Sacramento. She holds national certification as a Family Nurse Practitioner through the American Nurses Association, as well as certifications in public health nursing, school nursing, and nursing education.",
+      "Alice's clinical expertise spans comprehensive primary care, internal medicine, urgent care, women's health, pediatrics, and sports medicine. From 2006 to 2023, she practiced at Marshall Medical Associates, where she ultimately served as Medical Director of the Cameron Park Clinic.",
+      "Throughout her career, Alice has been deeply committed to training the next generation of clinicians. She has served as a clinical instructor for nurse practitioner and physician assistant programs, including the UC Davis School of Medicine. She joined AmpleHealth in 2023.",
     ],
     highlights: [
-      "Family Nurse Practitioner",
-      "Preventive health & chronic disease management",
-      "Comprehensive primary care across the lifespan",
+      "40+ years of clinical experience",
+      "MSN from UCSF, cum laude",
+      "BSN from CSU Sacramento",
+      "National FNP certification — American Nurses Association",
+      "Former Medical Director, Cameron Park Clinic (Marshall Medical Associates)",
+      "Clinical instructor — UC Davis School of Medicine NP/PA programs",
+      "Certifications in public health, school nursing & nursing education",
     ],
     tone: "#4D97D7",
   },
@@ -296,39 +334,273 @@ export const providers: Provider[] = [
     slug: "sidrah-khan",
     name: "Sidrah Khan",
     credentials: "FNP-C",
-    title: "Certified Family Nurse Practitioner",
+    title: "Board-Certified Family Nurse Practitioner",
+    group: "np-pa",
     shortBio:
-      "Sidrah cares for patients across the lifespan, bringing a patient-first approach to wellness and acute care at both AmpleHealth locations.",
+      "Board-Certified FNP with 10+ years of healthcare experience. Graduated with honors from Georgetown University. Manages a broad range of conditions including hypertension, diabetes, women's health, and mental health. Fluent in English, Urdu, and Punjabi.",
     fullBio: [
-      "Sidrah Khan is a Certified Family Nurse Practitioner at AmpleHealth. She provides patient-centered primary care with a focus on wellness, preventive screenings, and acute illness management.",
-      "Sidrah is known for her warm, patient-first approach and her commitment to ensuring every patient feels heard and understood. She sees patients at both AmpleHealth locations.",
-      "[Full biography coming soon — contact the office for more information.]",
+      "Sidrah Khan is a Board-Certified Family Nurse Practitioner who graduated with honors from Georgetown University in Washington, DC, earning dual Bachelor of Science degrees in Biology and Biomedical Sciences.",
+      "She brings more than 10 years of healthcare experience to AmpleHealth, including four years managing her own patient panel in family medicine in Washington, DC, and four years in urgent care. This breadth of experience gives her a confident, thorough approach to both acute and chronic care.",
+      "Her clinical scope includes the management of high blood pressure, diabetes, high cholesterol, obesity, thyroid conditions, infections, and mental health. She also provides comprehensive women's health services including contraceptive management and prenatal care, as well as dermatology and aesthetic medicine services.",
+      "Sidrah is fluent in English, Urdu, and Punjabi, allowing her to connect with a wide range of patients in their preferred language. She is known for her warmth, thoroughness, and genuine investment in her patients' long-term health.",
     ],
     highlights: [
-      "Certified Family Nurse Practitioner (FNP-C)",
-      "Wellness & preventive care",
-      "Acute illness management",
+      "Board-Certified Family Nurse Practitioner (FNP-C)",
+      "Graduated with honors from Georgetown University",
+      "Dual BS in Biology & Biomedical Sciences",
+      "10+ years healthcare experience",
+      "4 years managing own patient panel in family medicine, Washington DC",
+      "Women's health, contraceptive management & prenatal care",
+      "Dermatology & aesthetic medicine services",
+      "Fluent in English, Urdu & Punjabi",
     ],
     tone: "#0B324F",
+  },
+  {
+    slug: "gurpreet-smagh",
+    name: "Gurpreet Smagh",
+    credentials: "PA",
+    title: "Board-Certified Physician Assistant",
+    group: "np-pa",
+    shortBio:
+      "Board-certified PA with 10+ years spanning Physical Medicine & Rehabilitation, Trauma and Acute Care Surgery, Emergency Medicine, and Occupational Medicine. Currently also at Sacramento Rehabilitation Hospital. Fluent in English, Punjabi, Hindi, and Urdu.",
+    fullBio: [
+      "Gurpreet Smagh is a board-certified Physician Assistant with more than 10 years of clinical experience across a wide range of high-acuity settings, including Physical Medicine & Rehabilitation, Trauma and Acute Care Surgery, Emergency Medicine, and Occupational Medicine.",
+      "In addition to his role at AmpleHealth, Gurpreet currently practices at Sacramento Rehabilitation Hospital, where he manages complex rehabilitation patients navigating recovery from serious injuries, surgeries, and neurological conditions.",
+      "His procedural skill set includes wound debridement, skin excisions, abscess management, and minor surgical interventions. He has deep expertise in workers' compensation cases, DOT physicals, and occupational injury management — making him a valued resource for patients whose health intersects with their work.",
+      "Gurpreet is fluent in English, Punjabi, Hindi, and Urdu, enabling him to serve patients across diverse linguistic communities in the Sacramento region.",
+    ],
+    highlights: [
+      "Board-certified Physician Assistant",
+      "10+ years spanning PM&R, Trauma, Emergency Medicine & Occupational Medicine",
+      "Currently at Sacramento Rehabilitation Hospital",
+      "Workers' compensation & DOT physicals",
+      "Procedural expertise: wound debridement, skin excisions, minor surgery",
+      "Fluent in English, Punjabi, Hindi & Urdu",
+    ],
+    tone: "#155E96",
   },
   {
     slug: "yelena-popova",
     name: "Yelena Popova",
     credentials: "PA",
     title: "Physician Assistant",
+    group: "np-pa",
     shortBio:
-      "Yelena partners with patients on everything from routine wellness visits to complex care coordination, bringing precision and compassion to every interaction.",
+      "Physician Assistant trained at UC Davis PA Program (2005). Medical background from Ivano-Frankivsk Medical Academy, Ukraine. Working in family and internal medicine since graduation. Fluent in Russian and Ukrainian.",
     fullBio: [
-      "Yelena Popova is a Physician Assistant at AmpleHealth who works closely with Dr. Kamra and the broader care team to deliver coordinated, high-quality care.",
-      "Yelena's scope of practice spans preventive care, chronic disease management, and complex care coordination. She is valued for her precision and her ability to connect with patients across all backgrounds.",
-      "[Full biography coming soon — contact the office for more information.]",
+      "Yelena Popova is a Physician Assistant at AmpleHealth who brings a strong medical foundation and nearly two decades of family and internal medicine experience to her patients.",
+      "She earned her medical degree from Ivano-Frankivsk Medical Academy in Ukraine before completing her Physician Assistant training at the UC Davis Physician Assistant Program, graduating in 2005. Since graduation, she has worked continuously in family and internal medicine.",
+      "Yelena is fluent in Russian and Ukrainian, allowing her to serve patients from Eastern European communities who prefer to communicate in their native language.",
+      "Outside of work, Yelena enjoys reading, trying new recipes, and hiking.",
+    ],
+    highlights: [
+      "Physician Assistant, UC Davis PA Program (2005)",
+      "MD from Ivano-Frankivsk Medical Academy, Ukraine",
+      "Family & internal medicine since 2005",
+      "Fluent in Russian & Ukrainian",
+    ],
+    tone: "#C68A3E",
+  },
+  {
+    slug: "harneet-sandhu",
+    name: "Harneet Sandhu",
+    credentials: "PA",
+    title: "Physician Assistant",
+    group: "np-pa",
+    shortBio:
+      "Physician Assistant with a Master of Physician Assistant Studies from UC Davis. Born and raised in the Bay Area. Passionate about patient education and dedicated to collaborative patient-provider relationships and compassionate inpatient care.",
+    fullBio: [
+      "Harneet Sandhu is a Physician Assistant at AmpleHealth who grew up in the Bay Area and completed her Master of Physician Assistant Studies at the UC Davis Physician Assistant Program.",
+      "Harneet believes that patient education is the foundation of exceptional care. She invests time in making sure her patients not only receive the right treatment but truly understand their conditions, their options, and the reasoning behind each clinical decision.",
+      "She is dedicated to building collaborative patient-provider relationships grounded in respect and transparency. Her approach to inpatient care is marked by compassion — she is committed to supporting patients through recovery at some of the most vulnerable moments of their lives.",
     ],
     highlights: [
       "Physician Assistant",
-      "Preventive & chronic care",
-      "Complex care coordination",
+      "Master of Physician Assistant Studies — UC Davis",
+      "Patient education-centered philosophy",
+      "Collaborative inpatient care",
+    ],
+    tone: "#104872",
+  },
+  {
+    slug: "somosri-pal",
+    name: "Somosri Pal",
+    credentials: "PA",
+    title: "Board-Certified Physician Assistant",
+    group: "np-pa",
+    shortBio:
+      "Board-certified PA with 10+ years in internal and hospital medicine. Previously at Montefiore Medical Center and Yale New Haven Hospital. Patient-centered approach with strong multidisciplinary collaboration. Fluent in Bengali, English, and Hindi.",
+    fullBio: [
+      "Somosri Pal is a board-certified Physician Assistant with more than 10 years of experience in internal and hospital medicine. She earned her Bachelor of Science in Physician Assistant Studies from St. John's University and her Master of Science in Physician Assistant Studies from Touro University.",
+      "Prior to joining AmpleHealth, Somosri practiced at Montefiore Medical Center and Yale New Haven Hospital — two of the nation's leading academic medical centers. These experiences honed her ability to manage complex patients, collaborate across disciplines, and deliver high-quality care under demanding clinical conditions.",
+      "Somosri brings a deeply patient-centered approach to her practice, prioritizing clear communication and strong therapeutic relationships. She is a skilled collaborator who works effectively within multidisciplinary teams to ensure comprehensive, coordinated care.",
+      "She is fluent in Bengali, English, and Hindi, allowing her to serve patients from South Asian communities in their preferred language.",
+    ],
+    highlights: [
+      "Board-certified Physician Assistant",
+      "10+ years in internal & hospital medicine",
+      "BS from St. John's University; MS from Touro University",
+      "Previously at Montefiore Medical Center & Yale New Haven Hospital",
+      "Strong multidisciplinary collaboration",
+      "Fluent in Bengali, English & Hindi",
+    ],
+    tone: "#1B75BB",
+  },
+
+  // ── CARE & ADMINISTRATIVE TEAM ────────────────────────────────────────────
+  {
+    slug: "samia-quraishi",
+    name: "Samia Quraishi",
+    credentials: "",
+    title: "Referral Coordinator & Medical Assistant",
+    group: "care-admin",
+    shortBio:
+      "Medical Assistant and Referral Coordinator at AmpleHealth. Graduated MA school in 2023. Passionate about treating every patient the way she'd want her own family treated — with care, clarity, and understanding.",
+    fullBio: [
+      "Samia Quraishi serves as both a Medical Assistant and Referral Coordinator at AmpleHealth. She graduated from medical assisting school in 2023 and quickly became an integral part of the AmpleHealth team.",
+      "Samia's guiding philosophy is simple but powerful: treat every patient the way she would want her own family to be treated — with care, clarity, and understanding. Whether she's assisting during an appointment, coordinating specialist referrals, or helping a patient navigate the healthcare system, she brings that same commitment to every interaction.",
+    ],
+    highlights: [
+      "Medical Assistant & Referral Coordinator",
+      "Graduated MA school 2023",
+      "Patient-centered, family-like care approach",
+    ],
+    tone: "#4D97D7",
+  },
+  {
+    slug: "katelynn-mcgarrah",
+    name: "Katelynn McGarrah",
+    credentials: "",
+    title: "Referral Coordinator & Medical Assistant",
+    group: "care-admin",
+    shortBio:
+      "A dedicated member of the AmpleHealth care team, serving as both a Referral Coordinator and Medical Assistant.",
+    fullBio: [
+      "Katelynn McGarrah is a Referral Coordinator and Medical Assistant at AmpleHealth, supporting patients through every step of their care experience.",
+      "A dedicated member of the AmpleHealth team, Katelynn is committed to ensuring that referrals and care coordination are handled with efficiency and compassion.",
+    ],
+    highlights: [
+      "Referral Coordinator & Medical Assistant",
+      "Care coordination & patient support",
+    ],
+    tone: "#155E96",
+  },
+  {
+    slug: "veronica-tkachuk",
+    name: "Veronica Tkachuk",
+    credentials: "",
+    title: "Phlebotomist & Medical Assistant",
+    group: "care-admin",
+    shortBio:
+      "A dedicated member of the AmpleHealth care team, serving as both a Phlebotomist and Medical Assistant.",
+    fullBio: [
+      "Veronica Tkachuk is a Phlebotomist and Medical Assistant at AmpleHealth. She supports the clinical team and ensures patients feel comfortable during lab draws and clinical procedures.",
+      "A dedicated member of the AmpleHealth team, Veronica brings professionalism and care to every patient interaction.",
+    ],
+    highlights: [
+      "Phlebotomist & Medical Assistant",
+      "Clinical support & lab services",
+    ],
+    tone: "#104872",
+  },
+  {
+    slug: "tiffany-schroeder",
+    name: "Tiffany Schroeder",
+    credentials: "",
+    title: "Medical Assistant",
+    group: "care-admin",
+    shortBio: "A dedicated member of the AmpleHealth care team.",
+    fullBio: [
+      "Tiffany Schroeder is a Medical Assistant at AmpleHealth, providing essential clinical support to both patients and providers.",
+      "A dedicated member of the AmpleHealth team, Tiffany is committed to delivering attentive, high-quality care to every patient she works with.",
+    ],
+    highlights: ["Medical Assistant", "Clinical patient support"],
+    tone: "#0B324F",
+  },
+  {
+    slug: "shreya-kamra",
+    name: "Shreya Kamra",
+    credentials: "",
+    title: "Medical Assistant",
+    group: "care-admin",
+    shortBio: "A dedicated member of the AmpleHealth care team.",
+    fullBio: [
+      "Shreya Kamra is a Medical Assistant at AmpleHealth, supporting the care team in delivering an exceptional patient experience.",
+      "A dedicated member of the AmpleHealth team, Shreya brings energy and commitment to her role every day.",
+    ],
+    highlights: ["Medical Assistant", "Clinical patient support"],
+    tone: "#1B75BB",
+  },
+  {
+    slug: "aaliyah-childs",
+    name: "Aaliyah Childs",
+    credentials: "CMA",
+    title: "Front Desk & Certified Medical Assistant",
+    group: "care-admin",
+    shortBio:
+      "Certified Medical Assistant and front desk team member. Graduated high school 2024, completed medical assisting school 2025. Inspired by her mother's work as a caregiver. Plans to pursue nursing education in 2026.",
+    fullBio: [
+      "Aaliyah Childs is a Certified Medical Assistant and front desk team member at AmpleHealth. She graduated from high school in 2024 and completed her medical assisting training in 2025, bringing dedication and a fresh perspective to the team.",
+      "Aaliyah was inspired to pursue healthcare by watching her mother work as a caregiver — a role that showed her firsthand the difference that compassionate, attentive care can make in a person's life.",
+      "She plans to continue her education by pursuing nursing in 2026, and sees her time at AmpleHealth as an important foundation for her clinical career.",
+    ],
+    highlights: [
+      "Certified Medical Assistant (CMA)",
+      "Front Desk & patient coordination",
+      "Completed medical assisting school 2025",
+      "Aspiring nursing student (2026)",
     ],
     tone: "#C68A3E",
+  },
+  {
+    slug: "doneal-decapia",
+    name: "Doneal Decapia",
+    credentials: "BS, RN",
+    title: "Front Desk & Healthcare Virtual Assistant",
+    group: "care-admin",
+    shortBio:
+      "BS in Nursing from the Philippines. Red Cross Philippines volunteer. Trained Healthcare Virtual Assistant (Hello Rache). Manages scheduling, patient communications, data entry, and documentation. Enjoys basketball, movies, and travel.",
+    fullBio: [
+      "Doneal Decapia brings a healthcare background and a service-first mindset to his role on the AmpleHealth front desk. He earned his Bachelor of Science in Nursing from the Philippines and has served as a volunteer with the Red Cross Philippines.",
+      "Doneal is a trained Healthcare Virtual Assistant through Hello Rache, a program that prepares healthcare professionals for virtual support roles. He manages scheduling, patient communications, data entry, and clinical documentation with precision and care.",
+      "Outside of work, Doneal enjoys basketball, movies, and travel.",
+    ],
+    highlights: [
+      "BS in Nursing (Philippines)",
+      "Red Cross Philippines volunteer",
+      "Healthcare Virtual Assistant — Hello Rache certified",
+      "Scheduling, communications, documentation & data entry",
+    ],
+    tone: "#155E96",
+  },
+  {
+    slug: "franklin-ratunil",
+    name: "Franklin Ratunil",
+    credentials: "",
+    title: "Front Desk Receptionist",
+    group: "care-admin",
+    shortBio: "A dedicated member of the AmpleHealth care team.",
+    fullBio: [
+      "Franklin Ratunil is a Front Desk Receptionist at AmpleHealth, often the first friendly face patients encounter when they visit or call.",
+      "A dedicated member of the AmpleHealth team, Franklin is committed to making every patient feel welcomed and well taken care of from the moment they arrive.",
+    ],
+    highlights: ["Front Desk Receptionist", "Patient welcome & coordination"],
+    tone: "#104872",
+  },
+  {
+    slug: "liana-khanenia",
+    name: "Liana Khanenia",
+    credentials: "",
+    title: "Front Desk & Receptionist",
+    group: "care-admin",
+    shortBio: "A dedicated member of the AmpleHealth care team.",
+    fullBio: [
+      "Liana Khanenia is a Front Desk Receptionist at AmpleHealth, supporting patients with scheduling, check-in, and day-to-day office needs.",
+      "A dedicated member of the AmpleHealth team, Liana brings warmth and professionalism to every patient interaction.",
+    ],
+    highlights: ["Front Desk & Receptionist", "Patient coordination"],
+    tone: "#0B324F",
   },
 ];
 
