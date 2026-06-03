@@ -1,8 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { NextRequest, NextResponse } from "next/server";
 
-const client = new Anthropic();
-
 const SYSTEM_PROMPT = `You are Aria, a friendly and knowledgeable virtual assistant for AmpleHealth, an internal medicine practice in Carmichael and Sacramento, CA led by Dr. Dheeraj Kamra, MD, FACP.
 
 Your job is to help patients and visitors with questions about the practice. Be warm, concise, and conversational — this is a chat widget, not an essay. Keep responses under 3 sentences unless a detailed answer is truly needed.
@@ -25,11 +23,22 @@ Rules:
 
 export async function POST(req: NextRequest) {
   try {
+    const apiKey = process.env.ANTHROPIC_API_KEY;
+    if (!apiKey) {
+      console.error("Chat API error: ANTHROPIC_API_KEY is not set");
+      return NextResponse.json(
+        { error: "Server configuration error. Please call us at 916-966-8500." },
+        { status: 500 }
+      );
+    }
+
     const { messages } = await req.json();
 
     if (!messages || !Array.isArray(messages)) {
       return NextResponse.json({ error: "Invalid messages" }, { status: 400 });
     }
+
+    const client = new Anthropic({ apiKey });
 
     const response = await client.messages.create({
       model: "claude-sonnet-4-20250514",
@@ -40,12 +49,13 @@ export async function POST(req: NextRequest) {
 
     const content = response.content[0];
     if (content.type !== "text") {
+      console.error("Chat API error: unexpected response type", content.type);
       return NextResponse.json({ error: "Unexpected response type" }, { status: 500 });
     }
 
     return NextResponse.json({ message: content.text });
   } catch (error) {
-    console.error("Chat API error:", error);
+    console.error("Chat API error:", error instanceof Error ? error.message : error);
     return NextResponse.json(
       { error: "Something went wrong. Please call us at 916-966-8500." },
       { status: 500 }
