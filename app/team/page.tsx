@@ -52,7 +52,7 @@ function ProviderCard({ p }: { p: Provider }) {
             slug={p.slug}
             name={p.name}
             tone={p.tone}
-            ratio="3 / 4"
+            ratio="1 / 1"
             className="transition-transform duration-300 group-hover:-translate-y-1.5"
           />
         </Link>
@@ -108,7 +108,7 @@ export default function TeamPage() {
                   section.key === "physicians"
                     ? "grid-cols-2 lg:grid-cols-4"
                     : section.key === "care-admin"
-                    ? "sm:grid-cols-2 lg:grid-cols-4"
+                    ? "sm:grid-cols-2 lg:grid-cols-3"
                     : "sm:grid-cols-2 lg:grid-cols-3"
                 }`}
               >
