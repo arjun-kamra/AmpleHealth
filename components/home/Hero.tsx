@@ -119,7 +119,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Visual collage — tonal placeholder panels */}
+        {/* Dr. Kamra photo */}
         <motion.div
           style={{ y: yPanel }}
           initial={{ opacity: 0, scale: 0.96 }}
@@ -127,25 +127,13 @@ export default function Hero() {
           transition={{ duration: 0.9, ease: easeOut, delay: 0.3 }}
           className="relative mx-auto w-full max-w-md lg:max-w-none"
         >
-          <div className="grid grid-cols-2 gap-4">
-            <div
-              className="col-span-2 aspect-[16/10] overflow-hidden rounded-3xl"
-              style={{
-                background:
-                  "linear-gradient(135deg, #1B75BB 0%, #104872 120%)",
-              }}
-            >
-              <div className="bg-grid h-full w-full opacity-25" />
-            </div>
-            <div className="aspect-square overflow-hidden rounded-3xl bg-ink">
-              <div className="bg-dots h-full w-full opacity-30" />
-            </div>
-            <div
-              className="aspect-square overflow-hidden rounded-3xl"
-              style={{ background: "#155E96" }}
-            >
-              <div className="bg-hatch h-full w-full opacity-50" />
-            </div>
+          <div className="overflow-hidden rounded-3xl">
+            <img
+              src="/team/dheeraj-kamra.jpg"
+              alt="Dr. Dheeraj Kamra, MD, FACP"
+              className="w-full object-cover object-top"
+              style={{ maxHeight: "520px" }}
+            />
           </div>
 
           {/* floating credential badge */}

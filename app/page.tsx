@@ -77,13 +77,13 @@ export default function HomePage() {
         <div className="container-page relative grid items-center gap-14 py-20 md:py-28 lg:grid-cols-2">
           <Reveal>
             <div className="relative">
-              <Placeholder
-                tone="#1B75BB"
-                ratio="4 / 5"
-                monogram="DK"
-                label="Dr. Dheeraj Kamra"
-                className="max-w-md"
-              />
+              <div className="max-w-md overflow-hidden rounded-2xl">
+                <img
+                  src="/team/dheeraj-kamra.jpg"
+                  alt="Dr. Dheeraj Kamra, MD, FACP"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
               <div className="card-surface absolute -bottom-6 right-2 hidden max-w-[230px] p-5 sm:block lg:-right-8">
                 <p className="font-serif text-2xl text-brand">FACP</p>
                 <p className="mt-1.5 text-xs leading-snug text-ink-muted">
