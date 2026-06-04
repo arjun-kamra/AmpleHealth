@@ -55,6 +55,7 @@ export const navLinks: NavLink[] = [
   { label: "About", href: "/about" },
   { label: "Our Team", href: "/team" },
   { label: "Services", href: "/services" },
+  { label: "Insurance", href: "/insurance" },
   { label: "Forms", href: "/forms" },
   { label: "Testimonials", href: "/testimonials" },
   { label: "Blog", href: "/blog" },
@@ -849,13 +850,88 @@ export const reviews = {
 };
 
 // Placeholder insurance partners
-export const insurers = [
-  "Aetna",
-  "Anthem Blue Cross",
-  "Blue Shield",
-  "Cigna",
-  "Health Net",
-  "Medicare",
-  "Sutter Health Plan",
-  "United Healthcare",
+export type Insurer = {
+  name: string;
+  type: string;
+  description: string;
+  color: string;
+  logoUrl?: string;
+};
+
+export const insurers: Insurer[] = [
+  {
+    name: "Aetna",
+    type: "Commercial",
+    description: "PPO, HMO, and Medicare Advantage plans accepted. One of the largest national insurers.",
+    color: "#7B2D8B",
+    logoUrl: "https://logo.clearbit.com/aetna.com",
+  },
+  {
+    name: "Anthem Blue Cross",
+    type: "Commercial",
+    description: "California's largest for-profit health insurer offering PPO and HMO plans.",
+    color: "#286CE2",
+    logoUrl: "https://logo.clearbit.com/anthem.com",
+  },
+  {
+    name: "Blue Shield of California",
+    type: "Commercial",
+    description: "Non-profit insurer offering a wide range of PPO, HMO, and HSP plans statewide.",
+    color: "#005CB9",
+    logoUrl: "https://logo.clearbit.com/blueshieldca.com",
+  },
+  {
+    name: "Cigna",
+    type: "Commercial",
+    description: "National carrier with broad PPO and HMO networks, including behavioral health.",
+    color: "#005DAA",
+    logoUrl: "https://logo.clearbit.com/cigna.com",
+  },
+  {
+    name: "Health Net",
+    type: "Commercial",
+    description: "California-based managed care plan with Medi-Cal, commercial, and Medicare options.",
+    color: "#0080C6",
+    logoUrl: "https://logo.clearbit.com/healthnet.com",
+  },
+  {
+    name: "Medicare",
+    type: "Government",
+    description: "Original Medicare (Parts A & B) accepted. Medicare Advantage plans vary — please call to confirm.",
+    color: "#1565C0",
+    logoUrl: "https://logo.clearbit.com/medicare.gov",
+  },
+  {
+    name: "Sutter Health Plan",
+    type: "Commercial",
+    description: "Regional non-profit plan offering group and individual coverage across Northern California.",
+    color: "#2C7D3D",
+    logoUrl: "https://logo.clearbit.com/sutterhealthplus.org",
+  },
+  {
+    name: "United Healthcare",
+    type: "Commercial",
+    description: "The nation's largest carrier with PPO, HMO, and Medicare Advantage products.",
+    color: "#0066CC",
+    logoUrl: "https://logo.clearbit.com/uhc.com",
+  },
+  {
+    name: "Hill Physicians",
+    type: "IPA / Medical Group",
+    description: "One of the largest independent physician associations in Northern California, working with multiple health plans.",
+    color: "#C8102E",
+    logoUrl: "https://logo.clearbit.com/hillphysicians.com",
+  },
+  {
+    name: "MD Partners IPA",
+    type: "IPA / Medical Group",
+    description: "Sacramento-area independent physician association offering care coordination across multiple health plans.",
+    color: "#1B75BB",
+  },
+  {
+    name: "Vivant Health",
+    type: "Managed Care",
+    description: "Sacramento-region managed care plan focused on whole-person, coordinated healthcare.",
+    color: "#1B75BB",
+  },
 ];

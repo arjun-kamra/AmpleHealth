@@ -169,31 +169,45 @@ export default function HomePage() {
       <section className="relative overflow-hidden border-y border-ink/10 bg-ink text-paper">
         <div className="bg-grid absolute inset-0 opacity-[0.08]" />
         <div className="container-page relative py-16 md:py-20">
-          <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:items-center">
+          <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <Reveal>
               <p className="kicker text-brand-200">Coverage</p>
               <h2 className="mt-4 text-3xl font-semibold leading-tight md:text-4xl">
                 Insurance &amp; plans accepted
               </h2>
-              <p className="mt-4 text-pretty text-paper/70">
-                We work with most major insurers. The list below is a placeholder
-                — please call to confirm your specific plan and coverage.
+              <p className="mt-4 max-w-lg text-pretty text-paper/70">
+                We work with most major insurers and IPAs. Call us to confirm your specific plan and coverage.
               </p>
             </Reveal>
-
             <Reveal delay={0.1}>
-              <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-                {insurers.map((name) => (
-                  <li
-                    key={name}
-                    className="rounded-xl border border-paper/15 bg-paper/[0.04] px-4 py-3.5 text-center text-sm text-paper/85 transition-colors hover:border-brand-300 hover:text-white"
-                  >
-                    {name}
-                  </li>
-                ))}
-              </ul>
+              <Link href="/insurance" className="link-underline whitespace-nowrap text-sm font-medium text-brand-200">
+                View all plans <ArrowRight className="h-4 w-4" />
+              </Link>
             </Reveal>
           </div>
+
+          <Reveal delay={0.1}>
+            <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+              {insurers.map((ins) => (
+                <li key={ins.name}>
+                  <div className="flex h-full items-center gap-3 rounded-xl border border-paper/10 bg-white/[0.05] px-4 py-3.5 transition-colors hover:border-brand-300/50 hover:bg-white/10">
+                    <span
+                      className="grid h-8 w-8 flex-none place-items-center rounded-lg text-sm font-bold text-white"
+                      style={{ backgroundColor: ins.color }}
+                    >
+                      {ins.name.charAt(0)}
+                    </span>
+                    <span className="text-sm font-medium leading-tight text-paper/90">{ins.name}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-5 text-center text-sm text-paper/50">
+              Don&apos;t see your insurance? Call us at{" "}
+              <a href="tel:+19169668500" className="text-brand-200 hover:underline">916-966-8500</a>{" "}
+              to confirm coverage.
+            </p>
+          </Reveal>
         </div>
       </section>
 
