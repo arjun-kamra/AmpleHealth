@@ -855,7 +855,7 @@ export type Insurer = {
   type: string;
   description: string;
   color: string;
-  logoUrl?: string;
+  domain?: string;
 };
 
 export const insurers: Insurer[] = [
@@ -864,63 +864,63 @@ export const insurers: Insurer[] = [
     type: "Commercial",
     description: "PPO, HMO, and Medicare Advantage plans accepted. One of the largest national insurers.",
     color: "#7B2D8B",
-    logoUrl: "https://logo.clearbit.com/aetna.com",
+    domain: "aetna.com",
   },
   {
     name: "Anthem Blue Cross",
     type: "Commercial",
     description: "California's largest for-profit health insurer offering PPO and HMO plans.",
     color: "#286CE2",
-    logoUrl: "https://logo.clearbit.com/anthem.com",
+    domain: "anthem.com",
   },
   {
     name: "Blue Shield of California",
     type: "Commercial",
     description: "Non-profit insurer offering a wide range of PPO, HMO, and HSP plans statewide.",
     color: "#005CB9",
-    logoUrl: "https://logo.clearbit.com/blueshieldca.com",
+    domain: "blueshieldca.com",
   },
   {
     name: "Cigna",
     type: "Commercial",
     description: "National carrier with broad PPO and HMO networks, including behavioral health.",
     color: "#005DAA",
-    logoUrl: "https://logo.clearbit.com/cigna.com",
+    domain: "cigna.com",
   },
   {
     name: "Health Net",
     type: "Commercial",
     description: "California-based managed care plan with Medi-Cal, commercial, and Medicare options.",
     color: "#0080C6",
-    logoUrl: "https://logo.clearbit.com/healthnet.com",
+    domain: "healthnet.com",
   },
   {
     name: "Medicare",
     type: "Government",
     description: "Original Medicare (Parts A & B) accepted. Medicare Advantage plans vary — please call to confirm.",
     color: "#1565C0",
-    logoUrl: "https://logo.clearbit.com/medicare.gov",
+    domain: "medicare.gov",
   },
   {
     name: "Sutter Health Plan",
     type: "Commercial",
     description: "Regional non-profit plan offering group and individual coverage across Northern California.",
     color: "#2C7D3D",
-    logoUrl: "https://logo.clearbit.com/sutterhealthplus.org",
+    domain: "sutterhealth.org",
   },
   {
     name: "United Healthcare",
     type: "Commercial",
     description: "The nation's largest carrier with PPO, HMO, and Medicare Advantage products.",
     color: "#0066CC",
-    logoUrl: "https://logo.clearbit.com/uhc.com",
+    domain: "uhc.com",
   },
   {
     name: "Hill Physicians",
     type: "IPA / Medical Group",
     description: "One of the largest independent physician associations in Northern California, working with multiple health plans.",
     color: "#C8102E",
-    logoUrl: "https://logo.clearbit.com/hillphysicians.com",
+    domain: "hillphysicians.com",
   },
   {
     name: "MD Partners IPA",

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CTABand from "@/components/CTABand";
 import { Reveal, Stagger, StaggerItem } from "@/components/Motion";
+import InsurerLogo from "@/components/InsurerLogo";
 import { insurers } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -63,24 +64,17 @@ export default function InsurancePage() {
                 {list.map((ins) => (
                   <StaggerItem key={ins.name}>
                     <div className="card-surface group flex h-full flex-col overflow-hidden p-6">
-                      <div className="flex items-start gap-4">
+                      <InsurerLogo name={ins.name} domain={ins.domain} color={ins.color} />
+                      <div className="mt-4">
+                        <h3 className="font-semibold leading-tight">{ins.name}</h3>
                         <span
-                          className="grid h-12 w-12 flex-none place-items-center rounded-xl text-xl font-bold text-white shadow-sm"
-                          style={{ backgroundColor: ins.color }}
+                          className="mt-1 inline-block rounded-full px-2.5 py-0.5 text-xs font-medium text-white"
+                          style={{ backgroundColor: ins.color + "CC" }}
                         >
-                          {ins.name.charAt(0)}
+                          {ins.type}
                         </span>
-                        <div className="min-w-0 flex-1">
-                          <h3 className="font-semibold leading-tight">{ins.name}</h3>
-                          <span
-                            className="mt-1 inline-block rounded-full px-2.5 py-0.5 text-xs font-medium text-white"
-                            style={{ backgroundColor: ins.color + "CC" }}
-                          >
-                            {ins.type}
-                          </span>
-                        </div>
                       </div>
-                      <p className="mt-4 flex-1 text-sm leading-relaxed text-ink-muted">
+                      <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-muted">
                         {ins.description}
                       </p>
                     </div>
