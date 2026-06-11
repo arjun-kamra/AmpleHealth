@@ -1,5 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { supabaseAdmin } from "@/lib/supabase";
 
 // Rotating set of internal-medicine topics, each paired with an Unsplash
@@ -135,6 +136,9 @@ Return only valid JSON, no markdown code blocks.`;
       { status: 500 }
     );
   }
+
+  // Bust the Next.js Router Cache so /blog reflects the new post immediately.
+  revalidatePath("/blog");
 
   return NextResponse.json({ post: data }, { status: 201 });
 }
