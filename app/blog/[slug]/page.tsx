@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { createClient } from "@supabase/supabase-js";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
