@@ -3,9 +3,10 @@ import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import CTABand from "@/components/CTABand";
 import { Reveal, Stagger, StaggerItem } from "@/components/Motion";
-import Placeholder from "@/components/Placeholder";
+import BlogImage from "@/components/BlogImage";
 import { ArrowRight, Clock } from "@/components/Icons";
-import { blogPosts } from "@/lib/data";
+import { supabase, type BlogRow } from "@/lib/supabase";
+import { mapRow } from "@/lib/blog";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -13,8 +14,37 @@ export const metadata: Metadata = {
     "Health insights and practice news from the AmpleHealth care team in Carmichael and Sacramento.",
 };
 
-export default function BlogPage() {
-  const [featured, ...rest] = blogPosts;
+// Always reflect the latest posts (new ones arrive weekly via cron).
+export const dynamic = "force-dynamic";
+
+export default async function BlogPage() {
+  const { data } = await supabase
+    .from("blog_posts")
+    .select("*")
+    .order("published_at", { ascending: false });
+
+  const posts = ((data as BlogRow[]) ?? []).map(mapRow);
+
+  if (posts.length === 0) {
+    return (
+      <>
+        <PageHero
+          kicker="Journal"
+          title="Notes on health, from your"
+          highlight="physicians."
+          description="Practical, evidence-informed writing on prevention, chronic care, aesthetics, and living well."
+        />
+        <section className="container-page py-24 text-center">
+          <p className="text-lg text-ink-muted">
+            No articles published yet — check back soon.
+          </p>
+        </section>
+        <CTABand />
+      </>
+    );
+  }
+
+  const [featured, ...rest] = posts;
 
   return (
     <>
@@ -31,11 +61,12 @@ export default function BlogPage() {
           <Link href={`/blog/${featured.slug}`}>
             <article className="card-surface group grid overflow-hidden lg:grid-cols-2">
               <div className="relative">
-                <Placeholder
+                <BlogImage
+                  src={featured.imageUrl}
+                  alt={featured.title}
                   tone={featured.tone}
                   ratio="16 / 11"
                   rounded="rounded-none"
-                  label={featured.category}
                   className="h-full"
                 />
               </div>
@@ -67,44 +98,47 @@ export default function BlogPage() {
       </section>
 
       {/* GRID */}
-      <section className="container-page pb-20 md:pb-28">
-        <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {rest.map((post) => (
-            <StaggerItem key={post.slug}>
-              <Link href={`/blog/${post.slug}`}>
-                <article className="group flex h-full flex-col">
-                  <Placeholder
-                    tone={post.tone}
-                    ratio="16 / 10"
-                    label={post.category}
-                    className="transition-transform duration-300 group-hover:-translate-y-1"
-                  />
-                  <div className="mt-5 flex items-center gap-3 text-xs uppercase tracking-kicker text-ink-muted">
-                    <span style={{ color: post.tone }}>{post.category}</span>
-                    <span>·</span>
-                    <time dateTime={post.isoDate}>{post.date}</time>
-                  </div>
-                  <h3 className="mt-3 text-xl font-semibold leading-snug">
-                    {post.title}
-                  </h3>
-                  <p className="mt-2 flex-1 text-pretty text-sm leading-relaxed text-ink-muted">
-                    {post.excerpt}
-                  </p>
-                  <div className="mt-4 flex items-center gap-4 text-sm">
-                    <span className="inline-flex items-center gap-1.5 font-medium text-brand">
-                      Read
-                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 text-ink-muted">
-                      <Clock className="h-3.5 w-3.5" /> {post.readTime}
-                    </span>
-                  </div>
-                </article>
-              </Link>
-            </StaggerItem>
-          ))}
-        </Stagger>
-      </section>
+      {rest.length > 0 && (
+        <section className="container-page pb-20 md:pb-28">
+          <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {rest.map((post) => (
+              <StaggerItem key={post.slug}>
+                <Link href={`/blog/${post.slug}`}>
+                  <article className="group flex h-full flex-col">
+                    <BlogImage
+                      src={post.imageUrl}
+                      alt={post.title}
+                      tone={post.tone}
+                      ratio="16 / 10"
+                      className="transition-transform duration-300 group-hover:-translate-y-1"
+                    />
+                    <div className="mt-5 flex items-center gap-3 text-xs uppercase tracking-kicker text-ink-muted">
+                      <span style={{ color: post.tone }}>{post.category}</span>
+                      <span>·</span>
+                      <time dateTime={post.isoDate}>{post.date}</time>
+                    </div>
+                    <h3 className="mt-3 text-xl font-semibold leading-snug">
+                      {post.title}
+                    </h3>
+                    <p className="mt-2 flex-1 text-pretty text-sm leading-relaxed text-ink-muted">
+                      {post.excerpt}
+                    </p>
+                    <div className="mt-4 flex items-center gap-4 text-sm">
+                      <span className="inline-flex items-center gap-1.5 font-medium text-brand">
+                        Read
+                        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 text-ink-muted">
+                        <Clock className="h-3.5 w-3.5" /> {post.readTime}
+                      </span>
+                    </div>
+                  </article>
+                </Link>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </section>
+      )}
 
       <CTABand
         title="Care that goes beyond the article"

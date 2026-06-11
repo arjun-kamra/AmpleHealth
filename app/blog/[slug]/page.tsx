@@ -1,35 +1,52 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ReactMarkdown from "react-markdown";
 import CTABand from "@/components/CTABand";
 import { Reveal } from "@/components/Motion";
-import Placeholder from "@/components/Placeholder";
+import BlogImage from "@/components/BlogImage";
 import { ArrowRight, Clock } from "@/components/Icons";
-import { blogPosts, site } from "@/lib/data";
+import { supabase, type BlogRow } from "@/lib/supabase";
+import { mapRow } from "@/lib/blog";
+import { site } from "@/lib/data";
 
-export function generateStaticParams() {
-  return blogPosts.map((p) => ({ slug: p.slug }));
+export const dynamic = "force-dynamic";
+
+async function getPost(slug: string) {
+  const { data } = await supabase
+    .from("blog_posts")
+    .select("*")
+    .eq("slug", slug)
+    .single();
+  return data ? mapRow(data as BlogRow) : null;
 }
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
   params: { slug: string };
-}): Metadata {
-  const post = blogPosts.find((p) => p.slug === params.slug);
+}): Promise<Metadata> {
+  const post = await getPost(params.slug);
   if (!post) return { title: "Post not found" };
-  return {
-    title: post.title,
-    description: post.excerpt,
-  };
+  return { title: post.title, description: post.excerpt };
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = blogPosts.find((p) => p.slug === params.slug);
+export default async function BlogPostPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const post = await getPost(params.slug);
   if (!post) notFound();
 
-  const index = blogPosts.findIndex((p) => p.slug === params.slug);
-  const related = blogPosts.filter((_, i) => i !== index).slice(0, 3);
+  const { data: relatedData } = await supabase
+    .from("blog_posts")
+    .select("*")
+    .neq("slug", params.slug)
+    .order("published_at", { ascending: false })
+    .limit(3);
+
+  const related = ((relatedData as BlogRow[]) ?? []).map(mapRow);
 
   return (
     <>
@@ -72,12 +89,13 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         </div>
       </section>
 
-      {/* HERO IMAGE PLACEHOLDER */}
+      {/* FULL-WIDTH HERO IMAGE */}
       <div className="container-page -mt-2 pb-0 pt-10">
-        <Placeholder
+        <BlogImage
+          src={post.imageUrl}
+          alt={post.title}
           tone={post.tone}
           ratio="16 / 7"
-          label={`${post.category} — ${post.title}`}
           rounded="rounded-2xl"
         />
       </div>
@@ -86,10 +104,52 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       <article className="container-page py-16 md:py-20">
         <div className="mx-auto max-w-2xl">
           <Reveal>
-            <div className="space-y-6 text-pretty text-lg leading-relaxed text-ink-soft">
-              {post.articleContent.map((para, i) => (
-                <p key={i}>{para}</p>
-              ))}
+            <div className="blog-prose space-y-6 text-pretty text-lg leading-relaxed text-ink-soft">
+              <ReactMarkdown
+                components={{
+                  h1: ({ children }) => (
+                    <h2 className="mt-10 text-3xl font-semibold text-ink">
+                      {children}
+                    </h2>
+                  ),
+                  h2: ({ children }) => (
+                    <h2 className="mt-10 text-2xl font-semibold text-ink">
+                      {children}
+                    </h2>
+                  ),
+                  h3: ({ children }) => (
+                    <h3 className="mt-8 text-xl font-semibold text-ink">
+                      {children}
+                    </h3>
+                  ),
+                  p: ({ children }) => <p>{children}</p>,
+                  ul: ({ children }) => (
+                    <ul className="list-disc space-y-2 pl-6">{children}</ul>
+                  ),
+                  ol: ({ children }) => (
+                    <ol className="list-decimal space-y-2 pl-6">{children}</ol>
+                  ),
+                  li: ({ children }) => <li>{children}</li>,
+                  strong: ({ children }) => (
+                    <strong className="font-semibold text-ink">{children}</strong>
+                  ),
+                  a: ({ href, children }) => (
+                    <a
+                      href={href}
+                      className="text-brand underline underline-offset-2"
+                    >
+                      {children}
+                    </a>
+                  ),
+                  blockquote: ({ children }) => (
+                    <blockquote className="border-l-4 border-brand/30 pl-5 italic text-ink-muted">
+                      {children}
+                    </blockquote>
+                  ),
+                }}
+              >
+                {post.content}
+              </ReactMarkdown>
             </div>
           </Reveal>
 
@@ -125,10 +185,11 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               {related.map((p) => (
                 <Reveal key={p.slug}>
                   <Link href={`/blog/${p.slug}`} className="group flex flex-col">
-                    <Placeholder
+                    <BlogImage
+                      src={p.imageUrl}
+                      alt={p.title}
                       tone={p.tone}
                       ratio="16 / 10"
-                      label={p.category}
                       className="transition-transform duration-300 group-hover:-translate-y-1"
                     />
                     <div className="mt-4 flex items-center gap-3 text-xs uppercase tracking-kicker text-ink-muted">
