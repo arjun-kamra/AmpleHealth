@@ -855,6 +855,7 @@ export type Insurer = {
   type: string;
   description: string;
   color: string;
+  logo?: string;
 };
 
 export const insurers: Insurer[] = [
@@ -863,24 +864,28 @@ export const insurers: Insurer[] = [
     type: "Commercial",
     description: "PPO, HMO, and Medicare Advantage plans accepted. One of the largest national insurers.",
     color: "#7B2D8B",
+    logo: "/insurance/aetna.png",
   },
   {
     name: "Anthem Blue Cross",
     type: "Commercial",
     description: "California's largest for-profit health insurer offering PPO and HMO plans.",
     color: "#286CE2",
+    logo: "/insurance/anthem.png",
   },
   {
     name: "Blue Shield of California",
     type: "Commercial",
     description: "Non-profit insurer offering a wide range of PPO, HMO, and HSP plans statewide.",
     color: "#005CB9",
+    logo: "/insurance/blueshield.png",
   },
   {
     name: "Cigna",
     type: "Commercial",
     description: "National carrier with broad PPO and HMO networks, including behavioral health.",
     color: "#005DAA",
+    logo: "/insurance/cigna.png",
   },
   {
     name: "Health Net",
@@ -893,6 +898,7 @@ export const insurers: Insurer[] = [
     type: "Government",
     description: "Original Medicare (Parts A & B) accepted. Medicare Advantage plans vary — please call to confirm.",
     color: "#1565C0",
+    logo: "/insurance/medicare.png",
   },
   {
     name: "Sutter Health Plan",
@@ -905,6 +911,7 @@ export const insurers: Insurer[] = [
     type: "Commercial",
     description: "The nation's largest carrier with PPO, HMO, and Medicare Advantage products.",
     color: "#0066CC",
+    logo: "/insurance/uhc.png",
   },
   {
     name: "Hill Physicians",

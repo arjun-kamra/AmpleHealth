@@ -64,7 +64,7 @@ export default function InsurancePage() {
                 {list.map((ins) => (
                   <StaggerItem key={ins.name}>
                     <div className="card-surface group flex h-full flex-col overflow-hidden p-6">
-                      <InsurerLogo name={ins.name} color={ins.color} />
+                      <InsurerLogo name={ins.name} color={ins.color} logo={ins.logo} />
                       <div className="mt-4">
                         <h3 className="font-semibold leading-tight">{ins.name}</h3>
                         <span
