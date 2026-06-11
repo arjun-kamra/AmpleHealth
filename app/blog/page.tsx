@@ -4,7 +4,6 @@ import { createClient } from "@supabase/supabase-js";
 import PageHero from "@/components/PageHero";
 import CTABand from "@/components/CTABand";
 import { Reveal, Stagger, StaggerItem } from "@/components/Motion";
-import BlogImage from "@/components/BlogImage";
 import { ArrowRight, Clock } from "@/components/Icons";
 import { type BlogRow } from "@/lib/supabase";
 import { mapRow } from "@/lib/blog";
@@ -68,38 +67,36 @@ export default async function BlogPage() {
       <section className="container-page py-20 md:py-24">
         <Reveal>
           <Link href={`/blog/${featured.slug}`}>
-            <article className="card-surface group grid overflow-hidden lg:grid-cols-2">
-              <div className="relative">
-                <BlogImage
+            <article className="card-surface group overflow-hidden lg:flex">
+              {/* Image — fixed height on mobile, fills left half on desktop */}
+              <div className="relative h-64 shrink-0 lg:h-auto lg:w-1/2">
+                <img
                   src={featured.imageUrl}
                   alt={featured.title}
-                  tone={featured.tone}
-                  ratio="16 / 11"
-                  rounded="rounded-none"
-                  className="h-full"
+                  className="absolute inset-0 h-full w-full object-cover"
                 />
               </div>
-              <div className="flex flex-col justify-center p-8 md:p-12">
+              {/* Text */}
+              <div className="flex flex-col justify-center gap-4 p-8 md:p-12 lg:w-1/2">
                 <div className="flex items-center gap-3 text-xs uppercase tracking-kicker text-ink-muted">
                   <span style={{ color: featured.tone }}>{featured.category}</span>
                   <span>·</span>
                   <time dateTime={featured.isoDate}>{featured.date}</time>
+                  <span>·</span>
+                  <span className="inline-flex items-center gap-1">
+                    <Clock className="h-3.5 w-3.5" /> {featured.readTime}
+                  </span>
                 </div>
-                <h2 className="mt-4 text-3xl font-semibold leading-tight md:text-4xl">
+                <h2 className="text-3xl font-semibold leading-tight md:text-4xl">
                   {featured.title}
                 </h2>
-                <p className="mt-4 text-pretty leading-relaxed text-ink-muted">
+                <p className="text-pretty leading-relaxed text-ink-muted">
                   {featured.excerpt}
                 </p>
-                <div className="mt-6 flex items-center gap-4">
-                  <span className="inline-flex items-center gap-1.5 font-medium text-brand">
-                    Read article
-                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 text-sm text-ink-muted">
-                    <Clock className="h-4 w-4" /> {featured.readTime}
-                  </span>
-                </div>
+                <span className="inline-flex items-center gap-1.5 font-medium text-brand">
+                  Read article
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
               </div>
             </article>
           </Link>
@@ -114,13 +111,13 @@ export default async function BlogPage() {
               <StaggerItem key={post.slug}>
                 <Link href={`/blog/${post.slug}`}>
                   <article className="group flex h-full flex-col">
-                    <BlogImage
-                      src={post.imageUrl}
-                      alt={post.title}
-                      tone={post.tone}
-                      ratio="16 / 10"
-                      className="transition-transform duration-300 group-hover:-translate-y-1"
-                    />
+                    <div className="relative overflow-hidden rounded-2xl" style={{ aspectRatio: "16/10" }}>
+                      <img
+                        src={post.imageUrl}
+                        alt={post.title}
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:-translate-y-1"
+                      />
+                    </div>
                     <div className="mt-5 flex items-center gap-3 text-xs uppercase tracking-kicker text-ink-muted">
                       <span style={{ color: post.tone }}>{post.category}</span>
                       <span>·</span>

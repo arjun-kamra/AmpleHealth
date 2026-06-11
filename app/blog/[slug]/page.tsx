@@ -5,7 +5,6 @@ import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import CTABand from "@/components/CTABand";
 import { Reveal } from "@/components/Motion";
-import BlogImage from "@/components/BlogImage";
 import { ArrowRight, Clock } from "@/components/Icons";
 import { type BlogRow } from "@/lib/supabase";
 import { mapRow } from "@/lib/blog";
@@ -101,13 +100,13 @@ export default async function BlogPostPage({
 
       {/* FULL-WIDTH HERO IMAGE */}
       <div className="container-page -mt-2 pb-0 pt-10">
-        <BlogImage
-          src={post.imageUrl}
-          alt={post.title}
-          tone={post.tone}
-          ratio="16 / 7"
-          rounded="rounded-2xl"
-        />
+        <div className="relative overflow-hidden rounded-2xl" style={{ aspectRatio: "16/7" }}>
+          <img
+            src={post.imageUrl}
+            alt={post.title}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        </div>
       </div>
 
       {/* ARTICLE BODY */}
@@ -195,13 +194,13 @@ export default async function BlogPostPage({
               {related.map((p) => (
                 <Reveal key={p.slug}>
                   <Link href={`/blog/${p.slug}`} className="group flex flex-col">
-                    <BlogImage
-                      src={p.imageUrl}
-                      alt={p.title}
-                      tone={p.tone}
-                      ratio="16 / 10"
-                      className="transition-transform duration-300 group-hover:-translate-y-1"
-                    />
+                    <div className="relative overflow-hidden rounded-2xl" style={{ aspectRatio: "16/10" }}>
+                      <img
+                        src={p.imageUrl}
+                        alt={p.title}
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:-translate-y-1"
+                      />
+                    </div>
                     <div className="mt-4 flex items-center gap-3 text-xs uppercase tracking-kicker text-ink-muted">
                       <span style={{ color: p.tone }}>{p.category}</span>
                       <span>·</span>
