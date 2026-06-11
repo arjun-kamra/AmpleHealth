@@ -19,10 +19,12 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function BlogPage() {
-  const { data } = await supabase
+  const { data, error } = await supabase
     .from("blog_posts")
     .select("*")
     .order("published_at", { ascending: false });
+
+  console.log("[blog page] supabase rows:", data?.length ?? 0, "error:", error?.message ?? null);
 
   const posts = ((data as BlogRow[]) ?? []).map(mapRow);
 
