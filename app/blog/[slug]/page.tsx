@@ -11,6 +11,7 @@ import { mapRow } from "@/lib/blog";
 import { site } from "@/lib/data";
 
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 async function getPost(slug: string) {
   const { data } = await supabase

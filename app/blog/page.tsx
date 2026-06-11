@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 
 // Always reflect the latest posts (new ones arrive weekly via cron).
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function BlogPage() {
   const { data } = await supabase
