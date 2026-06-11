@@ -855,7 +855,6 @@ export type Insurer = {
   type: string;
   description: string;
   color: string;
-  logo?: string;
 };
 
 export const insurers: Insurer[] = [
@@ -864,7 +863,6 @@ export const insurers: Insurer[] = [
     type: "Commercial",
     description: "PPO, HMO, and Medicare Advantage plans accepted. One of the largest national insurers.",
     color: "#7B2D8B",
-    logo: "/insurance/aetna.png",
   },
   {
     name: "Anthem Blue Cross",
@@ -883,7 +881,6 @@ export const insurers: Insurer[] = [
     type: "Commercial",
     description: "National carrier with broad PPO and HMO networks, including behavioral health.",
     color: "#005DAA",
-    logo: "/insurance/cigna.png",
   },
   {
     name: "Health Net",
@@ -908,7 +905,6 @@ export const insurers: Insurer[] = [
     type: "Commercial",
     description: "The nation's largest carrier with PPO, HMO, and Medicare Advantage products.",
     color: "#0066CC",
-    logo: "/insurance/uhc.png",
   },
   {
     name: "Hill Physicians",

@@ -3,7 +3,6 @@ import Link from "next/link";
 import CTABand from "@/components/CTABand";
 import { Reveal, Stagger, StaggerItem } from "@/components/Motion";
 import InsurerLogo from "@/components/InsurerLogo";
-import type { Insurer } from "@/lib/data";
 import { insurers } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -65,7 +64,7 @@ export default function InsurancePage() {
                 {list.map((ins) => (
                   <StaggerItem key={ins.name}>
                     <div className="card-surface group flex h-full flex-col overflow-hidden p-6">
-                      <InsurerLogo name={ins.name} logo={ins.logo} color={ins.color} />
+                      <InsurerLogo name={ins.name} color={ins.color} />
                       <div className="mt-4">
                         <h3 className="font-semibold leading-tight">{ins.name}</h3>
                         <span
