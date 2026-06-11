@@ -1,20 +1,28 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { createClient } from "@supabase/supabase-js";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import CTABand from "@/components/CTABand";
 import { Reveal } from "@/components/Motion";
 import BlogImage from "@/components/BlogImage";
 import { ArrowRight, Clock } from "@/components/Icons";
-import { supabase, type BlogRow } from "@/lib/supabase";
+import { type BlogRow } from "@/lib/supabase";
 import { mapRow } from "@/lib/blog";
 import { site } from "@/lib/data";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
+function makeClient() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    { global: { fetch: (url, init) => fetch(url, { ...init, cache: "no-store" }) } }
+  );
+}
+
 async function getPost(slug: string) {
-  const { data } = await supabase
+  const { data } = await makeClient()
     .from("blog_posts")
     .select("*")
     .eq("slug", slug)
@@ -40,7 +48,7 @@ export default async function BlogPostPage({
   const post = await getPost(params.slug);
   if (!post) notFound();
 
-  const { data: relatedData } = await supabase
+  const { data: relatedData } = await makeClient()
     .from("blog_posts")
     .select("*")
     .neq("slug", params.slug)

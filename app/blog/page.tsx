@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { createClient } from "@supabase/supabase-js";
 import PageHero from "@/components/PageHero";
 import CTABand from "@/components/CTABand";
 import { Reveal, Stagger, StaggerItem } from "@/components/Motion";
 import BlogImage from "@/components/BlogImage";
 import { ArrowRight, Clock } from "@/components/Icons";
-import { supabase, type BlogRow } from "@/lib/supabase";
+import { type BlogRow } from "@/lib/supabase";
 import { mapRow } from "@/lib/blog";
 
 export const metadata: Metadata = {
@@ -14,17 +15,22 @@ export const metadata: Metadata = {
     "Health insights and practice news from the AmpleHealth care team in Carmichael and Sacramento.",
 };
 
-// Always reflect the latest posts (new ones arrive weekly via cron).
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function BlogPage() {
-  const { data, error } = await supabase
+  const db = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    { global: { fetch: (url, init) => fetch(url, { ...init, cache: "no-store" }) } }
+  );
+
+  const { data, error } = await db
     .from("blog_posts")
     .select("*")
     .order("published_at", { ascending: false });
 
-  console.log("[blog page] supabase rows:", data?.length ?? 0, "error:", error?.message ?? null);
+  console.log("[blog page] rows:", data?.length ?? 0, "error:", error?.message ?? null);
 
   const posts = ((data as BlogRow[]) ?? []).map(mapRow);
 
