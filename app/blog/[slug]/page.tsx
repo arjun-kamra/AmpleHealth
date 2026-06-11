@@ -60,9 +60,9 @@ export default async function BlogPostPage({
         />
         <div className="container-page relative py-16 md:py-20">
           <Reveal>
-            <Link href="/blog" className="link-underline text-sm font-medium">
+            <a href="/blog" className="link-underline text-sm font-medium">
               <ArrowRight className="h-4 w-4 rotate-180" /> All articles
-            </Link>
+            </a>
           </Reveal>
           <div className="mt-6 max-w-3xl">
             <Reveal delay={0.05}>

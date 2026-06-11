@@ -58,12 +58,12 @@ export default function GenerateBlogAdminPage() {
           <div className="mt-6 rounded-xl border border-green-200 bg-green-50 p-5 text-left">
             <p className="font-medium text-green-800">Published!</p>
             <p className="mt-1 text-sm text-green-700">{result.title}</p>
-            <Link
+            <a
               href={`/blog/${result.slug}`}
               className="mt-3 inline-block text-sm font-medium text-brand hover:underline"
             >
               View post →
-            </Link>
+            </a>
           </div>
         )}
 
@@ -74,12 +74,12 @@ export default function GenerateBlogAdminPage() {
           </div>
         )}
 
-        <Link
+        <a
           href="/blog"
           className="mt-6 inline-block text-sm text-ink-muted hover:text-ink"
         >
           ← Back to blog
-        </Link>
+        </a>
       </div>
     </section>
   );
