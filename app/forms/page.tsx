@@ -1,15 +1,54 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import CTABand from "@/components/CTABand";
 import { Stagger, StaggerItem } from "@/components/Motion";
-import { Download, Clock } from "@/components/Icons";
-import { forms } from "@/lib/data";
+import { ArrowRight } from "@/components/Icons";
 
 export const metadata: Metadata = {
   title: "Patient Forms",
   description:
-    "Download AmpleHealth patient forms — intake, privacy practices, telemedicine consent, and more. Online forms coming soon.",
+    "Complete your AmpleHealth patient forms online — new patient intake, authorization for release of information, privacy practices, telemedicine consent, and more.",
 };
+
+const formLinks = [
+  {
+    href: "/forms/patient-intake",
+    title: "New Patient Intake",
+    description:
+      "Tell us about your history, insurance, medications, and lifestyle before your first visit.",
+  },
+  {
+    href: "/forms/authorization-release",
+    title: "Authorization for Release of Information",
+    description:
+      "Authorize AmpleHealth to release or obtain your protected health information.",
+  },
+  {
+    href: "/forms/privacy-practices",
+    title: "Notice of Privacy Practices",
+    description:
+      "Review how we protect your health information and acknowledge receipt.",
+  },
+  {
+    href: "/forms/no-show-policy",
+    title: "No-Show & Late Cancellation Policy",
+    description:
+      "Review and acknowledge our policy on missed appointments and late cancellations.",
+  },
+  {
+    href: "/forms/patient-partnership",
+    title: "Patient Partnership Plan",
+    description:
+      "Our shared commitments — what you can expect from us, and what we ask of you.",
+  },
+  {
+    href: "/forms/telemedicine-consent",
+    title: "Telemedicine Consent",
+    description:
+      "Consent to receiving care from AmpleHealth via secure telemedicine.",
+  },
+];
 
 export default function FormsPage() {
   return (
@@ -18,32 +57,15 @@ export default function FormsPage() {
         kicker="Patient forms"
         title="Everything you need, before you"
         highlight="arrive."
-        description="Download and complete these forms ahead of your visit to save time at check-in. Links below are placeholders."
+        description="Complete these forms online ahead of your visit to save time at check-in. Each one goes straight to our care team."
       />
 
       <section className="container-page py-20 md:py-28">
-        {/* coming soon notice */}
-        <div className="card-surface mb-10 flex items-start gap-4 border-brand/30 bg-brand/[0.04] p-6">
-          <span className="grid h-10 w-10 flex-none place-items-center rounded-xl bg-brand/10 text-brand">
-            <Clock className="h-5 w-5" />
-          </span>
-          <div>
-            <p className="font-medium">Online forms are coming soon</p>
-            <p className="mt-1 text-sm text-ink-muted">
-              We&apos;re building secure digital intake so you can complete
-              everything online. For now, please download, print, and bring your
-              completed forms to your appointment.
-            </p>
-          </div>
-        </div>
-
         <Stagger className="grid gap-4 md:grid-cols-2">
-          {forms.map((form, i) => (
-            <StaggerItem key={form.title}>
-              {/* TODO: replace href with real PDF download link */}
-              <a
-                href="#"
-                aria-label={`Download ${form.title} (placeholder)`}
+          {formLinks.map((form, i) => (
+            <StaggerItem key={form.href}>
+              <Link
+                href={form.href}
                 className="card-surface group flex h-full items-start justify-between gap-4 p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-[0_18px_40px_-22px_rgba(11,31,51,0.3)]"
               >
                 <div className="flex items-start gap-4">
@@ -57,15 +79,13 @@ export default function FormsPage() {
                     <p className="mt-1 text-sm text-ink-muted">
                       {form.description}
                     </p>
-                    <span className="mt-2 inline-block text-xs uppercase tracking-kicker text-ink-muted">
-                      PDF · Placeholder
+                    <span className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-brand">
+                      Fill out form
+                      <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
                     </span>
                   </div>
                 </div>
-                <span className="grid h-10 w-10 flex-none place-items-center rounded-full border border-ink/15 text-ink-muted transition-colors duration-300 group-hover:border-brand group-hover:bg-brand group-hover:text-white">
-                  <Download className="h-4 w-4" />
-                </span>
-              </a>
+              </Link>
             </StaggerItem>
           ))}
         </Stagger>
