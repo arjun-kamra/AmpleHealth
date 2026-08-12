@@ -10,7 +10,7 @@ import { providers, type Provider } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Our Team",
   description:
-    "Meet the 18-person AmpleHealth care team — physicians, nurse practitioners, physician assistants, and dedicated care and administrative staff.",
+    "Meet the 19-person AmpleHealth care team — physicians, nurse practitioners, physician assistants, and dedicated care and administrative staff.",
 };
 
 const sections: {
@@ -85,7 +85,7 @@ export default function TeamPage() {
         kicker="Our team"
         title="The people behind your"
         highlight="care."
-        description="18 physicians, nurse practitioners, physician assistants, and dedicated support staff — all united by one standard and one shared purpose."
+        description="19 physicians, nurse practitioners, physician assistants, and dedicated support staff — all united by one standard and one shared purpose."
       />
 
       <div className="container-page py-20 md:py-28 space-y-16">

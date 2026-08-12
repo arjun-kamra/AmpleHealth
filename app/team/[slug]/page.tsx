@@ -5,7 +5,7 @@ import CTABand from "@/components/CTABand";
 import { Reveal } from "@/components/Motion";
 import ProviderPhoto, { ProviderAvatar } from "@/components/ProviderPhoto";
 import { ArrowRight, Check } from "@/components/Icons";
-import { providers, site } from "@/lib/data";
+import { providers } from "@/lib/data";
 
 export function generateStaticParams() {
   return providers.map((p) => ({ slug: p.slug }));
@@ -19,7 +19,9 @@ export function generateMetadata({
   const provider = providers.find((p) => p.slug === params.slug);
   if (!provider) return { title: "Provider not found" };
   return {
-    title: `${provider.name}, ${provider.credentials}`,
+    title: provider.credentials
+      ? `${provider.name}, ${provider.credentials}`
+      : provider.name,
     description: provider.shortBio,
   };
 }
@@ -27,6 +29,13 @@ export function generateMetadata({
 export default function ProviderPage({ params }: { params: { slug: string } }) {
   const provider = providers.find((p) => p.slug === params.slug);
   if (!provider) notFound();
+
+  // Decorative monogram (same treatment as ProviderCard/Placeholder) — the
+  // credentials line itself renders once, below the name.
+  const monogram = provider.name
+    .split(" ")
+    .map((n) => n[0])
+    .join("");
 
   return (
     <>
@@ -60,32 +69,25 @@ export default function ProviderPage({ params }: { params: { slug: string } }) {
 
             <Reveal delay={0.1}>
               <p
+                aria-hidden="true"
                 className="font-serif text-6xl font-semibold leading-none opacity-20"
                 style={{ color: provider.tone }}
               >
-                {provider.credentials}
+                {monogram}
               </p>
               <h1 className="mt-3 text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
                 {provider.name}
               </h1>
-              <p className="mt-2 text-lg font-medium text-brand">
-                {provider.credentials}
-              </p>
+              {provider.credentials && (
+                <p className="mt-2 text-lg font-medium text-brand">
+                  {provider.credentials}
+                </p>
+              )}
               <p className="text-ink-muted">{provider.title}</p>
 
               <p className="mt-6 text-pretty text-lg leading-relaxed text-ink-muted">
                 {provider.shortBio}
               </p>
-
-              <a
-                href={site.bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary mt-8"
-              >
-                Book with {provider.name.split(" ")[0]}{" "}
-                <ArrowRight className="h-4 w-4" />
-              </a>
             </Reveal>
           </div>
         </div>

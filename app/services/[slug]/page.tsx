@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import CTABand from "@/components/CTABand";
 import { Reveal } from "@/components/Motion";
-import Placeholder from "@/components/Placeholder";
 import { ArrowRight, Check } from "@/components/Icons";
 import { services, site } from "@/lib/data";
 
 export function generateStaticParams() {
-  return services.map((s) => ({ slug: s.slug }));
+  // metabolic-syndrome has its own dedicated page at /services/metabolic-syndrome/
+  return services
+    .filter((s) => s.slug !== "metabolic-syndrome")
+    .map((s) => ({ slug: s.slug }));
 }
 
 export function generateMetadata({
@@ -69,11 +72,19 @@ export default function ServiceDetailPage({
               </p>
             </Reveal>
             <Reveal delay={0.12}>
-              <Placeholder
-                tone={service.tone}
-                ratio="4 / 3"
-                label={service.title}
-              />
+              {/* STOCK PLACEHOLDER — replace with real practice photo */}
+              <div
+                className="relative overflow-hidden rounded-2xl"
+                style={{ aspectRatio: "4 / 3" }}
+              >
+                <Image
+                  src={service.stockImage}
+                  alt={service.title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover"
+                />
+              </div>
             </Reveal>
           </div>
         </div>

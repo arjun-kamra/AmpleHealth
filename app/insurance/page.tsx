@@ -60,11 +60,11 @@ export default function InsurancePage() {
               <Reveal>
                 <h2 className="mb-8 text-2xl font-semibold">{type}</h2>
               </Reveal>
-              <Stagger className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {list.map((ins) => (
                   <StaggerItem key={ins.name}>
                     <div className="card-surface group flex h-full flex-col overflow-hidden p-6">
-                      <InsurerLogo name={ins.name} color={ins.color} logo={ins.logo} />
+                      <InsurerLogo name={ins.name} color={ins.color} domain={ins.domain} logoUrl={ins.logoUrl} />
                       <div className="mt-4">
                         <h3 className="font-semibold leading-tight">{ins.name}</h3>
                         <span

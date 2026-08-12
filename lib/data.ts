@@ -17,6 +17,8 @@ export type Location = {
   phone: string;
   phoneHref: string;
   mapQuery: string;
+  /** Google Maps embed URL rendered in the contact page iframe. */
+  mapEmbed: string;
   hours: { days: string; times: string }[];
 };
 
@@ -29,6 +31,8 @@ export const locations: Location[] = [
     phone: "916-966-8500",
     phoneHref: "tel:+19169668500",
     mapQuery: "6620 Coyle Ave Suite 202, Carmichael, CA 95608",
+    mapEmbed:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3488.357121374647!2d-121.3099802!3d38.6676384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809adef78d15480d%3A0x8cc1bf6103d07ac9!2s6620%20Coyle%20Ave%20Ste%20202%2C%20Carmichael%2C%20CA%2095608!5e1!3m2!1sen!2sus!4v1785524182339!5m2!1sen!2sus",
     hours: [
       { days: "Monday – Friday", times: "8:00 am – 5:00 pm" },
       { days: "Saturday – Sunday", times: "Closed" },
@@ -42,6 +46,8 @@ export const locations: Location[] = [
     phone: "916-418-4595",
     phoneHref: "tel:+19164184595",
     mapQuery: "3270 Arena Blvd Suite 405, Sacramento, CA 95834",
+    mapEmbed:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3138.8307053262183!2d-121.53572191425543!3d38.64218503656875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809ad7007d124585%3A0x51b7a7f74ac9fda2!2sAmple%20Health!5e1!3m2!1sen!2sus!4v1785522343153!5m2!1sen!2sus",
     hours: [
       { days: "Monday – Friday", times: "8:00 am – 5:00 pm" },
       { days: "Saturday – Sunday", times: "Closed" },
@@ -69,6 +75,8 @@ export type Service = {
   description: string;
   highlights: string[];
   tone: string;
+  /** STOCK PLACEHOLDER — Unsplash hero image; replace with real practice photo. */
+  stockImage: string;
 };
 
 export const services: Service[] = [
@@ -86,6 +94,8 @@ export const services: Service[] = [
       "Safe transition home",
     ],
     tone: "#155E96",
+    // STOCK PLACEHOLDER — replace with real practice photo
+    stockImage: "https://images.unsplash.com/photo-1512678080530-7760d81faba6?q=80&w=1200&auto=format&fit=crop",
   },
   {
     slug: "hospital-care",
@@ -101,6 +111,8 @@ export const services: Service[] = [
       "Family communication & updates",
     ],
     tone: "#0B324F",
+    // STOCK PLACEHOLDER — replace with real practice photo
+    stockImage: "https://images.unsplash.com/photo-1581056771107-24ca5f033842?q=80&w=1200&auto=format&fit=crop",
   },
   {
     slug: "family-medicine",
@@ -116,6 +128,8 @@ export const services: Service[] = [
       "Preventive screenings & immunizations",
     ],
     tone: "#1B75BB",
+    // STOCK PLACEHOLDER — replace with real practice photo
+    stockImage: "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?q=80&w=1200&auto=format&fit=crop",
   },
   {
     slug: "womens-health",
@@ -131,6 +145,8 @@ export const services: Service[] = [
       "Personalized wellness counseling",
     ],
     tone: "#155E96",
+    // STOCK PLACEHOLDER — replace with real practice photo
+    stockImage: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1200&auto=format&fit=crop",
   },
   {
     slug: "geriatrics",
@@ -146,6 +162,8 @@ export const services: Service[] = [
       "Care coordination with families",
     ],
     tone: "#104872",
+    // STOCK PLACEHOLDER — replace with real practice photo
+    stockImage: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=1200&auto=format&fit=crop",
   },
   {
     slug: "telehealth",
@@ -160,6 +178,8 @@ export const services: Service[] = [
       "Same standard of care as in person",
     ],
     tone: "#4D97D7",
+    // STOCK PLACEHOLDER — replace with real practice photo
+    stockImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1200&auto=format&fit=crop",
   },
   {
     slug: "botox-and-fillers",
@@ -175,6 +195,26 @@ export const services: Service[] = [
       "Natural, individualized results",
     ],
     tone: "#C68A3E",
+    // STOCK PLACEHOLDER — replace with real practice photo
+    stockImage: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    slug: "metabolic-syndrome",
+    title: "Physician-Directed Weight Loss",
+    summary:
+      "Science-backed metabolic medicine — GLP-1 therapy, continuous glucose monitoring, and a dedicated support team working together.",
+    description:
+      "Traditional weight-loss advice rarely accounts for the biology of obesity and metabolic syndrome. We combine the latest GLP-1 and GIP receptor agonists, real-time CGM data, registered nutritionist guidance, and a dedicated support team to help you achieve lasting change.",
+    highlights: [
+      "GLP-1 & GIP receptor agonist therapy",
+      "Continuous Glucose Monitor (CGM) integration",
+      "Registered nutritionist coaching",
+      "Dedicated accountability support team",
+      "Metabolic syndrome & insulin resistance care",
+    ],
+    tone: "#1B75BB",
+    // STOCK PLACEHOLDER — replace with real practice photo
+    stockImage: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1200&auto=format&fit=crop",
   },
   {
     slug: "chronic-care-management",
@@ -191,6 +231,8 @@ export const services: Service[] = [
       "Coordinated with your in-office care",
     ],
     tone: "#104872",
+    // STOCK PLACEHOLDER — replace with real practice photo
+    stockImage: "https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?q=80&w=1200&auto=format&fit=crop",
   },
 ];
 
@@ -303,6 +345,28 @@ export const providers: Provider[] = [
       "Specializes in lipids, cardiovascular risk & preventive cardiology",
     ],
     tone: "#0B324F",
+  },
+  {
+    slug: "liz-hernandez",
+    name: "Liz Hernandez",
+    credentials: "MD",
+    title: "Family Medicine",
+    group: "physicians",
+    shortBio:
+      "Board-certified Family Medicine physician and fluent Spanish speaker who champions preventive care, healthy lifestyle choices, non-narcotic pain management, and active patient involvement in care decisions.",
+    fullBio: [
+      "Dr. Hernandez is a board-certified Family Medicine physician who immigrated to California from Colombia in 2005. She conducted medical research at UCSF before completing her residency at Texas Tech University Health Sciences Center in El Paso, TX. She is passionate about preventive care and champions healthy lifestyle choices, stress reduction, strong mental and emotional health, non-narcotic pain management, and active patient involvement in care decisions.",
+      "Fluent in Spanish, Dr. Hernandez brings a multicultural perspective to her practice and is committed to building long-term, trust-based relationships with her patients — always doing right by them, taking a comprehensive and holistic approach to care, and taking the time to educate patients so they can be true partners in their own health.",
+    ],
+    highlights: [
+      "Board-certified by the American Board of Family Medicine",
+      "Areas of interest: Geriatric Medicine & General Family Medicine",
+      "Residency at Texas Tech University Health Sciences Center, El Paso",
+      "Medical research at UCSF",
+      "California State Medical License",
+      "Fluent in Spanish — multicultural approach to care",
+    ],
+    tone: "#4D97D7",
   },
 
   // ── NURSE PRACTITIONERS & PHYSICIAN ASSISTANTS ───────────────────────────
@@ -470,42 +534,6 @@ export const providers: Provider[] = [
     tone: "#4D97D7",
   },
   {
-    slug: "katelynn-mcgarrah",
-    name: "Katelynn McGarrah",
-    credentials: "",
-    title: "Referral Coordinator & Medical Assistant",
-    group: "care-admin",
-    shortBio:
-      "A dedicated member of the AmpleHealth care team, serving as both a Referral Coordinator and Medical Assistant.",
-    fullBio: [
-      "Katelynn McGarrah is a Referral Coordinator and Medical Assistant at AmpleHealth, supporting patients through every step of their care experience.",
-      "A dedicated member of the AmpleHealth team, Katelynn is committed to ensuring that referrals and care coordination are handled with efficiency and compassion.",
-    ],
-    highlights: [
-      "Referral Coordinator & Medical Assistant",
-      "Care coordination & patient support",
-    ],
-    tone: "#155E96",
-  },
-  {
-    slug: "veronica-tkachuk",
-    name: "Veronica Tkachuk",
-    credentials: "",
-    title: "Phlebotomist & Medical Assistant",
-    group: "care-admin",
-    shortBio:
-      "A dedicated member of the AmpleHealth care team, serving as both a Phlebotomist and Medical Assistant.",
-    fullBio: [
-      "Veronica Tkachuk is a Phlebotomist and Medical Assistant at AmpleHealth. She supports the clinical team and ensures patients feel comfortable during lab draws and clinical procedures.",
-      "A dedicated member of the AmpleHealth team, Veronica brings professionalism and care to every patient interaction.",
-    ],
-    highlights: [
-      "Phlebotomist & Medical Assistant",
-      "Clinical support & lab services",
-    ],
-    tone: "#104872",
-  },
-  {
     slug: "tiffany-schroeder",
     name: "Tiffany Schroeder",
     credentials: "",
@@ -534,43 +562,21 @@ export const providers: Provider[] = [
     tone: "#1B75BB",
   },
   {
-    slug: "aaliyah-childs",
-    name: "Aaliyah Childs",
-    credentials: "CMA",
-    title: "Front Desk & Certified Medical Assistant",
-    group: "care-admin",
-    shortBio:
-      "Certified Medical Assistant and front desk team member. Graduated high school 2024, completed medical assisting school 2025. Inspired by her mother's work as a caregiver. Plans to pursue nursing education in 2026.",
-    fullBio: [
-      "Aaliyah Childs is a Certified Medical Assistant and front desk team member at AmpleHealth. She graduated from high school in 2024 and completed her medical assisting training in 2025, bringing dedication and a fresh perspective to the team.",
-      "Aaliyah was inspired to pursue healthcare by watching her mother work as a caregiver — a role that showed her firsthand the difference that compassionate, attentive care can make in a person's life.",
-      "She plans to continue her education by pursuing nursing in 2026, and sees her time at AmpleHealth as an important foundation for her clinical career.",
-    ],
-    highlights: [
-      "Certified Medical Assistant (CMA)",
-      "Front Desk & patient coordination",
-      "Completed medical assisting school 2025",
-      "Aspiring nursing student (2026)",
-    ],
-    tone: "#C68A3E",
-  },
-  {
     slug: "doneal-decapia",
     name: "Doneal Decapia",
     credentials: "BS, RN",
-    title: "Front Desk & Healthcare Virtual Assistant",
+    title: "Front Desk Receptionist",
     group: "care-admin",
     shortBio:
-      "BS in Nursing from the Philippines. Red Cross Philippines volunteer. Trained Healthcare Virtual Assistant (Hello Rache). Manages scheduling, patient communications, data entry, and documentation. Enjoys basketball, movies, and travel.",
+      "BSN graduate from the Philippines and former Philippine Red Cross volunteer. As Front Desk Receptionist, Don manages scheduling, patient communications, documentation, and data entry with exceptional accuracy and strict confidentiality.",
     fullBio: [
-      "Doneal Decapia brings a healthcare background and a service-first mindset to his role on the AmpleHealth front desk. He earned his Bachelor of Science in Nursing from the Philippines and has served as a volunteer with the Red Cross Philippines.",
-      "Doneal is a trained Healthcare Virtual Assistant through Hello Rache, a program that prepares healthcare professionals for virtual support roles. He manages scheduling, patient communications, data entry, and clinical documentation with precision and care.",
-      "Outside of work, Doneal enjoys basketball, movies, and travel.",
+      "Don earned his Bachelor of Science in Nursing degree in the Philippines and began his healthcare career as a volunteer with the Philippine Red Cross, where he developed a strong foundation in patient care and community service. Doneal has proven himself to be an indispensable part of AmpleHealth as Front Desk Receptionist.",
+      "Don provides dependable support to our team by managing appointment scheduling, patient communications, medical documentation, and data entry with exceptional accuracy and strict attention to confidentiality. His strong organizational skills, attention to detail, and understanding of clinical workflows helps keep operations running smoothly, allowing providers to focus on delivering high-quality patient care.",
+      "Outside of work, Don enjoys playing basketball, watching movies, and exploring new destinations and cuisines through travel.",
     ],
     highlights: [
       "BS in Nursing (Philippines)",
       "Red Cross Philippines volunteer",
-      "Healthcare Virtual Assistant — Hello Rache certified",
       "Scheduling, communications, documentation & data entry",
     ],
     tone: "#155E96",
@@ -581,10 +587,12 @@ export const providers: Provider[] = [
     credentials: "",
     title: "Front Desk Receptionist",
     group: "care-admin",
-    shortBio: "A dedicated member of the AmpleHealth care team.",
+    shortBio:
+      "Franklin is our Front Desk Receptionist with a strong foundation in clinical knowledge and patient care.",
     fullBio: [
-      "Franklin Ratunil is a Front Desk Receptionist at AmpleHealth, often the first friendly face patients encounter when they visit or call.",
-      "A dedicated member of the AmpleHealth team, Franklin is committed to making every patient feel welcomed and well taken care of from the moment they arrive.",
+      "Franklin is our Front Desk Receptionist with a strong foundation in clinical knowledge and patient care.",
+      "At AmpleHealth, Franklin is an indispensable member of the team. Alongside Doneal, he manages incoming phone calls, ensuring patients receive prompt, courteous, and professional assistance. His calm demeanor, excellent communication skills, attention to detail, and ability to multitask help keep the practice running smoothly while delivering an exceptional patient experience.",
+      "Outside of work, Franklin enjoys road trips, playing musical instruments, basketball, and following the financial markets.",
     ],
     highlights: ["Front Desk Receptionist", "Patient welcome & coordination"],
     tone: "#104872",
@@ -602,6 +610,48 @@ export const providers: Provider[] = [
     ],
     highlights: ["Front Desk & Receptionist", "Patient coordination"],
     tone: "#0B324F",
+  },
+  {
+    slug: "cynth-ann-diente",
+    name: "Cynth Ann Diente",
+    credentials: "",
+    title: "Referral Coordinator",
+    group: "care-admin",
+    shortBio:
+      "Cynth has a laboratory-honed eye for detail and a passion for organized workflows, making her adept in high-pressure environments. She excels at being meticulous and efficient, ensuring that clinical accuracy and patient-centered support always go hand in hand. With experience across tertiary hospitals, provincial facilities, specialized blood banks, and rigorous training as a healthcare virtual assistant at Hello Rache, she brings a disciplined approach to your workplace, grounded in patient safety, empathy, and adaptability. Driven by a desire for continuous professional growth, she doesn't just manage tasks—she anticipates needs and evolves with practice, consistently seeking ways to refine her skills and elevate the standard of patient care.",
+    fullBio: [
+      "Cynth has a laboratory-honed eye for detail and a passion for organized workflows, making her adept in high-pressure environments. She excels at being meticulous and efficient, ensuring that clinical accuracy and patient-centered support always go hand in hand. With experience across tertiary hospitals, provincial facilities, specialized blood banks, and rigorous training as a healthcare virtual assistant at Hello Rache, she brings a disciplined approach to your workplace, grounded in patient safety, empathy, and adaptability.",
+      "Driven by a desire for continuous professional growth, she doesn't just manage tasks—she anticipates needs and evolves with practice, consistently seeking ways to refine her skills and elevate the standard of patient care.",
+    ],
+    highlights: [
+      "Laboratory-honed eye for detail & organized workflows",
+      "Experience across tertiary hospitals, provincial facilities & specialized blood banks",
+      "Trained as a healthcare virtual assistant at Hello Rache",
+      "Grounded in patient safety, empathy & adaptability",
+      "Anticipates needs — doesn't just manage tasks",
+    ],
+    tone: "#4D97D7",
+  },
+  {
+    slug: "cleeve-lyndon-cebedo",
+    name: "Cleeve Lyndon Cebedo",
+    credentials: "",
+    title: "Referral Coordinator",
+    group: "care-admin",
+    shortBio:
+      "Cleeve is a results-driven professional who consistently exceeds expectations. He doesn't simply complete tasks—he takes ownership, delivers results, and continuously looks for ways to improve processes and outcomes. Cleeve has proven himself to be an exceptionally skilled referral coordinator. He has a keen understanding of referral workflows, insurance authorization requirements, provider coordination, and timely follow-up. He excels at organizing complex cases, communicating with specialists, resolving barriers to care, and ensuring patients receive the services they need without unnecessary delays. His efficiency, persistence, and patient-centered approach make him a valuable asset to our medical practice.",
+    fullBio: [
+      "Cleeve is a results-driven professional who consistently exceeds expectations. He doesn't simply complete tasks—he takes ownership, delivers results, and continuously looks for ways to improve processes and outcomes. Cleeve has proven himself to be an exceptionally skilled referral coordinator. He has a keen understanding of referral workflows, insurance authorization requirements, provider coordination, and timely follow-up. He excels at organizing complex cases, communicating with specialists, resolving barriers to care, and ensuring patients receive the services they need without unnecessary delays.",
+      "His efficiency, persistence, and patient-centered approach make him a valuable asset to our medical practice.",
+    ],
+    highlights: [
+      "Takes ownership, delivers results & improves processes",
+      "Referral workflows & insurance authorization requirements",
+      "Provider coordination & timely follow-up",
+      "Organizes complex cases & communicates with specialists",
+      "Resolves barriers to care without unnecessary delays",
+    ],
+    tone: "#155E96",
   },
 ];
 
@@ -644,56 +694,122 @@ export const forms: PracticeForm[] = [
 ];
 
 export type Testimonial = {
-  quote: string;
   name: string;
-  detail: string;
+  date: string;
   rating: number;
+  text: string;
 };
 
+/** Real patient reviews. Single source for /testimonials and the homepage. */
 export const testimonials: Testimonial[] = [
   {
-    quote:
-      "Dr. Kamra actually listens. I never feel rushed, and for the first time I feel like someone is managing my health with me, not at me.",
-    name: "Patient — R.M.",
-    detail: "Carmichael",
+    name: "Susan L.",
+    date: "May 09, 2026",
     rating: 5,
+    text: "Dr. Faraji was my doctors when I came back to Citrus Heights CA",
   },
   {
-    quote:
-      "The whole team is warm and incredibly organized. Booking was easy and my follow-up over telehealth was seamless.",
-    name: "Patient — J.T.",
-    detail: "Sacramento",
+    name: "Kim R.",
+    date: "May 09, 2026",
     rating: 5,
+    text: "Great Dr. was willing to help my mother and work with us to provide the best care for her under difficult medical conditions.",
   },
   {
-    quote:
-      "When my father was in the hospital, having a physician who knew his history made a frightening time so much easier.",
-    name: "Patient — D.S.",
-    detail: "Family member",
+    name: "Sara C.",
+    date: "May 08, 2026",
     rating: 5,
+    text: "Yelena is great and we have been going to her for many years. She is very kind, attentive and knows our health history. She is always great to follow up with us on labs X-rays or testing.etc. and will call us with results and further action if needed. We always ask for Yelena for our annual and other needed appointments.",
   },
   {
-    quote:
-      "Thorough, thoughtful, and genuinely kind. This is what primary care should feel like.",
-    name: "Patient — L.B.",
-    detail: "Carmichael",
+    name: "Mike K.",
+    date: "Dec 03, 2025",
     rating: 5,
+    text: "Haven't seen Kamra in years. I see Yelena Popova. She is the Best! She is the reason that I continue to go to this office!",
   },
   {
-    quote:
-      "I appreciate how they coordinated my recovery after surgery. Nothing fell through the cracks.",
-    name: "Patient — A.K.",
-    detail: "Post-acute care",
+    name: "Linda A.",
+    date: "Nov 19, 2025",
     rating: 5,
+    text: "Very thorough, listened to my concerns.",
   },
   {
-    quote:
-      "Modern, calm, and professional. The care is excellent and the experience matches it.",
-    name: "Patient — M.P.",
-    detail: "Sacramento",
+    name: "Winona B.",
+    date: "Nov 12, 2025",
     rating: 5,
+    text: "Dr. Kamra is always professional and always answers my questions.",
+  },
+  {
+    name: "Michael R.",
+    date: "Oct 20, 2025",
+    rating: 5,
+    text: "Dr Kamra is a brilliant doctor in every way and his staff is phenomenal!!",
+  },
+  {
+    name: "Dennis V.",
+    date: "Oct 14, 2025",
+    rating: 5,
+    text: "Alice is thorough, never in a hurry, always listens and makes great suggestions!!!",
+  },
+  {
+    name: "Carolyn M.",
+    date: "Oct 14, 2025",
+    rating: 5,
+    text: "Very good Dr. I have not had such a good in years. If you can go see him.",
+  },
+  {
+    name: "Ardell B.",
+    date: "Oct 01, 2025",
+    rating: 5,
+    text: "She is the best doctor and I'm so glad I get to keep her.",
+  },
+  {
+    name: "John K.",
+    date: "Sep 30, 2025",
+    rating: 5,
+    text: "My video visit was with Dr. Nagaraj. She listens carefully and asks appropriate questions. She is very thorough. This is the second time I've seen Dr. Nagaraj, the first visit being in person at the office. I am confident that she has my best interest in mind.",
+  },
+  {
+    name: "Taissia S.",
+    date: "Sep 25, 2025",
+    rating: 5,
+    text: "Thank you! I received all answers on my questions. I know more about my real condition.",
+  },
+  {
+    name: "Marie M.",
+    date: "Aug 27, 2025",
+    rating: 5,
+    text: "So glad I switched doctors to Dr. Kamra!",
+  },
+  {
+    name: "Rhoda T.",
+    date: "Jun 04, 2025",
+    rating: 5,
+    text: "I didn't see Dr Kamra but I did communicate with Yelena Popova PA who called me to let me know the results of my mammogram and breast ultrasound. It was a very timely call coming just hours after the tests, and I appreciate Yelena's professionalism.",
+  },
+  {
+    name: "John R.",
+    date: "Apr 11, 2025",
+    rating: 5,
+    text: "Excellent and caring Doctor.",
+  },
+  {
+    name: "Linda D.",
+    date: "Apr 11, 2025",
+    rating: 5,
+    text: "I am now seeing DR Kamra's new associate DR Mythili Nagaraj. I am very happy with Dr Nagaraj's thorough, thoughtful care and pleasant personality.",
+  },
+  {
+    name: "Joyce C.",
+    date: "Mar 21, 2025",
+    rating: 5,
+    text: "My appointments with Dr. Nagaraj are always very efficient, friendly, and helpful. She never rushes our time and is very attentive to my questions and concerns. Thank you Dr. Nagaraj and staff for making me feel comfortable.",
   },
 ];
+
+/** The three reviews highlighted on the homepage, in display order. */
+export const featuredTestimonials: Testimonial[] = ["Michael R.", "Sara C.", "John K."]
+  .map((name) => testimonials.find((t) => t.name === name))
+  .filter((t): t is Testimonial => t !== undefined);
 
 export type BlogPost = {
   slug: string;
@@ -856,6 +972,8 @@ export type Insurer = {
   description: string;
   color: string;
   logo?: string;
+  domain?: string;
+  logoUrl?: string; // direct URL takes precedence over domain-based lookup
 };
 
 export const insurers: Insurer[] = [
@@ -864,71 +982,112 @@ export const insurers: Insurer[] = [
     type: "Commercial",
     description: "PPO, HMO, and Medicare Advantage plans accepted. One of the largest national insurers.",
     color: "#7B2D8B",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Aetna_logo.svg/200px-Aetna_logo.svg.png",
+    domain: "aetna.com",
   },
   {
     name: "Anthem Blue Cross",
     type: "Commercial",
     description: "California's largest for-profit health insurer offering PPO and HMO plans.",
     color: "#286CE2",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Anthem_logo.svg/200px-Anthem_logo.svg.png",
+    domain: "anthem.com",
   },
   {
     name: "Blue Shield of California",
     type: "Commercial",
     description: "Non-profit insurer offering a wide range of PPO, HMO, and HSP plans statewide.",
     color: "#005CB9",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Blue_Shield_of_California_logo.svg/200px-Blue_Shield_of_California_logo.svg.png",
+    domain: "blueshieldca.com",
   },
   {
     name: "Cigna",
     type: "Commercial",
     description: "National carrier with broad PPO and HMO networks, including behavioral health.",
     color: "#005DAA",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Cigna_logo.svg/200px-Cigna_logo.svg.png",
+    domain: "cigna.com",
   },
   {
     name: "Health Net",
     type: "Commercial",
     description: "California-based managed care plan with Medi-Cal, commercial, and Medicare options.",
     color: "#0080C6",
+    domain: "healthnet.com",
   },
   {
     name: "Medicare",
     type: "Government",
     description: "Original Medicare (Parts A & B) accepted. Medicare Advantage plans vary — please call to confirm.",
     color: "#1565C0",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/US-Medicare-Logo.svg/200px-US-Medicare-Logo.svg.png",
+    domain: "medicare.gov",
   },
   {
     name: "Sutter Health Plan",
     type: "Commercial",
     description: "Regional non-profit plan offering group and individual coverage across Northern California.",
     color: "#2C7D3D",
+    domain: "sutterhealth.org",
   },
   {
     name: "United Healthcare",
     type: "Commercial",
     description: "The nation's largest carrier with PPO, HMO, and Medicare Advantage products.",
     color: "#0066CC",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/UnitedHealth_Group_logo.svg/200px-UnitedHealth_Group_logo.svg.png",
+    domain: "uhc.com",
+  },
+  {
+    name: "Western Health Advantage",
+    type: "Commercial",
+    description: "Sacramento-based non-profit HMO created by local health systems, serving the greater Sacramento region.",
+    color: "#4E7C31",
+    logoUrl: "/insurance/western-health-advantage.png",
   },
   {
     name: "Hill Physicians",
     type: "IPA / Medical Group",
     description: "One of the largest independent physician associations in Northern California, working with multiple health plans.",
     color: "#C8102E",
+    domain: "hillphysicians.com",
   },
   {
     name: "MD Partners IPA",
     type: "IPA / Medical Group",
     description: "Sacramento-area independent physician association offering care coordination across multiple health plans.",
     color: "#1B75BB",
+    // No confirmed public domain — falls back to letter avatar
+  },
+  {
+    name: "Sutter Independent Physicians",
+    type: "IPA / Medical Group",
+    description: "Independent physician association aligned with Sutter Health, coordinating care across the Sacramento region.",
+    color: "#00A499",
+    logoUrl: "/insurance/sutter-independent-physicians.png",
   },
   {
     name: "Vivant Health",
     type: "Managed Care",
     description: "Sacramento-region managed care plan focused on whole-person, coordinated healthcare.",
-    color: "#1B75BB",
+    color: "#4CAF50",
+    domain: "vivanthealth.com",
+    logoUrl: "https://vivanthealth.com/wp-content/uploads/2024/08/tt.png",
+  },
+  {
+    name: "SCAN Health Plan",
+    type: "Managed Care",
+    description: "Not-for-profit Medicare Advantage plan focused on keeping seniors healthy and independent.",
+    color: "#DA291C",
+    logoUrl: "/insurance/scan.png",
+  },
+  {
+    name: "Central Health Medicare Plan",
+    type: "Managed Care",
+    description: "Medicare Advantage plan offering coordinated, culturally attuned care for seniors in California.",
+    color: "#2E6C68",
+    logoUrl: "/insurance/central-health-medicare-plan.png",
+  },
+  {
+    name: "Alignment Health Plan",
+    type: "Managed Care",
+    description: "California-based Medicare Advantage plan built around personalized senior care and 24/7 clinical support.",
+    color: "#1B3A5C",
+    logoUrl: "/insurance/alignment-health-plan.png",
   },
 ];

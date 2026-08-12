@@ -5,13 +5,14 @@ import { Reveal, Stagger, StaggerItem } from "@/components/Motion";
 import Placeholder from "@/components/Placeholder";
 import ProviderPhoto from "@/components/ProviderPhoto";
 import Stars from "@/components/Stars";
+import InsurerLogo from "@/components/InsurerLogo";
 import { ArrowRight, Check } from "@/components/Icons";
 import {
+  featuredTestimonials,
   insurers,
   providers,
   reviews,
   services,
-  testimonials,
 } from "@/lib/data";
 
 export default function HomePage() {
@@ -135,23 +136,20 @@ export default function HomePage() {
             <p className="font-serif text-3xl">
               {reviews.rating} out of 5 · {reviews.count}+ reviews
             </p>
-            <p className="text-sm text-ink-muted">
-              Patients across Carmichael and Sacramento (placeholder rating).
-            </p>
           </div>
         </Reveal>
 
         <Stagger className="mt-12 grid gap-5 md:grid-cols-3">
-          {testimonials.slice(0, 3).map((t) => (
-            <StaggerItem key={t.name}>
+          {featuredTestimonials.map((t) => (
+            <StaggerItem key={`${t.name}-${t.date}`}>
               <figure className="card-surface flex h-full flex-col p-7">
                 <Stars rating={t.rating} />
                 <blockquote className="mt-4 flex-1 text-pretty leading-relaxed text-ink-soft">
-                  “{t.quote}”
+                  “{t.text}”
                 </blockquote>
                 <figcaption className="mt-5 text-sm">
                   <span className="font-medium">{t.name}</span>
-                  <span className="text-ink-muted"> · {t.detail}</span>
+                  <span className="text-ink-muted"> · {t.date}</span>
                 </figcaption>
               </figure>
             </StaggerItem>
@@ -187,16 +185,17 @@ export default function HomePage() {
           </div>
 
           <Reveal delay={0.1}>
-            <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+            <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {insurers.map((ins) => (
                 <li key={ins.name}>
                   <div className="flex h-full items-center gap-3 rounded-xl border border-paper/10 bg-white/[0.05] px-4 py-3.5 transition-colors hover:border-brand-300/50 hover:bg-white/10">
-                    <span
-                      className="grid h-8 w-8 flex-none place-items-center rounded-lg text-sm font-bold text-white"
-                      style={{ backgroundColor: ins.color }}
-                    >
-                      {ins.name.charAt(0)}
-                    </span>
+                    <InsurerLogo
+                      name={ins.name}
+                      color={ins.color}
+                      domain={ins.domain}
+                      logoUrl={ins.logoUrl}
+                      compact
+                    />
                     <span className="text-sm font-medium leading-tight text-paper/90">{ins.name}</span>
                   </div>
                 </li>
@@ -227,8 +226,8 @@ export default function HomePage() {
           </Reveal>
         </div>
 
-        <Stagger className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {providers.slice(0, 4).map((p) => (
+        <Stagger className="mt-12 grid gap-5 sm:grid-cols-3 lg:grid-cols-5">
+          {providers.slice(0, 5).map((p) => (
             <StaggerItem key={p.name}>
               <Link href={`/team/${p.slug}`} className="group block">
                 <ProviderPhoto
@@ -236,7 +235,7 @@ export default function HomePage() {
                   name={p.name}
                   tone={p.tone}
                   ratio="3 / 4"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 20vw"
                   className="transition-transform duration-300 group-hover:-translate-y-1"
                 />
                 <h3 className="mt-4 text-xl font-semibold">{p.name}</h3>

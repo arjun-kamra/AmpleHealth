@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import CTABand from "@/components/CTABand";
 import { Reveal } from "@/components/Motion";
 import Placeholder from "@/components/Placeholder";
 import { Check, MapPin } from "@/components/Icons";
-import { locations } from "@/lib/data";
+import { locations, providers } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "About",
@@ -26,6 +27,10 @@ const philosophy = [
     body: "We pair rigorous, current medicine with the practical judgment that comes from experience and attention.",
   },
 ];
+
+// Founder biography lives with the rest of the provider content so /about and
+// /team/dheeraj-kamra never drift apart.
+const founder = providers.find((p) => p.slug === "dheeraj-kamra");
 
 export default function AboutPage() {
   return (
@@ -63,7 +68,15 @@ export default function AboutPage() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <Placeholder tone="#104872" ratio="4 / 3" label="The practice" />
+            <figure className="relative overflow-hidden rounded-2xl" style={{ aspectRatio: "4 / 3" }}>
+              <Image
+                src="/practice/dr-kamra-with-staff.jpg"
+                alt="Dr. Kamra catching up with a member of the care team"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </figure>
           </Reveal>
         </div>
       </section>
@@ -88,13 +101,11 @@ export default function AboutPage() {
               Dr. Dheeraj Kamra,{" "}
               <span className="italic text-brand">MD, FACP</span>
             </h2>
-            <p className="mt-5 text-pretty text-lg leading-relaxed text-ink-muted">
-              Dr. Kamra is a board-certified internist whose practice spans the
-              full continuum of adult medicine. He is known for a calm, thorough
-              approach and a commitment to caring for patients wherever they are
-              — in the office, in the hospital, or recovering at home.
-              [Placeholder bio — replace with full biography.]
-            </p>
+            <div className="mt-5 space-y-4 text-pretty text-lg leading-relaxed text-ink-muted">
+              {founder?.fullBio.map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
 
             {/* FACP explainer */}
             <div className="card-surface mt-8 p-6 md:p-8">
@@ -147,6 +158,73 @@ export default function AboutPage() {
               </div>
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      {/* LIFE AT THE PRACTICE */}
+      <section className="container-page pb-20 md:pb-28">
+        <Reveal className="max-w-2xl">
+          <p className="kicker">Life at the practice</p>
+          <h2 className="mt-4 text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
+            The people make the place
+          </h2>
+          <p className="mt-4 text-pretty text-lg leading-relaxed text-ink-muted">
+            No staged smiles, no stock photos — just a few unposed moments from
+            an ordinary week across our two offices.
+          </p>
+        </Reveal>
+
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <Reveal>
+            <figure>
+              <div className="relative overflow-hidden rounded-2xl" style={{ aspectRatio: "1 / 1" }}>
+                <Image
+                  src="/practice/front-desk-shreya-liana.jpg"
+                  alt="Shreya and Liana at the front desk"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover"
+                />
+              </div>
+              <figcaption className="mt-3 text-sm text-ink-muted">
+                Shreya &amp; Liana holding down the front desk
+              </figcaption>
+            </figure>
+          </Reveal>
+
+          <Reveal delay={0.08}>
+            <div
+              className="flex h-full flex-col justify-between rounded-2xl bg-ink p-8 text-paper"
+              style={{ minHeight: "260px" }}
+            >
+              <span className="font-serif text-6xl leading-none text-brand-200">
+                &ldquo;
+              </span>
+              <p className="text-pretty font-serif text-2xl leading-snug">
+                Patients are known here, not numbered.
+              </p>
+              <p className="mt-6 text-sm uppercase tracking-kicker text-paper/60">
+                The AmpleHealth standard
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.16}>
+            <figure>
+              <div className="relative overflow-hidden rounded-2xl" style={{ aspectRatio: "1 / 1" }}>
+                <Image
+                  src="/practice/front-desk-liana-tiffany.jpg"
+                  alt="Liana and Tiffany between appointments"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover"
+                />
+              </div>
+              <figcaption className="mt-3 text-sm text-ink-muted">
+                Liana &amp; Tiffany between appointments
+              </figcaption>
+            </figure>
+          </Reveal>
         </div>
       </section>
 

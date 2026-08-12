@@ -62,28 +62,23 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Google Maps placeholder */}
+                {/* Embedded Google Map */}
                 <div className="relative mt-6 overflow-hidden rounded-xl">
-                  <div
-                    className="aspect-[16/9] w-full"
-                    style={{ background: "#104872" }}
-                  >
-                    <div className="bg-grid h-full w-full opacity-25" />
-                  </div>
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 text-center text-white/85">
-                    <MapPin className="h-6 w-6" />
-                    <span className="text-xs uppercase tracking-kicker">
-                      Map placeholder
-                    </span>
-                  </div>
-                  {/* TODO: replace with embedded Google Maps iframe */}
+                  <iframe
+                    src={loc.mapEmbed}
+                    title={`Google Map of the AmpleHealth ${loc.label}`}
+                    className="block aspect-[16/9] w-full border-0"
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                  />
                   <a
                     href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
                       loc.mapQuery
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-xs font-medium text-brand"
+                    className="absolute bottom-3 right-3 z-10 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-xs font-medium text-brand shadow-sm transition-colors hover:bg-white"
                   >
                     Open in Maps <ArrowRight className="h-3.5 w-3.5" />
                   </a>
@@ -123,6 +118,17 @@ export default function ContactPage() {
                 <span className="font-medium">{site.email}</span>
               </span>
             </a>
+
+            <div className="mt-6">
+              <a
+                href={site.bookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary"
+              >
+                Book Online
+              </a>
+            </div>
           </Reveal>
 
           <Reveal delay={0.1}>
