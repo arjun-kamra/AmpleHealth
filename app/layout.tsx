@@ -51,6 +51,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${cormorant.variable} ${outfit.variable}`}>
+      <head>
+        {/*
+          UserWay accessibility widget. Emitted as a raw <script> rather than
+          next/script because UserWay's install guide requires it to be the
+          first entry in <head>: next/script's beforeInteractive strategy emits
+          only a preload link plus a deferred client-side bootstrap, which
+          neither produces a real script tag nor preserves head ordering.
+        */}
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script src="https://cdn.userway.org/widget.js" data-account="4KqVvO5Abt" />
+      </head>
       <body>
         <Navbar />
         <main className="min-h-screen">{children}</main>
