@@ -19,24 +19,78 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // lock body scroll when mobile menu is open
+  // Lock scroll while the mobile menu is open.
+  // Locks <html> as well as <body> — iOS Safari frequently ignores
+  // overflow:hidden on <body> alone. Restores the exact prior inline values,
+  // and the cleanup runs on every close path (X, nav link, route change,
+  // breakpoint change, unmount).
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    if (!open) return;
+    const html = document.documentElement;
+    const { body } = document;
+    const prev = {
+      htmlOverflow: html.style.overflow,
+      bodyOverflow: body.style.overflow,
+      overscroll: body.style.overscrollBehavior,
+    };
+    html.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+    body.style.overscrollBehavior = "none";
     return () => {
-      document.body.style.overflow = "";
+      html.style.overflow = prev.htmlOverflow;
+      body.style.overflow = prev.bodyOverflow;
+      body.style.overscrollBehavior = prev.overscroll;
+    };
+  }, [open]);
+
+  // Close on route change so the lock can never outlive the menu — also
+  // covers back/forward navigation, which never fires the links' onClick.
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  // Close on Escape, and if the viewport grows past `lg` the menu and the
+  // hamburger both become `lg:hidden` — without this the scroll lock would
+  // stay on with no visible control to release it.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    // Mirrors Tailwind's `lg` breakpoint, so it fires exactly when the menu
+    // and hamburger flip to `lg:hidden`.
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const onBreakpoint = () => {
+      if (desktop.matches) setOpen(false);
+    };
+    onBreakpoint(); // catch a viewport already past `lg` on mount
+    window.addEventListener("keydown", onKey);
+    // Both: `change` is the precise signal, `resize` is the belt-and-braces
+    // fallback for environments that resize without emitting an MQL change.
+    desktop.addEventListener("change", onBreakpoint);
+    window.addEventListener("resize", onBreakpoint);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      desktop.removeEventListener("change", onBreakpoint);
+      window.removeEventListener("resize", onBreakpoint);
     };
   }, [open]);
 
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled
+        open
+          ? // The panel below starts at top-[72px], so this 72px band must be
+            // opaque too — otherwise the page bleeds through behind the logo
+            // and hamburger while the menu is open.
+            "border-b border-ink/10 bg-paper"
+          : scrolled
           ? "border-b border-ink/10 bg-paper/85 backdrop-blur-xl"
           : "border-b border-transparent bg-paper/0"
       }`}
     >
       <nav className="container-page flex h-[72px] items-center justify-between">
-        <Logo />
+        <Logo priority />
 
         {/* Center links */}
         <ul className="hidden items-center gap-7 lg:flex">
