@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr]">
           {/* Brand + locations */}
           <div>
-            <Logo className="[&_span:last-child]:text-paper" />
+            <Logo light imageClassName="h-12 w-auto sm:h-14" />
             <p className="mt-5 max-w-sm text-pretty text-sm leading-relaxed text-paper/70">
               Internal medicine and primary care for Carmichael, Sacramento, and
               the communities we&apos;re proud to call home.
