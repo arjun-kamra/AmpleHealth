@@ -5,6 +5,11 @@
   "devCommand": "next dev",
   "installCommand": "npm install",
   "regions": ["sfo1"],
+  "functions": {
+    "app/api/**": {
+      "includeFiles": "templates/**"
+    }
+  },
   "crons": [
     {
       "path": "/api/generate-blog",

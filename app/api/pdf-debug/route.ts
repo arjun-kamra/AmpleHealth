@@ -9,12 +9,7 @@ export const dynamic = "force-dynamic";
 // Reports page count and per-page dimensions so coordinates can be calculated.
 // Without ?template, lists the available template files.
 export async function GET(req: Request) {
-  const templatesDir = path.join(
-    process.cwd(),
-    "public",
-    "forms",
-    "templates"
-  );
+  const templatesDir = path.join(process.cwd(), "templates");
 
   const { searchParams } = new URL(req.url);
   const template = searchParams.get("template");
