@@ -31,3 +31,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# claude code local settings
+.claude/
+
+# raw asset staging — full-resolution originals, not referenced by the site.
+# Optimized copies live in public/practice, public/team and public/insurance.
+public/_incoming/
