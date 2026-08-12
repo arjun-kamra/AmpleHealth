@@ -38,3 +38,6 @@ next-env.d.ts
 # raw asset staging — full-resolution originals, not referenced by the site.
 # Optimized copies live in public/practice, public/team and public/insurance.
 public/_incoming/
+
+# source document for site copy, not part of the site
+WEBSITE CONTENT.pdf

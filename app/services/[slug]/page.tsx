@@ -100,12 +100,9 @@ export default function ServiceDetailPage({
             </h2>
             <div className="mt-5 space-y-4 text-pretty text-lg leading-relaxed text-ink-muted">
               <p>{service.description}</p>
-              <p>
-                This is placeholder content for the {service.title.toLowerCase()}{" "}
-                service page. Replace it with detailed information about your
-                approach, conditions treated, what a visit involves, and
-                frequently asked questions.
-              </p>
+              {service.body?.map((para) => (
+                <p key={para.slice(0, 40)}>{para}</p>
+              ))}
             </div>
 
             <div className="mt-8">
@@ -142,6 +139,73 @@ export default function ServiceDetailPage({
           </Reveal>
         </div>
       </section>
+
+      {/* DETAIL SECTIONS */}
+      {service.sections?.length ? (
+        <section className="border-t border-ink/10 bg-paper-deep">
+          <div className="container-page py-20 md:py-28">
+            <div className="space-y-16">
+              {service.sections.map((section) => (
+                <Reveal key={section.heading}>
+                  <h2 className="text-3xl font-semibold leading-tight md:text-4xl">
+                    {section.heading}
+                  </h2>
+
+                  {section.body?.length ? (
+                    <div className="mt-5 max-w-3xl space-y-4 text-pretty text-lg leading-relaxed text-ink-muted">
+                      {section.body.map((para) => (
+                        <p key={para.slice(0, 40)}>{para}</p>
+                      ))}
+                    </div>
+                  ) : null}
+
+                  {section.bullets?.length ? (
+                    <ul className="mt-6 grid max-w-3xl gap-3 sm:grid-cols-2">
+                      {section.bullets.map((bullet) => (
+                        <li key={bullet} className="flex items-start gap-3">
+                          <span
+                            className="mt-1 grid h-5 w-5 flex-none place-items-center rounded-full text-white"
+                            style={{ backgroundColor: service.tone }}
+                          >
+                            <Check className="h-3.5 w-3.5" />
+                          </span>
+                          <span className="text-ink-soft">{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+
+                  {section.items?.length ? (
+                    <div className="mt-8 grid gap-5 sm:grid-cols-2">
+                      {section.items.map((item) => (
+                        <div
+                          key={item.title}
+                          className="card-surface flex h-full flex-col p-7"
+                        >
+                          <h3 className="text-xl font-semibold leading-snug">
+                            {item.title}
+                          </h3>
+                          <p className="mt-3 flex-1 text-pretty leading-relaxed text-ink-muted">
+                            {item.body}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  ) : null}
+
+                  {section.footnote?.length ? (
+                    <div className="mt-6 max-w-3xl space-y-4 text-pretty text-lg leading-relaxed text-ink-muted">
+                      {section.footnote.map((para) => (
+                        <p key={para.slice(0, 40)}>{para}</p>
+                      ))}
+                    </div>
+                  ) : null}
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       {/* NEXT SERVICE */}
       <section className="border-t border-ink/10 bg-paper-deep">
