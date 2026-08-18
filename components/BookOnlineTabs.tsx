@@ -47,7 +47,7 @@ const NEW_PATIENT_FORMS = [
 
 // The providers currently active on the practice's Zocdoc account. Names and
 // titles come from lib/data.ts so this list can never drift from the team
-// pages; only the three with known Zocdoc profiles get a direct booking link.
+// pages.
 const ZOCDOC_PROVIDERS = [
   {
     slug: "dheeraj-kamra",
@@ -61,8 +61,16 @@ const ZOCDOC_PROVIDERS = [
     slug: "alice-phillips",
     zocdoc: "https://www.zocdoc.com/doctor/alice-phillips-np-599124",
   },
-  { slug: "sidrah-khan" },
-  { slug: "yelena-popova" },
+  {
+    slug: "sidrah-khan",
+    zocdoc:
+      "https://www.zocdoc.com/doctor/sidrah-khan-696234?isNewPatient=false&exp_pps_default_new_patient=true",
+  },
+  {
+    slug: "yelena-popova",
+    zocdoc:
+      "https://www.zocdoc.com/doctor/yelena-popova-pa-599122?isNewPatient=false&exp_pps_default_new_patient=true",
+  },
 ];
 
 const PROVIDER_BOOKING = ZOCDOC_PROVIDERS.flatMap(({ slug, zocdoc }) => {
@@ -245,18 +253,6 @@ export default function BookOnlineTabs() {
                 </li>
               ))}
             </ul>
-            <p className="mx-auto mt-6 max-w-xl text-pretty text-sm text-ink-muted">
-              For all other providers, book with any available provider below.
-            </p>
-            <a
-              href={site.bookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="link-underline mt-4 inline-flex text-sm font-medium"
-            >
-              Not sure? Book with any provider{" "}
-              <ArrowRight className="h-4 w-4" />
-            </a>
           </div>
         </div>
       )}
