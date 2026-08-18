@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { navLinks, site } from "@/lib/data";
+import { CreditCard } from "./Icons";
 import Logo from "./Logo";
 
 export default function Navbar() {
@@ -117,6 +118,16 @@ export default function Navbar() {
 
         <div className="flex items-center gap-3">
           <a
+            href={site.payBillUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden items-center justify-center gap-2 rounded-full border border-brand/35 px-5 py-3.5 text-sm font-medium tracking-wide text-brand transition-all duration-300 hover:border-brand hover:bg-brand/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand lg:inline-flex"
+          >
+            <CreditCard className="h-4 w-4" aria-hidden="true" />
+            Pay My Bill
+          </a>
+
+          <a
             href={site.bookingUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -193,6 +204,16 @@ export default function Navbar() {
                 className="btn-primary mt-8 w-full"
               >
                 Book Online
+              </a>
+              <a
+                href={site.payBillUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-brand/35 px-7 py-3.5 text-sm font-medium tracking-wide text-brand transition-all duration-300 hover:border-brand hover:bg-brand/5"
+              >
+                <CreditCard className="h-4 w-4" aria-hidden="true" />
+                Pay My Bill
               </a>
             </div>
           </motion.div>

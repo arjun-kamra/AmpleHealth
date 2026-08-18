@@ -6,6 +6,13 @@ export const site = {
   // TODO: replace with real Zocdoc booking URL
   bookingUrl: "https://www.zocdoc.com/",
   email: "hello@ample.health",
+  // TrustCommerce hosted payment page. Passed through verbatim — the query
+  // string carries the merchant id, field labels and the post-payment return
+  // URL, and two params are intentionally space-prefixed ("%20bcc",
+  // "%20receipt_logo"), so it must not be re-encoded or normalised.
+  payBillUrl:
+    "https://premier.trustcommerce.com/trustcommerce_payment/index.php?trxcustid=7016004&trxcustid_licensekey=DHo5P7SsX3bYyeDonaGHFI1h4TKKefWaYUgQrnWEZAQWKUcszB2jPQP4uraH64vE&amount=&ticketno=&googlepay=y&applepay=y&hide_ticket=n&identifier_label=Invoice%20Number/Account%20Number&show_email=y&%20bcc=y&display_logo=y&receipt_logo=y&email_address=&wcag=y&baddress=y&display_trxcustomfields=1,2,3,4,5,6,7,8,9,10&edit_trxcustomfields=1,2,3,4,5,6,7,8,9,10&label_trxcustomfields%5b1%5d=Invoice%20Date&label_trxcustomfields%5b2%5d=Due%20Date&label_trxcustomfields%5b3%5d=Service%20Date%20(Date%20of%20Visit)&label_trxcustomfields%5b4%5d=Patient%20Phone%20Number&label_trxcustomfields%5b5%5d=Patient%20First%20Name&label_trxcustomfields%5b6%5d=Patient%20Last%20Name&label_trxcustomfields%5b7%5d=Date%20of%20Birth&label_trxcustomfields%5b8%5d=Patient%20ID/MRN&label_trxcustomfields%5b9%5d=Provider/Doctor%20Name&label_trxcustomfields%5b10%5d=Facility/Location%20Name&%20receipt_logo=y&receipt_closeurl=https://amplehealth.com",
+
   copyrightYear: 2026,
 };
 
