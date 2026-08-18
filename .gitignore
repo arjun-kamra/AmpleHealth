@@ -41,3 +41,11 @@ public/_incoming/
 
 # source document for site copy, not part of the site
 WEBSITE CONTENT.pdf
+
+# source documents for the patient forms, not part of the site
+/460198.pdf
+/460199.pdf
+/460200.pdf
+/460201.pdf
+/460202.pdf
+/460203.pdf

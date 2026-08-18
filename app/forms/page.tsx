@@ -13,40 +13,40 @@ export const metadata: Metadata = {
 
 const formLinks = [
   {
-    href: "/forms/patient-intake",
-    title: "New Patient Intake",
+    href: "/forms/patient-intake-form",
+    title: "Patient Intake Form",
     description:
       "Tell us about your history, insurance, medications, and lifestyle before your first visit.",
   },
   {
-    href: "/forms/authorization-release",
-    title: "Authorization for Release of Information",
+    href: "/forms/authorization-for-release",
+    title: "Authorization for Release",
     description:
       "Authorize AmpleHealth to release or obtain your protected health information.",
   },
   {
-    href: "/forms/privacy-practices",
+    href: "/forms/notice-of-privacy-practices",
     title: "Notice of Privacy Practices",
     description:
       "Review how we protect your health information and acknowledge receipt.",
   },
   {
-    href: "/forms/no-show-policy",
+    href: "/forms/no-show-late-cancellation-policy",
     title: "No-Show & Late Cancellation Policy",
     description:
       "Review and acknowledge our policy on missed appointments and late cancellations.",
   },
   {
-    href: "/forms/patient-partnership",
+    href: "/forms/patient-partnership-plan",
     title: "Patient Partnership Plan",
     description:
       "Our shared commitments — what you can expect from us, and what we ask of you.",
   },
   {
-    href: "/forms/telemedicine-consent",
-    title: "Telemedicine Consent",
+    href: "/forms/telemedicine-consent-agreement",
+    title: "Telemedicine Consent Agreement",
     description:
-      "Consent to receiving care from AmpleHealth via secure telemedicine.",
+      "Consent to receiving care from AmpleHealth through our secure telemedicine platform.",
   },
 ];
 
