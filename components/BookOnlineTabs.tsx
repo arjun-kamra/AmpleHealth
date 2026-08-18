@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import JotformEmbed from "./JotformEmbed";
 import { ArrowRight } from "./Icons";
-import { site } from "@/lib/data";
+import { providers, site } from "@/lib/data";
 
 const NEW_PATIENT_FORMS = [
   {
@@ -45,20 +45,32 @@ const NEW_PATIENT_FORMS = [
   },
 ];
 
-const PROVIDER_BOOKING = [
+// The providers currently active on the practice's Zocdoc account. Names and
+// titles come from lib/data.ts so this list can never drift from the team
+// pages; only the three with known Zocdoc profiles get a direct booking link.
+const ZOCDOC_PROVIDERS = [
   {
-    name: "Dr. Dheeraj Kamra, MD",
-    href: "https://www.zocdoc.com/doctor/dheeraj-kamra-md-598502",
+    slug: "dheeraj-kamra",
+    zocdoc: "https://www.zocdoc.com/doctor/dheeraj-kamra-md-598502",
   },
   {
-    name: "Dr. Mythili Nagaraj, MD",
-    href: "https://www.zocdoc.com/doctor/mythili-nagaraj-md-599123",
+    slug: "mythli-nagaraj",
+    zocdoc: "https://www.zocdoc.com/doctor/mythili-nagaraj-md-599123",
   },
   {
-    name: "Alice Phillips, NP",
-    href: "https://www.zocdoc.com/doctor/alice-phillips-np-599124",
+    slug: "alice-phillips",
+    zocdoc: "https://www.zocdoc.com/doctor/alice-phillips-np-599124",
   },
+  { slug: "sidrah-khan" },
+  { slug: "yelena-popova" },
 ];
+
+const PROVIDER_BOOKING = ZOCDOC_PROVIDERS.flatMap(({ slug, zocdoc }) => {
+  const p = providers.find((x) => x.slug === slug);
+  return p
+    ? [{ name: p.credentials ? `${p.name}, ${p.credentials}` : p.name, title: p.title, zocdoc }]
+    : [];
+});
 
 type Tab = "new" | "existing";
 
@@ -208,24 +220,39 @@ export default function BookOnlineTabs() {
             <p className="mx-auto mt-3 max-w-xl text-pretty text-ink-muted">
               Book directly with the provider you usually see.
             </p>
-            <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+            <ul className="mx-auto mt-8 max-w-2xl divide-y divide-ink/10 text-left">
               {PROVIDER_BOOKING.map((p) => (
-                <a
-                  key={p.href}
-                  href={p.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-ghost"
+                <li
+                  key={p.name}
+                  className="flex flex-col gap-2 py-4 sm:flex-row sm:items-center sm:justify-between"
                 >
-                  {p.name}
-                </a>
+                  <span>
+                    <span className="block font-semibold">{p.name}</span>
+                    <span className="block text-sm text-ink-muted">
+                      {p.title}
+                    </span>
+                  </span>
+                  {p.zocdoc && (
+                    <a
+                      href={p.zocdoc}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-ghost flex-none px-5 py-2.5"
+                    >
+                      Book Now
+                    </a>
+                  )}
+                </li>
               ))}
-            </div>
+            </ul>
+            <p className="mx-auto mt-6 max-w-xl text-pretty text-sm text-ink-muted">
+              For all other providers, book with any available provider below.
+            </p>
             <a
               href={site.bookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="link-underline mt-6 inline-flex text-sm font-medium"
+              className="link-underline mt-4 inline-flex text-sm font-medium"
             >
               Not sure? Book with any provider{" "}
               <ArrowRight className="h-4 w-4" />
