@@ -8,7 +8,6 @@ import { Reveal } from "@/components/Motion";
 import { ArrowRight, Clock } from "@/components/Icons";
 import { type BlogRow } from "@/lib/supabase";
 import { mapRow } from "@/lib/blog";
-import { site } from "@/lib/data";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -169,14 +168,12 @@ export default async function BlogPostPage({
                 not constitute medical advice. Please consult your AmpleHealth
                 provider for guidance specific to your health situation.
               </p>
-              <a
-                href={site.bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/book-online"
                 className="btn-primary mt-6"
               >
                 Book an appointment <ArrowRight className="h-4 w-4" />
-              </a>
+              </Link>
             </div>
           </Reveal>
         </div>

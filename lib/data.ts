@@ -3,8 +3,7 @@
 export const site = {
   name: "AmpleHealth",
   tagline: "Internal Medicine & Primary Care",
-  // TODO: replace with real Zocdoc booking URL
-  bookingUrl: "https://www.zocdoc.com/",
+  bookingUrl: "https://www.zocdoc.com/practice/amplehealth-132554",
   email: "hello@ample.health",
   // TrustCommerce hosted payment page. Passed through verbatim — the query
   // string carries the merchant id, field labels and the post-payment return
@@ -573,14 +572,14 @@ export const providers: Provider[] = [
   },
   {
     slug: "mythli-nagaraj",
-    name: "Mythli Nagaraj",
+    name: "Mythili Nagaraj",
     credentials: "MD",
     title: "Physician",
     group: "physicians",
     shortBio:
       "USMLE-certified physician and Diplomate of the American Board of Integrative and Holistic Medicine. Dr. Nagaraj brings advanced functional medicine training and a whole-person philosophy to every patient encounter.",
     fullBio: [
-      "Dr. Mythli Nagaraj is a physician at AmpleHealth who joined the practice in January 2024. She holds an active California medical license, DEA certification, and is certified in both BLS and ACLS.",
+      "Dr. Mythili Nagaraj is a physician at AmpleHealth who joined the practice in January 2024. She holds an active California medical license, DEA certification, and is certified in both BLS and ACLS.",
       "Dr. Nagaraj is a Diplomate of the American Board of Integrative and Holistic Medicine and has completed advanced coursework in Functional Medicine through the Institute for Functional Medicine. This training informs a whole-person, root-cause approach to patient care that goes beyond symptom management.",
       "Her clinical contributions have been recognized with the Best Clinical Care Provider award at Norton Healthcare, and she has received recognition from the American Medical Association. Dr. Nagaraj has authored and contributed to publications on infectious diseases, cancer screening, diabetes management, and fibromyalgia.",
       "She is committed to building lasting relationships with her patients and providing care that addresses not just disease, but the full context of a person's health, lifestyle, and goals.",

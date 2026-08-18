@@ -65,14 +65,12 @@ export default function Footer() {
             >
               {site.email}
             </a>
-            <a
-              href={site.bookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/book-online"
               className="btn-primary mt-6"
             >
               Book Online
-            </a>
+            </Link>
           </div>
         </div>
 

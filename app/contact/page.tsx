@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import { Reveal } from "@/components/Motion";
 import ContactForm from "@/components/ContactForm";
@@ -120,14 +121,12 @@ export default function ContactPage() {
             </a>
 
             <div className="mt-6">
-              <a
-                href={site.bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/book-online"
                 className="btn-primary"
               >
                 Book Online
-              </a>
+              </Link>
             </div>
           </Reveal>
 

@@ -1,8 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { locations, reviews, site } from "@/lib/data";
+import { locations, reviews } from "@/lib/data";
 import { ArrowRight, MapPin } from "@/components/Icons";
 import Stars from "@/components/Stars";
 
@@ -86,14 +87,12 @@ export default function Hero() {
             transition={{ duration: 0.7, ease: easeOut, delay: 0.62 }}
             className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
           >
-            <a
-              href={site.bookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/book-online"
               className="btn-primary"
             >
               Book Online <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
             <a href="/services" className="btn-ghost">
               Explore our care
             </a>

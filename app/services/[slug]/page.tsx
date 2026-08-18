@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import CTABand from "@/components/CTABand";
 import { Reveal } from "@/components/Motion";
 import { ArrowRight, Check } from "@/components/Icons";
-import { services, site } from "@/lib/data";
+import { services } from "@/lib/data";
 
 export function generateStaticParams() {
   // metabolic-syndrome has its own dedicated page at /services/metabolic-syndrome/
@@ -106,14 +106,12 @@ export default function ServiceDetailPage({
             </div>
 
             <div className="mt-8">
-              <a
-                href={site.bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/book-online"
                 className="btn-primary"
               >
                 Book this service <ArrowRight className="h-4 w-4" />
-              </a>
+              </Link>
             </div>
           </Reveal>
 

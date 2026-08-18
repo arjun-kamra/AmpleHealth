@@ -1,4 +1,5 @@
-import { locations, site } from "@/lib/data";
+import { locations } from "@/lib/data";
+import Link from "next/link";
 import { Reveal } from "./Motion";
 import { ArrowRight, Phone } from "./Icons";
 
@@ -32,14 +33,12 @@ export default function CTABand({
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row">
-              <a
-                href={site.bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/book-online"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-medium text-brand transition-all duration-300 hover:bg-paper hover:shadow-lg"
               >
                 Book Online <ArrowRight className="h-4 w-4" />
-              </a>
+              </Link>
               <a
                 href={locations[0].phoneHref}
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-7 py-3.5 text-sm font-medium text-white transition-all duration-300 hover:bg-white/10"

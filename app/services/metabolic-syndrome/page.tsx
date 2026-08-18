@@ -4,7 +4,7 @@ import Link from "next/link";
 import CTABand from "@/components/CTABand";
 import { Reveal, Stagger, StaggerItem } from "@/components/Motion";
 import { ArrowRight, Check } from "@/components/Icons";
-import { services, site } from "@/lib/data";
+import { services } from "@/lib/data";
 
 const metabolicService = services.find((s) => s.slug === "metabolic-syndrome")!;
 
@@ -95,14 +95,12 @@ export default function MetabolicSyndromePage() {
                 your health from the inside out.
               </p>
               <div className="mt-8">
-                <a
-                  href={site.bookingUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="/book-online"
                   className="btn-primary"
                 >
                   Schedule a Consultation <ArrowRight className="h-4 w-4" />
-                </a>
+                </Link>
               </div>
             </Reveal>
 
@@ -178,14 +176,12 @@ export default function MetabolicSyndromePage() {
                 If any of the following describes you, this program was built
                 with you in mind.
               </p>
-              <a
-                href={site.bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/book-online"
                 className="btn-ghost mt-8 inline-flex"
               >
                 Talk to our team
-              </a>
+              </Link>
             </Reveal>
 
             <Reveal delay={0.1}>
@@ -233,15 +229,13 @@ export default function MetabolicSyndromePage() {
               conversation. Let&apos;s stop fighting your biology and start working
               with it.
             </p>
-            <a
-              href={site.bookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/book-online"
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-semibold text-brand transition-all duration-300 hover:bg-paper hover:shadow-lg"
             >
               Schedule Your Consultation{" "}
               <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
           </Reveal>
         </div>
       </section>

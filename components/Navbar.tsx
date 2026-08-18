@@ -127,14 +127,9 @@ export default function Navbar() {
             Pay My Bill
           </a>
 
-          <a
-            href={site.bookingUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary hidden sm:inline-flex"
-          >
+          <Link href="/book-online" className="btn-primary hidden sm:inline-flex">
             Book Online
-          </a>
+          </Link>
 
           {/* Hamburger */}
           <button
@@ -196,15 +191,13 @@ export default function Navbar() {
                   </motion.li>
                 ))}
               </ul>
-              <a
-                href={site.bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/book-online"
                 onClick={() => setOpen(false)}
                 className="btn-primary mt-8 w-full"
               >
                 Book Online
-              </a>
+              </Link>
               <a
                 href={site.payBillUrl}
                 target="_blank"
