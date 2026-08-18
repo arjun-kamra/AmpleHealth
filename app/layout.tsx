@@ -58,9 +58,18 @@ export default function RootLayout({
           first entry in <head>: next/script's beforeInteractive strategy emits
           only a preload link plus a deferred client-side bootstrap, which
           neither produces a real script tag nor preserves head ordering.
+
+          data-position="5" puts the widget bottom-left. At its default
+          top-right it sat directly on top of the mobile menu button and
+          swallowed the taps, leaving the nav unopenable on phones. Bottom-left
+          also keeps it clear of the chat bubble in the bottom-right.
         */}
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-        <script src="https://cdn.userway.org/widget.js" data-account="4KqVvO5Abt" />
+        <script
+          src="https://cdn.userway.org/widget.js"
+          data-account="4KqVvO5Abt"
+          data-position="5"
+        />
       </head>
       <body>
         <Navbar />
