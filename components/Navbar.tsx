@@ -121,7 +121,7 @@ export default function Navbar() {
             href={site.payBillUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center justify-center gap-2 rounded-full border border-brand/35 px-5 py-3.5 text-sm font-medium tracking-wide text-brand transition-all duration-300 hover:border-brand hover:bg-brand/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand lg:inline-flex"
+            className="hidden items-center justify-center gap-2 rounded-full bg-payment px-5 py-3.5 text-sm font-medium tracking-wide text-white transition-all duration-300 hover:bg-payment-hover hover:shadow-[0_12px_30px_-12px_rgba(8,127,123,0.7)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-payment lg:inline-flex"
           >
             <CreditCard className="h-4 w-4" aria-hidden="true" />
             Pay My Bill
@@ -210,7 +210,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-brand/35 px-7 py-3.5 text-sm font-medium tracking-wide text-brand transition-all duration-300 hover:border-brand hover:bg-brand/5"
+                className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full bg-payment px-7 py-3.5 text-sm font-medium tracking-wide text-white transition-all duration-300 hover:bg-payment-hover"
               >
                 <CreditCard className="h-4 w-4" aria-hidden="true" />
                 Pay My Bill

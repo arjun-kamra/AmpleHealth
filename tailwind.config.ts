@@ -41,6 +41,13 @@ const config: Config = {
           DEFAULT: "#C68A3E",
           soft: "#E2B877",
         },
+        // Payment accent — deep teal, carries the Pay My Bill action.
+        // Named for its role rather than "teal" so it cannot collide with
+        // Tailwind's built-in teal scale.
+        payment: {
+          DEFAULT: "#087F7B",
+          hover: "#006965",
+        },
       },
       fontFamily: {
         serif: ["var(--font-cormorant)", "Georgia", "serif"],
