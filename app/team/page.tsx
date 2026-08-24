@@ -85,7 +85,7 @@ export default function TeamPage() {
         kicker="Our team"
         title="The people behind your"
         highlight="care."
-        description="19 physicians, nurse practitioners, physician assistants, and dedicated support staff — all united by one standard and one shared purpose."
+        description={`${providers.length} physicians, nurse practitioners, physician assistants, and dedicated support staff — all united by one standard and one shared purpose.`}
       />
 
       <div className="container-page py-20 md:py-28 space-y-16">
