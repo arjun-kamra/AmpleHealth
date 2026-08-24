@@ -105,6 +105,7 @@ export default function ProviderPage({ params }: { params: { slug: string } }) {
             </div>
           </Reveal>
 
+          {provider.highlights.length > 0 && (
           <Reveal delay={0.1}>
             <div className="card-surface p-7">
               <p className="text-xs uppercase tracking-kicker text-ink-muted">
@@ -125,6 +126,7 @@ export default function ProviderPage({ params }: { params: { slug: string } }) {
               </ul>
             </div>
           </Reveal>
+          )}
         </div>
       </section>
 

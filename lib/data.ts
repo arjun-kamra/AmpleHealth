@@ -836,16 +836,11 @@ export const providers: Provider[] = [
     title: "Medical Assistant",
     group: "care-admin",
     shortBio:
-      "Dedicated and compassionate Medical Assistant with a strong commitment to providing high-quality, patient-centered care. She graduated from Medical Assistant school in 2023 and joined AmpleHealth the same year.",
+      "Dedicated and compassionate Medical Assistant with a strong commitment to providing high-quality, patient-centered care.",
     fullBio: [
-      "Dedicated and compassionate Medical Assistant with a strong commitment to providing high-quality, patient-centered care. She graduated from Medical Assistant school in 2023 and began her career with AmpleHealth the same year.",
-      "Through her experience, she has developed strong clinical, organizational, and leadership skills while supporting providers, patients, and the healthcare team.",
+      "Dedicated and compassionate Medical Assistant with a strong commitment to providing high-quality, patient-centered care. She graduated from Medical Assistant school in 2023 and began her career with AmpleHealth the same year. Through her experience, she has developed strong clinical, organizational, and leadership skills while supporting providers, patients, and the healthcare team.",
     ],
-    highlights: [
-      "Graduated Medical Assistant school, 2023",
-      "With AmpleHealth since 2023",
-      "Clinical, organizational & leadership skills",
-    ],
+    highlights: [],
     tone: "#0B324F",
   },
   {
@@ -869,16 +864,11 @@ export const providers: Provider[] = [
     title: "Medical Assistant",
     group: "care-admin",
     shortBio:
-      "Bilingual Medical Assistant who graduated from MA school in 2025. Leslie is dedicated to compassionate care and to making every patient feel seen, heard, and valued.",
+      "Leslie is a committed Medical Assistant who graduated from MA school in 2025.",
     fullBio: [
-      "Leslie is a committed Medical Assistant who graduated from MA school in 2025. She loves being able to help and care for patients while making sure each person feels seen, heard, valued, and important.",
-      "As a bilingual medical assistant who speaks both English and Spanish, she enjoys connecting with and supporting patients from different backgrounds. She is dedicated to providing compassionate care and creating a welcoming, respectful, and comfortable experience for every patient.",
+      "Leslie is a committed Medical Assistant who graduated from MA school in 2025. She loves being able to help and care for patients while making sure each person feels seen, heard, valued, and important. As a bilingual medical assistant who speaks both English and Spanish, she enjoys connecting with and supporting patients from different backgrounds. She is dedicated to providing compassionate care and creating a welcoming, respectful, and comfortable experience for every patient.",
     ],
-    highlights: [
-      "Medical Assistant, graduated 2025",
-      "Bilingual — English & Spanish",
-      "Compassionate, patient-centered care",
-    ],
+    highlights: [],
     tone: "#155E96",
   },
   {
@@ -892,10 +882,7 @@ export const providers: Provider[] = [
     fullBio: [
       "Medical Assistant graduate (2026), passionate about helping others and providing quality, compassionate care to every patient.",
     ],
-    highlights: [
-      "Medical Assistant graduate, 2026",
-      "Quality, compassionate patient care",
-    ],
+    highlights: [],
     tone: "#4D97D7",
   },
   {
@@ -955,16 +942,11 @@ export const providers: Provider[] = [
     title: "Front Desk Receptionist",
     group: "care-admin",
     shortBio:
-      "Mark handles front desk operations and brings extensive back-office and administrative experience, with a long-term goal of attending medical school.",
+      "Mark handles Front Desk operations and has extensive back-office and administrative experience.",
     fullBio: [
-      "Mark handles Front Desk operations and has extensive back-office and administrative experience. He takes pride in providing professional, friendly support to both colleagues and patients.",
-      "He is currently working toward his long-term goal of attending medical school and building a career in healthcare. In his downtime, he enjoys playing basketball as a way to stay active and unwind.",
+      "Mark handles Front Desk operations and has extensive back-office and administrative experience. He takes pride in providing professional, friendly support to both colleagues and patients. He is currently working toward his long-term goal of attending medical school and building a career in healthcare. In his downtime, he enjoys playing basketball as a way to stay active and unwind.",
     ],
-    highlights: [
-      "Front desk operations",
-      "Back-office & administrative experience",
-      "Working toward medical school",
-    ],
+    highlights: [],
     tone: "#C68A3E",
   },
   {
@@ -974,19 +956,14 @@ export const providers: Provider[] = [
     title: "Referral Coordinator",
     group: "care-admin",
     shortBio:
-      "One of AmpleHealth's two full-time Referral Coordinators. A laboratory-honed eye for detail and a passion for organized workflows, with experience across tertiary hospitals, provincial facilities, and specialized blood banks.",
+      "CynthAnn is one of our two full-time, dedicated Referral Coordinators, helping ensure that patients receive timely, organized, and attentive support throughout the referral process.",
     fullBio: [
       "CynthAnn is one of our two full-time, dedicated Referral Coordinators, helping ensure that patients receive timely, organized, and attentive support throughout the referral process.",
       "With a laboratory-honed eye for detail and a passion for organized workflows, CynthAnn thrives in fast-paced healthcare environments. Her experience spans tertiary hospitals, provincial healthcare facilities, and specialized blood banks, giving her a strong foundation in clinical accuracy, patient safety, and interdisciplinary coordination.",
       "Meticulous, efficient, and highly adaptable, she approaches every referral with careful attention to detail while keeping the patient's needs at the center of the process. She takes ownership of her responsibilities, anticipates needs, and continually looks for ways to improve workflows and strengthen communication between patients, specialists, and our clinical team.",
       "Driven by continuous professional growth, CynthAnn brings discipline, empathy, reliability, and a commitment to excellence to AmpleHealth and the patients we serve.",
     ],
-    highlights: [
-      "One of two full-time Referral Coordinators",
-      "Experience across tertiary hospitals & blood banks",
-      "Laboratory-honed attention to detail",
-      "Focus on patient safety & coordination",
-    ],
+    highlights: [],
     tone: "#4D97D7",
   },
   {
@@ -996,20 +973,29 @@ export const providers: Provider[] = [
     title: "Referral Coordinator",
     group: "care-admin",
     shortBio:
-      "Registered pharmacist with seven years of hospital pharmacy experience, now one of AmpleHealth's two Referral Coordinators. Known for accuracy, adaptability, and genuine ownership of his work.",
+      "With seven years of experience as a hospital pharmacist, Cleeve has worked closely with physicians and other healthcare professionals to support safe, effective patient care.",
     fullBio: [
       "With seven years of experience as a hospital pharmacist, Cleeve has worked closely with physicians and other healthcare professionals to support safe, effective patient care. His background includes ensuring medication accuracy, communicating important drug information, educating patients, and collaborating with clinical teams to achieve the best possible outcomes.",
       "After relocating to the United States, Cleeve demonstrated his versatility by successfully transitioning into a fast-paced, high-volume work environment, where he continued to distinguish himself through accuracy, efficiency, reliability, and consistent performance.",
       "What truly sets Cleeve apart is his approach to his work. He learns quickly, adapts readily to new environments, and takes genuine ownership of his responsibilities. He believes that excellence comes from discipline, accountability, and a willingness to continually improve.",
       "Dependable, adaptable, and results-driven, Cleeve brings the same high standard to every role he takes on and every team he serves. He is one of AmpleHealth's two Referral Coordinators, alongside CynthAnn.",
     ],
-    highlights: [
-      "Registered Pharmacist (RPh)",
-      "Seven years as a hospital pharmacist",
-      "Medication accuracy & patient education",
-      "One of AmpleHealth's two Referral Coordinators",
-    ],
+    highlights: [],
     tone: "#155E96",
+  },
+  {
+    slug: "anshul-gattani",
+    name: "Anshul Gattani",
+    credentials: "",
+    title: "Quality Coordinator",
+    group: "care-admin",
+    shortBio:
+      "Recent graduate with Honors in Biology from UC Santa Cruz and an aspiring healthcare provider.",
+    fullBio: [
+      "Recent graduate with Honors in Biology from UC Santa Cruz and an aspiring healthcare provider. He enjoys connecting with patients and helping create a welcoming experience in the healthcare setting. Outside of work, he enjoys playing sports, making music, and spending time outdoors and in nature.",
+    ],
+    highlights: [],
+    tone: "#104872",
   },
 ];
 
