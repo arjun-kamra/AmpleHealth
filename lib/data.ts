@@ -844,20 +844,6 @@ export const providers: Provider[] = [
     tone: "#0B324F",
   },
   {
-    slug: "shreya-kamra",
-    name: "Shreya Kamra",
-    credentials: "",
-    title: "Medical Assistant",
-    group: "care-admin",
-    shortBio: "A dedicated member of the AmpleHealth care team.",
-    fullBio: [
-      "Shreya Kamra is a Medical Assistant at AmpleHealth, supporting the care team in delivering an exceptional patient experience.",
-      "A dedicated member of the AmpleHealth team, Shreya brings energy and commitment to her role every day.",
-    ],
-    highlights: ["Medical Assistant", "Clinical patient support"],
-    tone: "#1B75BB",
-  },
-  {
     slug: "leslie-hernandez",
     name: "Leslie Hernandez",
     credentials: "",
