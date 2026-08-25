@@ -92,7 +92,7 @@ export default function Footer() {
               Notices
             </span>
             <Link
-              href="/forms/notice-of-privacy-practices"
+              href="/notice-of-privacy-practices"
               className="underline-offset-4 transition-colors hover:text-white hover:underline"
             >
               Notice of Privacy Practices
