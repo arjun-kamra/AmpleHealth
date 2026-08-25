@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
+import { Download } from "@/components/Icons";
 
 export const metadata: Metadata = {
   title: "Notice of Privacy Practices",
@@ -225,6 +226,18 @@ export default function NoticeOfPrivacyPracticesPage() {
       />
 
       <section className="container-page max-w-3xl py-16 md:py-20">
+        {/* The Notice itself states a paper copy is available on request, so
+            keep the source document one click away. */}
+        <a
+          href="/AmpleHealth_Notice_of_Privacy_Practices_2026.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-ghost mb-10 inline-flex"
+        >
+          <Download className="h-4 w-4" aria-hidden="true" />
+          Download PDF
+        </a>
+
         {NOTICE.map((block, i) => {
           if (block.kind === "h2") {
             return (
