@@ -13,24 +13,54 @@ export type DisplayPost = {
   content: string;
 };
 
+// One distinct image per category. Every category the generator can emit
+// (VALID_CATEGORIES in app/api/generate-blog/route.ts) has its own entry, plus
+// the legacy category names still present on older posts. Each URL was
+// load-tested and viewed before being committed. Geriatrics intentionally
+// serves both of its current posts.
 const CATEGORY_IMAGES: Record<string, string> = {
-  "Preventive Care": "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800",
+  // clinicians reviewing screening imagery
+  "Preventive Care": "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=800",
+  // stethoscope — the classic check-up (legacy category name)
   Prevention:        "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800",
-  "Chronic Disease": "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800",
-  "Chronic Care":    "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800",
+  // blood-pressure cuff mid-reading
+  "Chronic Disease": "https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=800",
+  // physician at a patient's bedside (legacy category name)
+  "Chronic Care":    "https://images.unsplash.com/photo-1581056771107-24ca5f033842?w=800",
+  // vegetables and pulses — the diet side of lipid management
+  "Heart Health":    "https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=800",
+  // strength and conditioning
   "Women's Health":  "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800",
+  // clinician reviewing results at a workstation
+  "Men's Health":    "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800",
+  // a prepared, balanced meal
   Nutrition:         "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800",
+  // meditation at sunrise
   "Mental Health":   "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800",
-  Telehealth:        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800",
+  // anatomical brain model — sleep and neurological wellbeing
+  Wellness:          "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800",
+  // an immunisation being given
+  "Seasonal Health": "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=800",
+  // physician outdoors — shared by both current Geriatrics posts
   Geriatrics:        "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800",
+  // clinician with a smartphone
+  Telehealth:        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800",
+  // aesthetic treatment in progress
   Aesthetics:        "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800",
-  "Seasonal Health": "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800",
 };
 
-const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800";
+// Last resort only — distinct from every category image above, so its
+// appearance is a visible signal that a category is missing from the map.
+const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1512678080530-7760d81faba6?w=800";
 
 // Returns a reliable Unsplash direct URL. Uses the category map unless the
 // stored image_url is already a direct images.unsplash.com URL.
+/** The canonical image for a category, used by the blog generator so the
+ *  stored image_url matches what the site will actually render. */
+export function imageForCategory(category: string | null): string {
+  return CATEGORY_IMAGES[category ?? ""] ?? DEFAULT_IMAGE;
+}
+
 export function imageForPost(imageUrl: string | null, category: string | null): string {
   if (imageUrl && imageUrl.startsWith("https://images.unsplash.com")) {
     return imageUrl;
