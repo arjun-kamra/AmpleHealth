@@ -85,9 +85,13 @@ export default function ProviderPage({ params }: { params: { slug: string } }) {
               )}
               <p className="text-ink-muted">{provider.title}</p>
 
-              <p className="mt-6 text-pretty text-lg leading-relaxed text-ink-muted">
-                {provider.shortBio}
-              </p>
+              {/* Where shortBio is just the bio itself, the Biography section
+                  below already carries it — don't print it twice. */}
+              {!provider.fullBio.join(" ").startsWith(provider.shortBio) && (
+                <p className="mt-6 text-pretty text-lg leading-relaxed text-ink-muted">
+                  {provider.shortBio}
+                </p>
+              )}
             </Reveal>
           </div>
         </div>
