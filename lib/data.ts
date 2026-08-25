@@ -833,7 +833,7 @@ export const providers: Provider[] = [
     slug: "tiffany-schroeder",
     name: "Tiffany Schroeder",
     credentials: "",
-    title: "Medical Assistant",
+    title: "Certified Medical Assistant",
     group: "care-admin",
     shortBio:
       "Dedicated and compassionate Medical Assistant with a strong commitment to providing high-quality, patient-centered care.",
@@ -884,6 +884,21 @@ export const providers: Provider[] = [
     ],
     highlights: [],
     tone: "#4D97D7",
+  },
+  {
+    slug: "oksana-hawk",
+    name: "Oksana Hawk",
+    credentials: "",
+    title: "Medical Assistant & Certified Medical Interpreter",
+    group: "care-admin",
+    shortBio:
+      "Oksana Hawk brings over a decade of administrative and insurance processing expertise to the AmpleHealth team.",
+    fullBio: [
+      "Oksana Hawk brings over a decade of administrative and insurance processing expertise to the AmpleHealth team. Driven by a deep passion for serving others, she is dedicated to promoting continuous improvement and patient-focused excellence in the medical field. She provides patient check-in/out, processes insurance, and assists providers with vaccines.",
+      "A highly skilled communicator, Oksana is fluent in English, Ukrainian, and Russian. She holds a credential as a Certified Medical Interpreter for Russian. Her goals are to advance her clinical skills and pursue a Certified Medical Assistant (CMA) credential.",
+    ],
+    highlights: [],
+    tone: "#0B324F",
   },
   {
     slug: "doneal-decapia",
