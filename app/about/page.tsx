@@ -3,7 +3,6 @@ import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import CTABand from "@/components/CTABand";
 import { Reveal } from "@/components/Motion";
-import Placeholder from "@/components/Placeholder";
 import { Check, MapPin } from "@/components/Icons";
 import { locations, providers } from "@/lib/data";
 
@@ -86,13 +85,18 @@ export default function AboutPage() {
         <div className="bg-dots absolute right-0 top-0 h-72 w-72 opacity-40 mask-fade-b" />
         <div className="container-page relative grid gap-14 py-20 md:py-28 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <Reveal>
-            <Placeholder
-              tone="#1B75BB"
-              ratio="4 / 5"
-              monogram="DK"
-              label="Dheeraj Kamra, MD, FACP"
-              className="max-w-md"
-            />
+            <figure
+              className="relative max-w-md overflow-hidden rounded-2xl"
+              style={{ aspectRatio: "4 / 5" }}
+            >
+              <Image
+                src="/practice/dr-kamra-portrait.jpg"
+                alt="Dr. Dheeraj Kamra, MD, FACP"
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover object-top"
+              />
+            </figure>
           </Reveal>
 
           <Reveal delay={0.1}>
