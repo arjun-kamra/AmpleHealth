@@ -229,7 +229,7 @@ export default function NoticeOfPrivacyPracticesPage() {
         {/* The Notice itself states a paper copy is available on request, so
             keep the source document one click away. */}
         <a
-          href="/AmpleHealth_Notice_of_Privacy_Practices_2026.pdf"
+          href="/documents/notice-of-privacy-practices-2026.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="btn-ghost mb-10 inline-flex"
