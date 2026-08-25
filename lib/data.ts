@@ -894,8 +894,8 @@ export const providers: Provider[] = [
     shortBio:
       "Oksana Hawk brings over a decade of administrative and insurance processing expertise to the AmpleHealth team.",
     fullBio: [
-      "Oksana Hawk brings over a decade of administrative and insurance processing expertise to the AmpleHealth team. Driven by a deep passion for serving others, she is dedicated to promoting continuous improvement and patient-focused excellence in the medical field. She provides patient check-in/out, processes insurance, and assists providers with vaccines.",
-      "A highly skilled communicator, Oksana is fluent in English, Ukrainian, and Russian. She holds a credential as a Certified Medical Interpreter for Russian. Her goals are to advance her clinical skills and pursue a Certified Medical Assistant (CMA) credential.",
+      "Oksana Hawk brings over a decade of administrative and insurance processing expertise to the AmpleHealth team. Driven by a deep passion for serving others, they are dedicated to promoting continuous improvement and patient-focused excellence in the medical field. She provides patient check in/out, processes insurances, and assist provider with vaccines.",
+      "A highly skilled communicator, Oksana is fluent in English, Ukrainian, and Russian. She holds a credential as a Certified Medical Interpreter for Russian. My goals are strive to advance my clinical skills, and pursue a Certified Medical Assistant (CMA) credential.",
     ],
     highlights: [],
     tone: "#0B324F",
@@ -971,12 +971,12 @@ export const providers: Provider[] = [
     title: "Referral Coordinator",
     group: "care-admin",
     shortBio:
-      "CynthAnn is one of our two full-time, dedicated Referral Coordinators, helping ensure that patients receive timely, organized, and attentive support throughout the referral process.",
+      "Cynth Ann is one of our two full-time, dedicated Referral Coordinators, helping ensure that patients receive timely, organized, and attentive support throughout the referral process.",
     fullBio: [
-      "CynthAnn is one of our two full-time, dedicated Referral Coordinators, helping ensure that patients receive timely, organized, and attentive support throughout the referral process.",
-      "With a laboratory-honed eye for detail and a passion for organized workflows, CynthAnn thrives in fast-paced healthcare environments. Her experience spans tertiary hospitals, provincial healthcare facilities, and specialized blood banks, giving her a strong foundation in clinical accuracy, patient safety, and interdisciplinary coordination.",
+      "Cynth Ann is one of our two full-time, dedicated Referral Coordinators, helping ensure that patients receive timely, organized, and attentive support throughout the referral process.",
+      "With a laboratory-honed eye for detail and a passion for organized workflows, Cynth Ann thrives in fast-paced healthcare environments. Her experience spans tertiary hospitals, provincial healthcare facilities, and specialized blood banks, giving her a strong foundation in clinical accuracy, patient safety, and interdisciplinary coordination.",
       "Meticulous, efficient, and highly adaptable, she approaches every referral with careful attention to detail while keeping the patient's needs at the center of the process. She takes ownership of her responsibilities, anticipates needs, and continually looks for ways to improve workflows and strengthen communication between patients, specialists, and our clinical team.",
-      "Driven by continuous professional growth, CynthAnn brings discipline, empathy, reliability, and a commitment to excellence to AmpleHealth and the patients we serve.",
+      "Driven by continuous professional growth, Cynth Ann brings discipline, empathy, reliability, and a commitment to excellence to AmpleHealth and the patients we serve.",
     ],
     highlights: [],
     tone: "#4D97D7",
@@ -991,9 +991,7 @@ export const providers: Provider[] = [
       "With seven years of experience as a hospital pharmacist, Cleeve has worked closely with physicians and other healthcare professionals to support safe, effective patient care.",
     fullBio: [
       "With seven years of experience as a hospital pharmacist, Cleeve has worked closely with physicians and other healthcare professionals to support safe, effective patient care. His background includes ensuring medication accuracy, communicating important drug information, educating patients, and collaborating with clinical teams to achieve the best possible outcomes.",
-      "After relocating to the United States, Cleeve demonstrated his versatility by successfully transitioning into a fast-paced, high-volume work environment, where he continued to distinguish himself through accuracy, efficiency, reliability, and consistent performance.",
-      "What truly sets Cleeve apart is his approach to his work. He learns quickly, adapts readily to new environments, and takes genuine ownership of his responsibilities. He believes that excellence comes from discipline, accountability, and a willingness to continually improve.",
-      "Dependable, adaptable, and results-driven, Cleeve brings the same high standard to every role he takes on and every team he serves. He is one of AmpleHealth's two Referral Coordinators, alongside CynthAnn.",
+      "After relocating to the United States, Cleeve demonstrated his versatility by successfully transitioning into a fast-paced, high-volume work environment, where he continued to distinguish himself through accuracy, efficiency, reliability, and consistent performance.  What truly sets Cleeve apart is his approach to his work. He learns quickly, adapts readily to new environments, and takes genuine ownership of his responsibilities. He believes that excellence comes from discipline, accountability, and a willingness to continually improve.  Dependable, adaptable, and results-driven, Cleeve brings the same high standard to every role he takes on and every team he serves. He is one of AmpleHealth's two Referral Coordinators, alongside Cynth Ann.",
     ],
     highlights: [],
     tone: "#155E96",
