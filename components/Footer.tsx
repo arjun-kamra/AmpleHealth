@@ -82,6 +82,58 @@ export default function Footer() {
             Carmichael &amp; Sacramento, California · Dheeraj Kamra, MD, FACP
           </p>
         </div>
+
+        {/* Notices — regulatory links that must stay reachable from every page,
+            independent of the booking flow. Uses a native <details> so the
+            disclosure needs no client-side JavaScript. */}
+        <div className="mt-4 border-t border-paper/10 pt-4 text-xs text-paper/45">
+          <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-3">
+            <span className="uppercase tracking-kicker text-paper/35">
+              Notices
+            </span>
+            <Link
+              href="/forms/notice-of-privacy-practices"
+              className="underline-offset-4 transition-colors hover:text-white hover:underline"
+            >
+              Notice of Privacy Practices
+            </Link>
+            <span aria-hidden="true" className="hidden text-paper/20 sm:inline">
+              ·
+            </span>
+            <details className="group">
+              <summary className="cursor-pointer list-none underline-offset-4 transition-colors marker:content-none hover:text-white hover:underline [&::-webkit-details-marker]:hidden">
+                Sunshine Act Notice
+                <span
+                  aria-hidden="true"
+                  className="ml-1 inline-block transition-transform group-open:rotate-90"
+                >
+                  ›
+                </span>
+              </summary>
+              <div className="mt-3 max-w-3xl space-y-2 border-l border-paper/15 pl-4 leading-relaxed">
+                <p className="font-medium text-paper/70">Sunshine Act Notice</p>
+                <p>
+                  For informational purposes only, a link to the federal Centers
+                  for Medicare and Medicaid Services (CMS) Open Payments web page
+                  is provided here. The federal Physician Payments Sunshine Act
+                  requires that detailed information about payment and other
+                  payments of value worth over ten dollars ($10) from
+                  manufacturers of drugs, medical devices, and biologics to
+                  physicians and teaching hospitals be made available to the
+                  public.
+                </p>
+                <a
+                  href="https://openpaymentsdata.cms.gov/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block text-brand-200 underline-offset-4 transition-colors hover:text-white hover:underline"
+                >
+                  CMS Open Payments
+                </a>
+              </div>
+            </details>
+          </div>
+        </div>
       </div>
     </footer>
   );
