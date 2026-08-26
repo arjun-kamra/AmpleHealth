@@ -45,15 +45,22 @@ const itemVariants: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOut } },
 };
 
-/** Container that staggers its <StaggerItem> children into view. */
+/** Container that staggers its <StaggerItem> children into view.
+ *
+ *  `amount` defaults to "some" — any sliver of the container counts as in
+ *  view. A fractional amount is a trap here: it is a fraction of the
+ *  *container*, so a long list can need more pixels visible than the screen
+ *  is tall, and then the trigger never fires and the children stay at
+ *  opacity 0. That is what left the reviews and the team roster blank on
+ *  phones. */
 export function Stagger({
   children,
   className = "",
-  amount = 0.2,
+  amount = "some",
 }: {
   children: ReactNode;
   className?: string;
-  amount?: number;
+  amount?: "some" | "all" | number;
 }) {
   return (
     <motion.div

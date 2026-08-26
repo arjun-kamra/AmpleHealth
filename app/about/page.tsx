@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import CTABand from "@/components/CTABand";
 import { Reveal } from "@/components/Motion";
@@ -170,7 +171,14 @@ export default function AboutPage() {
         <Reveal className="max-w-2xl">
           <p className="kicker">Life at the practice</p>
           <h2 className="mt-4 text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
-            The people make the place
+            The{" "}
+            <Link
+              href="/team"
+              className="underline decoration-brand/30 decoration-2 underline-offset-[6px] transition-colors duration-300 hover:text-brand hover:decoration-brand"
+            >
+              people
+            </Link>{" "}
+            make the place
           </h2>
           <p className="mt-4 text-pretty text-lg leading-relaxed text-ink-muted">
             No staged smiles, no stock photos — just a few unposed moments from

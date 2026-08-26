@@ -216,7 +216,14 @@ export default function HomePage() {
           <Reveal className="max-w-2xl">
             <p className="kicker">Our team</p>
             <h2 className="mt-4 text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
-              The people in your corner
+              The{" "}
+              <Link
+                href="/team"
+                className="underline decoration-brand/30 decoration-2 underline-offset-[6px] transition-colors duration-300 hover:text-brand hover:decoration-brand"
+              >
+                people
+              </Link>{" "}
+              in your corner
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
