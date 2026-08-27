@@ -22,8 +22,12 @@ export default function ContactPage() {
         description="Reach the office nearest you, send a message, or book online. New patients are always welcome."
       />
 
-      {/* LOCATION CARDS */}
-      <section className="container-page py-20 md:py-28">
+      {/* LOCATION CARDS — #locations is linked from the homepage hero, so it
+          needs scroll-mt to clear the sticky 72px header. */}
+      <section
+        id="locations"
+        className="container-page scroll-mt-24 py-20 md:py-28"
+      >
         <div className="grid gap-5 md:grid-cols-2">
           {locations.map((loc, i) => (
             <Reveal key={loc.city} delay={i * 0.08}>

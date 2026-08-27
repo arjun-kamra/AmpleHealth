@@ -76,7 +76,12 @@ export default function Hero() {
             className="mt-7 max-w-xl text-pretty text-lg leading-relaxed text-ink-muted"
           >
             The practice of{" "}
-            <span className="font-medium text-ink">Dr. Dheeraj Kamra, MD, FACP</span>{" "}
+            <Link
+              href="/team/dheeraj-kamra"
+              className="font-medium text-ink underline decoration-brand/30 decoration-2 underline-offset-4 transition-colors duration-300 hover:text-brand hover:decoration-brand"
+            >
+              Dr. Dheeraj Kamra, MD, FACP
+            </Link>{" "}
             — relationship-driven internal medicine that follows you from the
             clinic to the hospital and home.
           </motion.p>
@@ -105,16 +110,26 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-ink-muted"
           >
-            <div className="flex items-center gap-2">
+            <Link
+              href="/testimonials"
+              className="group flex items-center gap-2 transition-colors duration-300 hover:text-ink"
+            >
               <Stars rating={reviews.rating} />
               <span className="font-medium text-ink">{reviews.rating}</span>
-              <span>· {reviews.count}+ Google reviews</span>
-            </div>
+              <span className="underline decoration-transparent underline-offset-4 transition-colors duration-300 group-hover:decoration-brand">
+                · {reviews.count}+ Google reviews
+              </span>
+            </Link>
             <span className="hidden h-4 w-px bg-ink/15 sm:block" />
-            <div className="flex items-center gap-1.5">
+            <Link
+              href="/contact#locations"
+              className="group flex items-center gap-1.5 transition-colors duration-300 hover:text-ink"
+            >
               <MapPin className="h-4 w-4 text-brand" />
-              Two Sacramento-area locations
-            </div>
+              <span className="underline decoration-transparent underline-offset-4 transition-colors duration-300 group-hover:decoration-brand">
+                Two Sacramento-area locations
+              </span>
+            </Link>
           </motion.div>
         </div>
 
@@ -148,12 +163,15 @@ export default function Hero() {
           </motion.div>
 
           {/* floating location chip */}
-          <div className="card-surface absolute -right-4 -top-4 hidden items-center gap-2 px-4 py-2.5 md:flex">
+          <Link
+            href="/contact#locations"
+            className="card-surface absolute -right-4 -top-4 hidden items-center gap-2 px-4 py-2.5 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-[0_14px_30px_-14px_rgba(11,31,51,0.35)] md:flex"
+          >
             <MapPin className="h-4 w-4 text-brand" />
             <span className="text-xs font-medium">
               {locations.length} locations
             </span>
-          </div>
+          </Link>
         </motion.div>
       </div>
     </section>
