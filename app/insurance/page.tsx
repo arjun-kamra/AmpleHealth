@@ -31,7 +31,7 @@ export default function InsurancePage() {
       {/* HERO */}
       <section className="relative overflow-hidden border-b border-ink/10 bg-paper-deep">
         <div className="bg-dots absolute inset-0 opacity-40" />
-        <div className="container-page relative py-20 md:py-28">
+        <div className="container-page relative py-14">
           <Reveal className="max-w-2xl">
             <p className="kicker">Coverage</p>
             <h1 className="mt-4 text-4xl font-semibold leading-tight tracking-tight md:text-5xl">

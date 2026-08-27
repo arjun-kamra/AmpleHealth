@@ -27,7 +27,9 @@ export default function PageHero({
       <div className="bg-hatch absolute -left-10 bottom-0 h-48 w-48 opacity-70" />
       <div className="pointer-events-none absolute -right-24 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-brand/10 blur-3xl" />
 
-      <div className="container-page relative py-20 md:py-28">
+      {/* 56px = one cell of the bg-grid pattern behind it, so the hero
+          breathes by exactly one square top and bottom. */}
+      <div className="container-page relative py-14">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
