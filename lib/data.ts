@@ -664,6 +664,28 @@ export const providers: Provider[] = [
     ],
     tone: "#4D97D7",
   },
+  {
+    slug: "pradeep-singh",
+    name: "Pradeep Singh",
+    credentials: "MD",
+    title: "Internal Medicine Physician",
+    group: "physicians",
+    shortBio:
+      "Internal medicine physician with decades of clinical experience spanning primary care, hospital medicine, and anesthesiology. Dr. Singh has been part of the AmpleHealth team since 2022.",
+    fullBio: [
+      "Dr. Pradeep Singh is an experienced internal medicine physician who has been part of the AmpleHealth team since 2022. He completed his Internal Medicine residency at Coney Island Hospital in New York.",
+      "He brings decades of clinical experience spanning primary care, hospital medicine, and anesthesiology. Before practicing in the United States, Dr. Singh served extensively in the Indian Army Medical Corps, including leadership roles in anesthesiology.",
+      "His broad clinical background and extensive inpatient experience complement his commitment to providing comprehensive, thoughtful care to AmpleHealth patients.",
+    ],
+    highlights: [
+      "Internal Medicine residency at Coney Island Hospital, New York",
+      "Decades of clinical experience across primary care and hospital medicine",
+      "Extensive background in anesthesiology",
+      "Served in the Indian Army Medical Corps, including leadership roles in anesthesiology",
+      "With AmpleHealth since 2022",
+    ],
+    tone: "#155E96",
+  },
 
   // ── NURSE PRACTITIONERS & PHYSICIAN ASSISTANTS ───────────────────────────
   {

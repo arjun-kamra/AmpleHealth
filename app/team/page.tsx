@@ -9,8 +9,7 @@ import { providers, type Provider } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Our Team",
-  description:
-    "Meet the 19-person AmpleHealth care team — physicians, nurse practitioners, physician assistants, and dedicated care and administrative staff.",
+  description: `Meet the ${providers.length}-person AmpleHealth care team — physicians, nurse practitioners, physician assistants, and dedicated care and administrative staff.`,
 };
 
 const sections: {
