@@ -42,6 +42,17 @@ const nextConfig = {
         destination: "/forms/authorization-for-release",
         permanent: true,
       },
+      // Leftover PatientPop location URLs, still referenced by Google Ads, old backlinks, and the GMB listings.
+      {
+        source: "/location/carmichael-ca",
+        destination: "/contact",
+        permanent: true,
+      },
+      {
+        source: "/location/sacramento-ca",
+        destination: "/contact",
+        permanent: true,
+      },
     ];
   },
 };

@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ChatWidget from "@/components/ChatWidget";
+import GoogleTag from "@/components/GoogleTag";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -70,6 +71,7 @@ export default function RootLayout({
           data-account="4KqVvO5Abt"
           data-position="5"
         />
+        <GoogleTag />
       </head>
       <body>
         <Navbar />
