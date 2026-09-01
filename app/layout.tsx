@@ -21,7 +21,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ample.health"),
+  metadataBase: new URL("https://www.amplehealth.com"),
   title: {
     default: "AmpleHealth — Internal Medicine in Carmichael & Sacramento, CA",
     template: "%s · AmpleHealth",
