@@ -653,14 +653,15 @@ export const providers: Provider[] = [
     title: "Family Medicine",
     group: "physicians",
     shortBio:
-      "Board-certified Family Medicine physician and fluent Spanish speaker who champions preventive care, healthy lifestyle choices, non-narcotic pain management, and active patient involvement in care decisions.",
+      "Dr. Liz Hernandez is passionate about providing comprehensive, patient-centered care with a strong focus on prevention, wellness, longevity, non-opioid approaches to pain management and improving quality of life. Her approach combines evidence-based medicine with personalized strategies to help patients achieve and maintain long-term health.",
     fullBio: [
-      "Dr. Hernandez is a board-certified Family Medicine physician who immigrated to California from Colombia in 2005. She conducted medical research at UCSF before completing her residency at Texas Tech University Health Sciences Center in El Paso, TX. She is passionate about preventive care and champions healthy lifestyle choices, stress reduction, strong mental and emotional health, non-narcotic pain management, and active patient involvement in care decisions.",
-      "Fluent in Spanish, Dr. Hernandez brings a multicultural perspective to her practice and is committed to building long-term, trust-based relationships with her patients — always doing right by them, taking a comprehensive and holistic approach to care, and taking the time to educate patients so they can be true partners in their own health.",
+      "Dr. Liz Hernandez is passionate about providing comprehensive, patient-centered care with a strong focus on prevention, wellness, longevity, non-opioid approaches to pain management and improving quality of life. Her approach combines evidence-based medicine with personalized strategies to help patients achieve and maintain long-term health.",
+      "Her clinical interests include chronic disease management, lifestyle medicine, women's health, obesity care, and aesthetic medicine. Dr. Hernandez believes in empowering her patients through education, collaboration, and practical, sustainable lifestyle changes.",
+      "As a bilingual physician fluent in both English and Spanish, Dr. Hernandez is committed to providing compassionate, culturally sensitive care. She strives to build meaningful, trusting relationships with her patients and their families while creating a supportive environment where every patient feels heard, respected, and empowered in their healthcare journey.",
     ],
     highlights: [
       "Board-certified by the American Board of Family Medicine",
-      "Areas of interest: Geriatric Medicine & General Family Medicine",
+      "Clinical interests: chronic disease management, lifestyle medicine, women's health, obesity care & aesthetic medicine",
       "Residency at Texas Tech University Health Sciences Center, El Paso",
       "Medical research at UCSF",
       "California State Medical License",
