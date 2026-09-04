@@ -61,6 +61,80 @@ export function imageForCategory(category: string | null): string {
   return CATEGORY_IMAGES[category ?? ""] ?? DEFAULT_IMAGE;
 }
 
+// Same filtering as titleSimilarity() in app/api/generate-blog/route.ts —
+// drop connective words so the query carries only the title's subject matter.
+const QUERY_STOP_WORDS = new Set([
+  "a", "an", "the", "and", "or", "for", "to", "in", "of", "with",
+  "how", "your", "you", "is", "are", "its", "it", "on", "at", "by",
+  "what", "why", "when", "can", "does", "do", "about", "from", "that",
+  "this", "know", "need", "should",
+]);
+
+/** Meaningful words from a post title, capped so the query stays focused. */
+function imageQueryFromTitle(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, " ")
+    .split(/\s+/)
+    .filter((w) => w.length > 2 && !QUERY_STOP_WORDS.has(w))
+    .slice(0, 5)
+    .join(" ");
+}
+
+/**
+ * Searches Unsplash for a landscape photo matching a generated post's title,
+ * returning one of the top few results at random so repeated posts on similar
+ * topics don't all land on the same picture.
+ *
+ * Returns null — never throws — on a missing key, network failure, non-200
+ * response, or empty result set, so callers can fall back to imageForCategory.
+ * Requires UNSPLASH_ACCESS_KEY; without it this is a no-op.
+ */
+export async function imageForTitle(title: string): Promise<string | null> {
+  const key = process.env.UNSPLASH_ACCESS_KEY;
+  if (!key) return null;
+
+  const query = imageQueryFromTitle(title);
+  if (!query) return null;
+
+  try {
+    const res = await fetch(
+      `https://api.unsplash.com/search/photos?query=${encodeURIComponent(
+        query
+      )}&per_page=5&orientation=landscape`,
+      {
+        headers: { Authorization: `Client-ID ${key}` },
+        cache: "no-store",
+      }
+    );
+    if (!res.ok) {
+      console.warn(`imageForTitle: Unsplash returned ${res.status} for "${query}"`);
+      return null;
+    }
+
+    const data: unknown = await res.json();
+    const results =
+      typeof data === "object" && data !== null && "results" in data
+        ? (data as { results: unknown }).results
+        : null;
+    if (!Array.isArray(results)) return null;
+
+    const urls = results
+      .map((r) =>
+        typeof r === "object" && r !== null
+          ? (r as { urls?: { regular?: unknown } }).urls?.regular
+          : undefined
+      )
+      .filter((u): u is string => typeof u === "string" && u.length > 0);
+    if (urls.length === 0) return null;
+
+    return urls[Math.floor(Math.random() * urls.length)];
+  } catch (err) {
+    console.warn("imageForTitle: Unsplash lookup failed", err);
+    return null;
+  }
+}
+
 export function imageForPost(imageUrl: string | null, category: string | null): string {
   if (imageUrl && imageUrl.startsWith("https://images.unsplash.com")) {
     return imageUrl;

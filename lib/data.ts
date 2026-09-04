@@ -102,111 +102,6 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    slug: "post-acute-care",
-    title: "Post-Acute Care",
-    summary:
-      "A guided recovery between the hospital and home, with no gaps in care.",
-    description:
-      "Recovery after a hospital stay is a vulnerable window. We manage transitions through skilled nursing and rehab settings, reconcile medications, and keep your recovery on track until you're safely home.",
-    highlights: [
-      "Skilled nursing & rehab oversight",
-      "Medication reconciliation",
-      "Recovery goal setting",
-      "Safe transition home",
-    ],
-    body: [
-      "Recovery doesn't end at the hospital doors. The weeks after discharge are when the gains are won or lost, and they are also when care most often fragments — a new facility, a new therapist, a new set of instructions, and nobody holding the thread.",
-      "Post-acute care covers the rehabilitation you may need after a hospital stay, whether that means inpatient care at a facility, outpatient therapy, or medical care in your own home. The goal is straightforward: restore your independence, rebuild your strength, and keep you from going back to the hospital.",
-    ],
-    sections: [
-      {
-        heading: "Planning starts before you leave",
-        body: [
-          "Before you are discharged, we meet with you to evaluate what you will need and agree on the plan for what comes next. If a rehabilitation facility is the right setting, we make the referral and coordinate it. If you are heading home, we make sure the support is in place before you get there.",
-        ],
-      },
-      {
-        heading: "Coordinating the specialists you need",
-        bullets: [
-          "Wound care",
-          "Physical therapy",
-          "Occupational therapy",
-          "Respiratory therapy",
-          "Speech therapy",
-          "Psychological counseling",
-          "Memory and cognitive therapy",
-        ],
-        footnote: [
-          "We can also help you or a loved one find long-term care when daily medical support is needed for complex conditions, or hospice care when the priority becomes comfort and dignity.",
-        ],
-      },
-      {
-        heading: "We follow you the whole way",
-        body: [
-          "Your recovery stays under the same set of eyes. We track your progress through in-office visits or telehealth appointments you can join from a computer, smartphone, or tablet, so adjustments happen when they are needed rather than at the next scheduled check-in.",
-        ],
-      },
-      {
-        heading: "What good post-acute care changes",
-        bullets: [
-          "Personalized medical attention through the transition",
-          "A faster, better-supported recovery",
-          "Stronger day-to-day functional skills",
-          "Lower risk of complications",
-          "Lower chance of readmission",
-        ],
-      },
-    ],
-    tone: "#155E96",
-    // STOCK PLACEHOLDER — replace with real practice photo
-    stockImage: "https://images.unsplash.com/photo-1512678080530-7760d81faba6?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    slug: "hospital-care",
-    title: "Hospital Care",
-    summary:
-      "Continuity when you need it most — your physician, present in the hospital.",
-    description:
-      "When hospitalization is necessary, having a physician who knows your story changes everything. We provide inpatient oversight and coordination so your care stays connected from admission through discharge.",
-    highlights: [
-      "Inpatient oversight & rounding",
-      "Coordination with specialists",
-      "Seamless admission-to-discharge handoff",
-      "Family communication & updates",
-    ],
-    body: [
-      "Being in the hospital is disorienting, and it tends to happen when you are least equipped to advocate for yourself. Having a physician there who already knows your history changes the experience — decisions get made faster, and they get made with the full context of your health rather than from a chart assembled overnight.",
-      "We visit you in the hospital to assess how you are doing and monitor the treatments you are receiving, working alongside the hospital staff to keep your care plan coherent from admission through discharge. We have particular experience caring for older adults admitted after a fall or a sudden illness, where the risks of a hospital stay compound quickly.",
-    ],
-    sections: [
-      {
-        heading: "Admitting privileges, not the emergency room",
-        body: [
-          "If you are unwell or injured and think you may need hospital care, call us first. We hold admitting privileges at area hospitals, which can spare you the wait and the hand-off that come with arriving through the emergency department. If you are already admitted, let us know as soon as you can and we will pick up your care from there.",
-        ],
-      },
-      {
-        heading: "What we do while you are admitted",
-        bullets: [
-          "Visit you during rounds to monitor and coordinate your care",
-          "Order diagnostic testing as your condition evolves",
-          "Prescribe and adjust the medications you need",
-          "Talk through your treatment options and what each one means",
-          "Coordinate directly with hospital staff and specialists",
-        ],
-      },
-      {
-        heading: "Care that continues after discharge",
-        body: [
-          "The hand-off out of the hospital is where continuity usually breaks. Because we followed your stay, there is no delay and nothing to re-explain — we carry your treatment forward through in-office visits or telehealth, and coordinate post-acute rehabilitation if your recovery calls for it.",
-        ],
-      },
-    ],
-    tone: "#0B324F",
-    // STOCK PLACEHOLDER — replace with real practice photo
-    stockImage: "https://images.unsplash.com/photo-1581056771107-24ca5f033842?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
     slug: "family-medicine",
     title: "Family Medicine",
     summary:
@@ -266,57 +161,6 @@ export const services: Service[] = [
     stockImage: "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?q=80&w=1200&auto=format&fit=crop",
   },
   {
-    slug: "womens-health",
-    title: "Women's Health",
-    summary:
-      "Attentive, whole-person care across screenings, wellness, and life transitions.",
-    description:
-      "We provide thoughtful women's health services including preventive screenings, wellness exams, hormonal and menopausal care, and counseling. Our goal is care that listens first and treats the whole person.",
-    highlights: [
-      "Well-woman exams & screenings",
-      "Menopause & hormonal health",
-      "Preventive & bone health",
-      "Personalized wellness counseling",
-    ],
-    body: [
-      "Your reproductive health changes across your life, and the care it needs changes with it. We provide women's health services that follow those stages rather than treating each visit as an isolated event.",
-      "That covers preventive care, contraception, and menopause — along with the physical, mental, and emotional health that sits alongside all of it and too often gets left out of the conversation.",
-    ],
-    sections: [
-      {
-        heading: "Services we provide",
-        bullets: [
-          "Preventive pelvic exams",
-          "Birth control and contraceptive management",
-          "Menopause management",
-          "Mental health evaluations",
-          "Sexually transmitted infection testing",
-          "Manual breast exams and Pap smears",
-        ],
-        footnote: [
-          "You can see us in the office for routine physicals and diagnostic testing, and use telehealth for follow-up visits and medication refills.",
-        ],
-      },
-      {
-        heading: "When to come in",
-        body: [
-          "We recommend a women's health exam once a year — a complete physical, a pelvic exam, and the preventive screenings appropriate for you — even when you feel entirely well.",
-          "Come in sooner if something has changed: pelvic pain, irregular periods, or any symptom you cannot explain. If you are experiencing hot flashes, night sweats, or other signs of a hormone imbalance, whether from menopause or an underlying condition, we can order blood work to find out what is driving it.",
-        ],
-      },
-      {
-        heading: "What a visit involves",
-        body: [
-          "We review your medical history, your current health, and anything you have noticed. A physical exam follows, including a pelvic and breast exam to check the health of your reproductive organs. As part of the pelvic exam we can perform a Pap smear, collecting cells from your cervix and examining them for early signs of cervical cancer.",
-          "If you have come in about a specific symptom, we order the blood work or diagnostic testing needed to identify the cause, screen for infections where relevant, and talk through your options — including contraception or hormone therapy. We will also cover the ordinary things that protect long-term health: what you eat, how you move, and how to lower your risk of chronic disease.",
-        ],
-      },
-    ],
-    tone: "#155E96",
-    // STOCK PLACEHOLDER — replace with real practice photo
-    stockImage: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
     slug: "geriatrics",
     title: "Geriatrics",
     summary:
@@ -351,121 +195,6 @@ export const services: Service[] = [
     tone: "#104872",
     // STOCK PLACEHOLDER — replace with real practice photo
     stockImage: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    slug: "telehealth",
-    title: "Telehealth",
-    summary: "Secure virtual visits that bring the clinic to wherever you are.",
-    description:
-      "For follow-ups, medication management, and many acute concerns, telehealth saves you a trip without sacrificing quality. Connect with your provider over a secure video visit from home, work, or anywhere in California.",
-    highlights: [
-      "Secure video visits",
-      "Follow-up & medication management",
-      "Convenient scheduling",
-      "Same standard of care as in person",
-    ],
-    body: [
-      "Telehealth gives you one-on-one time with your provider without the drive, the parking, or the waiting room. For a good share of what we do — evaluating symptoms, reviewing results, managing medications — a video visit is simply the more sensible format.",
-      "The standard of care does not change. It is the same team, the same records, and the same judgment you would get sitting in our office.",
-    ],
-    sections: [
-      {
-        heading: "How a virtual visit works",
-        body: [
-          "Ahead of your appointment our staff send you everything you need to reach the platform. At the scheduled time you connect from a computer, smartphone, or tablet and meet your provider one-on-one over video.",
-        ],
-      },
-      {
-        heading: "What we can handle virtually",
-        bullets: [
-          "Symptom evaluation",
-          "Follow-up visits",
-          "Review of test results",
-          "Prescription refills",
-          "Medication management",
-        ],
-        footnote: [
-          "If you are too unwell to travel, start with a virtual visit. We can assess you and tell you honestly whether you need to come in for a physical exam or diagnostic testing, or need a referral to a specialist or hospital.",
-        ],
-      },
-      {
-        heading: "Why patients use it",
-        body: [
-          "A virtual visit keeps routine care on schedule when your calendar is full or you are away from home, and it is there when illness, injury, or a lack of transportation makes the trip impossible. It means less time off work and less spent getting here.",
-          "Mostly it means you can reach your provider with a question about your treatment plan without waiting weeks for a slot.",
-        ],
-      },
-    ],
-    tone: "#4D97D7",
-    // STOCK PLACEHOLDER — replace with real practice photo
-    stockImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    slug: "botox-and-fillers",
-    title: "Botox & Fillers",
-    summary:
-      "Aesthetic treatments delivered with clinical precision and a natural touch.",
-    description:
-      "Physician-led aesthetic care for patients who want subtle, refined results. We offer neuromodulator (Botox, Xeomin) and dermal filler treatments in a medical setting, with the safety and expertise you expect from a physician's practice.",
-    highlights: [
-      "Botox® & Xeomin® neuromodulator treatments",
-      "Dermal fillers",
-      "Physician-led, medical-grade care",
-      "Natural, individualized results",
-    ],
-    body: [
-      "Aesthetic treatment works best when nobody can point to it. The aim is not a different face — it is your face, rested. We treat conservatively, in a medical setting, by clinicians trained in facial anatomy rather than in technique alone.",
-      "Botox and dermal fillers address different problems, which is why they are so often discussed together. Botox softens the lines that come from movement: the creases across your brow and at the corners of your eyes that deepen after years of squinting and frowning. It eases the muscle activity underneath them, so the skin above relaxes and the lines settle.",
-      "Fillers do close to the opposite job. As collagen and elastin production slows with age, the face loses volume — cheeks flatten, contours soften, lips thin. Fillers restore that fullness, replacing what time has taken rather than smoothing what movement has creased.",
-    ],
-    sections: [
-      {
-        heading: "Where we treat",
-        bullets: [
-          "Frown lines across the brow",
-          "Crow's feet at the corners of the eyes",
-          "Forehead lines",
-          "Cheek and midface volume",
-          "Lips",
-          "Facial contour and definition",
-        ],
-      },
-      {
-        heading: "What a visit involves",
-        body: [
-          "We begin with a full skin evaluation and an honest conversation about what you are hoping for. That matters more than it sounds — the most common cause of disappointment in aesthetic medicine is a mismatch between expectation and what a treatment can actually deliver, and we would rather resolve that before anyone picks up a syringe.",
-          "Treatment itself is quick. We can apply a topical anesthetic to keep you comfortable, then place precise amounts of product in the areas we agreed on. How long it takes depends on how many injections you need, and downtime is minimal — most people return to their day directly afterward.",
-        ],
-      },
-      {
-        heading: "How long results last",
-        body: [
-          "Botox is not immediate. Expect around 48 hours, sometimes longer, before the skin visibly smooths, with results generally holding up to about four months before you are ready for more.",
-          "Fillers often show a change straight away that keeps improving over the following weeks. Depending on the filler used, those results typically last six months or longer before maintenance.",
-        ],
-      },
-    ],
-    tone: "#C68A3E",
-    // STOCK PLACEHOLDER — replace with real practice photo
-    stockImage: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    slug: "metabolic-syndrome",
-    title: "Physician-Directed Weight Loss",
-    summary:
-      "Science-backed metabolic medicine — GLP-1 therapy, continuous glucose monitoring, and a dedicated support team working together.",
-    description:
-      "Traditional weight-loss advice rarely accounts for the biology of obesity and metabolic syndrome. We combine the latest GLP-1 and GIP receptor agonists, real-time CGM data, registered nutritionist guidance, and a dedicated support team to help you achieve lasting change.",
-    highlights: [
-      "GLP-1 & GIP receptor agonist therapy",
-      "Continuous Glucose Monitor (CGM) integration",
-      "Registered nutritionist coaching",
-      "Dedicated accountability support team",
-      "Metabolic syndrome & insulin resistance care",
-    ],
-    tone: "#1B75BB",
-    // STOCK PLACEHOLDER — replace with real practice photo
-    stockImage: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1200&auto=format&fit=crop",
   },
   {
     slug: "chronic-care-management",
@@ -531,6 +260,277 @@ export const services: Service[] = [
     // STOCK PLACEHOLDER — replace with real practice photo
     stockImage: "https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?q=80&w=1200&auto=format&fit=crop",
   },
+  {
+    slug: "womens-health",
+    title: "Women's Health",
+    summary:
+      "Attentive, whole-person care across screenings, wellness, and life transitions.",
+    description:
+      "We provide thoughtful women's health services including preventive screenings, wellness exams, hormonal and menopausal care, and counseling. Our goal is care that listens first and treats the whole person.",
+    highlights: [
+      "Well-woman exams & screenings",
+      "Menopause & hormonal health",
+      "Preventive & bone health",
+      "Personalized wellness counseling",
+    ],
+    body: [
+      "Your reproductive health changes across your life, and the care it needs changes with it. We provide women's health services that follow those stages rather than treating each visit as an isolated event.",
+      "That covers preventive care, contraception, and menopause — along with the physical, mental, and emotional health that sits alongside all of it and too often gets left out of the conversation.",
+    ],
+    sections: [
+      {
+        heading: "Services we provide",
+        bullets: [
+          "Preventive pelvic exams",
+          "Birth control and contraceptive management",
+          "Menopause management",
+          "Mental health evaluations",
+          "Sexually transmitted infection testing",
+          "Manual breast exams and Pap smears",
+        ],
+        footnote: [
+          "You can see us in the office for routine physicals and diagnostic testing, and use telehealth for follow-up visits and medication refills.",
+        ],
+      },
+      {
+        heading: "When to come in",
+        body: [
+          "We recommend a women's health exam once a year — a complete physical, a pelvic exam, and the preventive screenings appropriate for you — even when you feel entirely well.",
+          "Come in sooner if something has changed: pelvic pain, irregular periods, or any symptom you cannot explain. If you are experiencing hot flashes, night sweats, or other signs of a hormone imbalance, whether from menopause or an underlying condition, we can order blood work to find out what is driving it.",
+        ],
+      },
+      {
+        heading: "What a visit involves",
+        body: [
+          "We review your medical history, your current health, and anything you have noticed. A physical exam follows, including a pelvic and breast exam to check the health of your reproductive organs. As part of the pelvic exam we can perform a Pap smear, collecting cells from your cervix and examining them for early signs of cervical cancer.",
+          "If you have come in about a specific symptom, we order the blood work or diagnostic testing needed to identify the cause, screen for infections where relevant, and talk through your options — including contraception or hormone therapy. We will also cover the ordinary things that protect long-term health: what you eat, how you move, and how to lower your risk of chronic disease.",
+        ],
+      },
+    ],
+    tone: "#155E96",
+    // STOCK PLACEHOLDER — replace with real practice photo
+    stockImage: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    slug: "botox-and-fillers",
+    title: "Botox & Fillers",
+    summary:
+      "Aesthetic treatments delivered with clinical precision and a natural touch.",
+    description:
+      "Physician-led aesthetic care for patients who want subtle, refined results. We offer neuromodulator (Botox, Xeomin) and dermal filler treatments in a medical setting, with the safety and expertise you expect from a physician's practice.",
+    highlights: [
+      "Botox® & Xeomin® neuromodulator treatments",
+      "Dermal fillers",
+      "Physician-led, medical-grade care",
+      "Natural, individualized results",
+    ],
+    body: [
+      "Aesthetic treatment works best when nobody can point to it. The aim is not a different face — it is your face, rested. We treat conservatively, in a medical setting, by clinicians trained in facial anatomy rather than in technique alone.",
+      "Botox and dermal fillers address different problems, which is why they are so often discussed together. Botox softens the lines that come from movement: the creases across your brow and at the corners of your eyes that deepen after years of squinting and frowning. It eases the muscle activity underneath them, so the skin above relaxes and the lines settle.",
+      "Fillers do close to the opposite job. As collagen and elastin production slows with age, the face loses volume — cheeks flatten, contours soften, lips thin. Fillers restore that fullness, replacing what time has taken rather than smoothing what movement has creased.",
+    ],
+    sections: [
+      {
+        heading: "Where we treat",
+        bullets: [
+          "Frown lines across the brow",
+          "Crow's feet at the corners of the eyes",
+          "Forehead lines",
+          "Cheek and midface volume",
+          "Lips",
+          "Facial contour and definition",
+        ],
+      },
+      {
+        heading: "What a visit involves",
+        body: [
+          "We begin with a full skin evaluation and an honest conversation about what you are hoping for. That matters more than it sounds — the most common cause of disappointment in aesthetic medicine is a mismatch between expectation and what a treatment can actually deliver, and we would rather resolve that before anyone picks up a syringe.",
+          "Treatment itself is quick. We can apply a topical anesthetic to keep you comfortable, then place precise amounts of product in the areas we agreed on. How long it takes depends on how many injections you need, and downtime is minimal — most people return to their day directly afterward.",
+        ],
+      },
+      {
+        heading: "How long results last",
+        body: [
+          "Botox is not immediate. Expect around 48 hours, sometimes longer, before the skin visibly smooths, with results generally holding up to about four months before you are ready for more.",
+          "Fillers often show a change straight away that keeps improving over the following weeks. Depending on the filler used, those results typically last six months or longer before maintenance.",
+        ],
+      },
+    ],
+    tone: "#C68A3E",
+    // STOCK PLACEHOLDER — replace with real practice photo
+    stockImage: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    slug: "metabolic-syndrome",
+    title: "Obesity and Metabolic Wellness",
+    summary:
+      "Science-backed metabolic medicine — GLP-1 therapy, continuous glucose monitoring, and a dedicated support team working together.",
+    description:
+      "Traditional weight-loss advice rarely accounts for the biology of obesity and metabolic syndrome. We combine the latest GLP-1 and GIP receptor agonists, real-time CGM data, registered nutritionist guidance, and a dedicated support team to help you achieve lasting change.",
+    highlights: [
+      "GLP-1 & GIP receptor agonist therapy",
+      "Continuous Glucose Monitor (CGM) integration",
+      "Registered nutritionist coaching",
+      "Dedicated accountability support team",
+      "Metabolic syndrome & insulin resistance care",
+    ],
+    tone: "#1B75BB",
+    // STOCK PLACEHOLDER — replace with real practice photo
+    stockImage: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    slug: "telehealth",
+    title: "Telehealth",
+    summary: "Secure virtual visits that bring the clinic to wherever you are.",
+    description:
+      "For follow-ups, medication management, and many acute concerns, telehealth saves you a trip without sacrificing quality. Connect with your provider over a secure video visit from home, work, or anywhere in California.",
+    highlights: [
+      "Secure video visits",
+      "Follow-up & medication management",
+      "Convenient scheduling",
+      "Same standard of care as in person",
+    ],
+    body: [
+      "Telehealth gives you one-on-one time with your provider without the drive, the parking, or the waiting room. For a good share of what we do — evaluating symptoms, reviewing results, managing medications — a video visit is simply the more sensible format.",
+      "The standard of care does not change. It is the same team, the same records, and the same judgment you would get sitting in our office.",
+    ],
+    sections: [
+      {
+        heading: "How a virtual visit works",
+        body: [
+          "Ahead of your appointment our staff send you everything you need to reach the platform. At the scheduled time you connect from a computer, smartphone, or tablet and meet your provider one-on-one over video.",
+        ],
+      },
+      {
+        heading: "What we can handle virtually",
+        bullets: [
+          "Symptom evaluation",
+          "Follow-up visits",
+          "Review of test results",
+          "Prescription refills",
+          "Medication management",
+        ],
+        footnote: [
+          "If you are too unwell to travel, start with a virtual visit. We can assess you and tell you honestly whether you need to come in for a physical exam or diagnostic testing, or need a referral to a specialist or hospital.",
+        ],
+      },
+      {
+        heading: "Why patients use it",
+        body: [
+          "A virtual visit keeps routine care on schedule when your calendar is full or you are away from home, and it is there when illness, injury, or a lack of transportation makes the trip impossible. It means less time off work and less spent getting here.",
+          "Mostly it means you can reach your provider with a question about your treatment plan without waiting weeks for a slot.",
+        ],
+      },
+    ],
+    tone: "#4D97D7",
+    // STOCK PLACEHOLDER — replace with real practice photo
+    stockImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    slug: "hospital-care",
+    title: "Hospital Care",
+    summary:
+      "Continuity when you need it most — your physician, present in the hospital.",
+    description:
+      "When hospitalization is necessary, having a physician who knows your story changes everything. We provide inpatient oversight and coordination so your care stays connected from admission through discharge.",
+    highlights: [
+      "Inpatient oversight & rounding",
+      "Coordination with specialists",
+      "Seamless admission-to-discharge handoff",
+      "Family communication & updates",
+    ],
+    body: [
+      "Being in the hospital is disorienting, and it tends to happen when you are least equipped to advocate for yourself. Having a physician there who already knows your history changes the experience — decisions get made faster, and they get made with the full context of your health rather than from a chart assembled overnight.",
+      "We visit you in the hospital to assess how you are doing and monitor the treatments you are receiving, working alongside the hospital staff to keep your care plan coherent from admission through discharge. We have particular experience caring for older adults admitted after a fall or a sudden illness, where the risks of a hospital stay compound quickly.",
+    ],
+    sections: [
+      {
+        heading: "Admitting privileges, not the emergency room",
+        body: [
+          "If you are unwell or injured and think you may need hospital care, call us first. We hold admitting privileges at area hospitals, which can spare you the wait and the hand-off that come with arriving through the emergency department. If you are already admitted, let us know as soon as you can and we will pick up your care from there.",
+        ],
+      },
+      {
+        heading: "What we do while you are admitted",
+        bullets: [
+          "Visit you during rounds to monitor and coordinate your care",
+          "Order diagnostic testing as your condition evolves",
+          "Prescribe and adjust the medications you need",
+          "Talk through your treatment options and what each one means",
+          "Coordinate directly with hospital staff and specialists",
+        ],
+      },
+      {
+        heading: "Care that continues after discharge",
+        body: [
+          "The hand-off out of the hospital is where continuity usually breaks. Because we followed your stay, there is no delay and nothing to re-explain — we carry your treatment forward through in-office visits or telehealth, and coordinate post-acute rehabilitation if your recovery calls for it.",
+        ],
+      },
+    ],
+    tone: "#0B324F",
+    // STOCK PLACEHOLDER — replace with real practice photo
+    stockImage: "https://images.unsplash.com/photo-1581056771107-24ca5f033842?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    slug: "post-acute-care",
+    title: "Post-Acute Care",
+    summary:
+      "A guided recovery between the hospital and home, with no gaps in care.",
+    description:
+      "Recovery after a hospital stay is a vulnerable window. We manage transitions through skilled nursing and rehab settings, reconcile medications, and keep your recovery on track until you're safely home.",
+    highlights: [
+      "Skilled nursing & rehab oversight",
+      "Medication reconciliation",
+      "Recovery goal setting",
+      "Safe transition home",
+    ],
+    body: [
+      "Recovery doesn't end at the hospital doors. The weeks after discharge are when the gains are won or lost, and they are also when care most often fragments — a new facility, a new therapist, a new set of instructions, and nobody holding the thread.",
+      "Post-acute care covers the rehabilitation you may need after a hospital stay, whether that means inpatient care at a facility, outpatient therapy, or medical care in your own home. The goal is straightforward: restore your independence, rebuild your strength, and keep you from going back to the hospital.",
+    ],
+    sections: [
+      {
+        heading: "Planning starts before you leave",
+        body: [
+          "Before you are discharged, we meet with you to evaluate what you will need and agree on the plan for what comes next. If a rehabilitation facility is the right setting, we make the referral and coordinate it. If you are heading home, we make sure the support is in place before you get there.",
+        ],
+      },
+      {
+        heading: "Coordinating the specialists you need",
+        bullets: [
+          "Wound care",
+          "Physical therapy",
+          "Occupational therapy",
+          "Respiratory therapy",
+          "Speech therapy",
+          "Psychological counseling",
+          "Memory and cognitive therapy",
+        ],
+        footnote: [
+          "We can also help you or a loved one find long-term care when daily medical support is needed for complex conditions, or hospice care when the priority becomes comfort and dignity.",
+        ],
+      },
+      {
+        heading: "We follow you the whole way",
+        body: [
+          "Your recovery stays under the same set of eyes. We track your progress through in-office visits or telehealth appointments you can join from a computer, smartphone, or tablet, so adjustments happen when they are needed rather than at the next scheduled check-in.",
+        ],
+      },
+      {
+        heading: "What good post-acute care changes",
+        bullets: [
+          "Personalized medical attention through the transition",
+          "A faster, better-supported recovery",
+          "Stronger day-to-day functional skills",
+          "Lower risk of complications",
+          "Lower chance of readmission",
+        ],
+      },
+    ],
+    tone: "#155E96",
+    // STOCK PLACEHOLDER — replace with real practice photo
+    stockImage: "https://images.unsplash.com/photo-1512678080530-7760d81faba6?q=80&w=1200&auto=format&fit=crop",
+  },
 ];
 
 export type Provider = {
@@ -543,6 +543,8 @@ export type Provider = {
   fullBio: string[];
   highlights: string[];
   tone: string;
+  /** Optional vertical (9:16) intro clip served from /public/team/. */
+  video?: string;
 };
 
 export const providers: Provider[] = [
@@ -569,6 +571,7 @@ export const providers: Provider[] = [
       "Evidence-based, relationship-driven practice",
     ],
     tone: "#1B75BB",
+    video: "/team/dheeraj-kamra.mp4",
   },
   {
     slug: "mythli-nagaraj",

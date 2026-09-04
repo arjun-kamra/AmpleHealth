@@ -8,10 +8,12 @@ import { navLinks, providers, services, site } from "@/lib/data";
 import { ArrowRight, CreditCard } from "./Icons";
 import Logo from "./Logo";
 import { ProviderAvatar } from "./ProviderPhoto";
+import { TABS as FORM_TABS } from "./FormsTabs";
 
 /** Nav labels that open a hover dropdown on desktop. */
 const TEAM_LABEL = "Our Team";
 const SERVICES_LABEL = "Services";
+const FORMS_LABEL = "Forms";
 
 const physicians = providers.filter((p) => p.group === "physicians");
 
@@ -126,7 +128,9 @@ export default function Navbar() {
             const active =
               pathname === link.href || pathname.startsWith(link.href + "/");
             const hasDropdown =
-              link.label === TEAM_LABEL || link.label === SERVICES_LABEL;
+              link.label === TEAM_LABEL ||
+              link.label === SERVICES_LABEL ||
+              link.label === FORMS_LABEL;
             const dropdownOpen = hasDropdown && hoveredNav === link.label;
             return (
               <li
@@ -198,7 +202,7 @@ export default function Navbar() {
                             <ArrowRight className="h-4 w-4" aria-hidden="true" />
                           </Link>
                         </div>
-                      ) : (
+                      ) : link.label === SERVICES_LABEL ? (
                         <div
                           role="menu"
                           aria-label="Services"
@@ -228,6 +232,55 @@ export default function Navbar() {
                             className="flex items-center gap-1.5 rounded-xl px-2 py-2 text-sm text-brand transition-colors hover:bg-ink/5"
                           >
                             View All Services
+                            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                          </Link>
+                        </div>
+                      ) : (
+                        <div
+                          role="menu"
+                          aria-label="Forms"
+                          className="card-surface w-[340px] p-3 shadow-[0_20px_45px_-25px_rgba(11,31,51,0.45)]"
+                        >
+                          {FORM_TABS.map((tab) => (
+                            <div key={tab.key} className="mb-1 last:mb-0">
+                              <p className="px-2 pb-1 pt-2 text-[11px] font-semibold uppercase tracking-wider text-ink-muted">
+                                {tab.label}
+                              </p>
+                              {tab.forms.map((form) => {
+                                const rowClass =
+                                  "block rounded-xl px-2 py-1.5 text-sm text-ink transition-colors hover:bg-ink/5";
+                                // Downloads are static PDFs, not app routes.
+                                return form.download ? (
+                                  <a
+                                    key={form.href}
+                                    href={form.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    role="menuitem"
+                                    className={rowClass}
+                                  >
+                                    {form.title}
+                                  </a>
+                                ) : (
+                                  <Link
+                                    key={form.href}
+                                    href={form.href}
+                                    role="menuitem"
+                                    className={rowClass}
+                                  >
+                                    {form.title}
+                                  </Link>
+                                );
+                              })}
+                            </div>
+                          ))}
+                          <div className="my-2 border-t border-ink/10" />
+                          <Link
+                            href="/forms"
+                            role="menuitem"
+                            className="flex items-center gap-1.5 rounded-xl px-2 py-2 text-sm text-brand transition-colors hover:bg-ink/5"
+                          >
+                            View All Forms
                             <ArrowRight className="h-4 w-4" aria-hidden="true" />
                           </Link>
                         </div>

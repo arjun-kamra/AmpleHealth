@@ -2,7 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { supabaseAdmin } from "@/lib/supabase";
-import { imageForCategory } from "@/lib/blog";
+import { imageForCategory, imageForTitle } from "@/lib/blog";
 
 const TOPICS: { topic: string; category: string; keyword: string }[] = [
   { topic: "preventive care and annual wellness visits", category: "Preventive Care", keyword: "healthcare" },
@@ -211,7 +211,11 @@ async function generateAndStore() {
   // the similarity retry above can swap the topic out, and the old code kept
   // the original keyword. source.unsplash.com, which this previously wrote to,
   // has been retired and returns 503; those URLs never rendered.
-  const imageUrl = imageForCategory(parsed.category);
+  // Prefer a photo matched to this post's actual title; imageForTitle returns
+  // null (never throws) if UNSPLASH_ACCESS_KEY is unset or the API misbehaves,
+  // in which case the per-category image below still ships a working image.
+  const imageUrl =
+    (await imageForTitle(parsed.title)) ?? imageForCategory(parsed.category);
 
   const record = {
     title: parsed.title,

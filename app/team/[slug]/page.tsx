@@ -56,15 +56,31 @@ export default function ProviderPage({ params }: { params: { slug: string } }) {
 
           <div className="mt-8 grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr]">
             <Reveal delay={0.05}>
-              <ProviderPhoto
-                slug={provider.slug}
-                name={provider.name}
-                tone={provider.tone}
-                ratio="3 / 4"
-                priority
-                sizes="(max-width: 1024px) 90vw, 420px"
-                className="max-w-sm"
-              />
+              {provider.video ? (
+                // Vertical 9:16 clip — narrower than the 3:4 portraits so it
+                // doesn't dominate the hero. Poster falls back to the photo.
+                <video
+                  controls
+                  loop
+                  playsInline
+                  preload="metadata"
+                  poster={`/team/${provider.slug}.jpg`}
+                  src={provider.video}
+                  aria-label={`Introduction from ${provider.name}`}
+                  className="w-full max-w-[280px] rounded-2xl bg-ink/5 object-cover"
+                  style={{ aspectRatio: "9 / 16" }}
+                />
+              ) : (
+                <ProviderPhoto
+                  slug={provider.slug}
+                  name={provider.name}
+                  tone={provider.tone}
+                  ratio="3 / 4"
+                  priority
+                  sizes="(max-width: 1024px) 90vw, 420px"
+                  className="max-w-sm"
+                />
+              )}
             </Reveal>
 
             <Reveal delay={0.1}>

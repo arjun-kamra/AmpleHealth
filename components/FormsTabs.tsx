@@ -14,7 +14,8 @@ type FormCard = {
 
 type TabKey = "intake" | "records" | "medication" | "directives";
 
-const TABS: {
+/** Exported so the Navbar's Forms dropdown lists the same forms as this page. */
+export const TABS: {
   key: TabKey;
   label: string;
   blurb: string;
