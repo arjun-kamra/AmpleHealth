@@ -4,14 +4,30 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { navLinks, site } from "@/lib/data";
-import { CreditCard } from "./Icons";
+import { navLinks, providers, services, site } from "@/lib/data";
+import { ArrowRight, CreditCard } from "./Icons";
 import Logo from "./Logo";
+import { ProviderAvatar } from "./ProviderPhoto";
+
+/** Nav labels that open a hover dropdown on desktop. */
+const TEAM_LABEL = "Our Team";
+const SERVICES_LABEL = "Services";
+
+const physicians = providers.filter((p) => p.group === "physicians");
+
+// Fade + slight upward slide, matching the mobile menu's animation feel.
+const panelMotion = {
+  initial: { opacity: 0, y: 6 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: 6 },
+  transition: { duration: 0.18 },
+};
 
 export default function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [hoveredNav, setHoveredNav] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -48,7 +64,18 @@ export default function Navbar() {
   // covers back/forward navigation, which never fires the links' onClick.
   useEffect(() => {
     setOpen(false);
+    setHoveredNav(null);
   }, [pathname]);
+
+  // Escape dismisses an open desktop dropdown.
+  useEffect(() => {
+    if (!hoveredNav) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setHoveredNav(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [hoveredNav]);
 
   // Close on Escape, and if the viewport grows past `lg` the menu and the
   // hamburger both become `lg:hidden` — without this the scroll lock would
@@ -98,10 +125,21 @@ export default function Navbar() {
           {navLinks.map((link) => {
             const active =
               pathname === link.href || pathname.startsWith(link.href + "/");
+            const hasDropdown =
+              link.label === TEAM_LABEL || link.label === SERVICES_LABEL;
+            const dropdownOpen = hasDropdown && hoveredNav === link.label;
             return (
-              <li key={link.href}>
+              <li
+                key={link.href}
+                className="relative"
+                onMouseEnter={
+                  hasDropdown ? () => setHoveredNav(link.label) : undefined
+                }
+                onMouseLeave={hasDropdown ? () => setHoveredNav(null) : undefined}
+              >
                 <Link
                   href={link.href}
+                  aria-expanded={hasDropdown ? dropdownOpen : undefined}
                   className="group relative text-sm text-ink-soft transition-colors hover:text-ink"
                 >
                   <span className={active ? "text-ink" : ""}>{link.label}</span>
@@ -111,6 +149,92 @@ export default function Navbar() {
                     }`}
                   />
                 </Link>
+
+                {/* Desktop hover dropdowns. The wrapper's top padding supplies
+                    the visual gap while keeping the hover surface continuous —
+                    a margin would leave a dead zone that closes the panel. */}
+                <AnimatePresence>
+                  {dropdownOpen && (
+                    <motion.div
+                      {...panelMotion}
+                      className="absolute left-0 top-full z-50 pt-3"
+                    >
+                      {link.label === TEAM_LABEL ? (
+                        <div
+                          role="menu"
+                          aria-label="Our Team"
+                          className="card-surface w-[280px] p-2 shadow-[0_20px_45px_-25px_rgba(11,31,51,0.45)]"
+                        >
+                          {physicians.map((p) => (
+                            <Link
+                              key={p.slug}
+                              href={`/team/${p.slug}`}
+                              role="menuitem"
+                              className="flex items-center gap-3 rounded-xl px-2 py-2 transition-colors hover:bg-ink/5"
+                            >
+                              <ProviderAvatar
+                                slug={p.slug}
+                                name={p.name}
+                                tone={p.tone}
+                                size={36}
+                              />
+                              <span className="min-w-0">
+                                <span className="block truncate text-sm text-ink">
+                                  {p.name}
+                                </span>
+                                <span className="block truncate text-xs text-ink-soft">
+                                  {p.credentials}
+                                </span>
+                              </span>
+                            </Link>
+                          ))}
+                          <div className="my-2 border-t border-ink/10" />
+                          <Link
+                            href="/team"
+                            role="menuitem"
+                            className="flex items-center gap-1.5 rounded-xl px-2 py-2 text-sm text-brand transition-colors hover:bg-ink/5"
+                          >
+                            View Full Team
+                            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                          </Link>
+                        </div>
+                      ) : (
+                        <div
+                          role="menu"
+                          aria-label="Services"
+                          className="card-surface w-[520px] p-3 shadow-[0_20px_45px_-25px_rgba(11,31,51,0.45)]"
+                        >
+                          <div className="grid grid-cols-2 gap-x-2 gap-y-0.5">
+                            {services.map((s) => (
+                              <Link
+                                key={s.slug}
+                                href={`/services/${s.slug}`}
+                                role="menuitem"
+                                className="flex items-center gap-2.5 rounded-xl px-2 py-2 text-sm text-ink transition-colors hover:bg-ink/5"
+                              >
+                                <span
+                                  className="h-2 w-2 flex-none rounded-full"
+                                  style={{ backgroundColor: s.tone }}
+                                  aria-hidden="true"
+                                />
+                                <span className="truncate">{s.title}</span>
+                              </Link>
+                            ))}
+                          </div>
+                          <div className="my-2 border-t border-ink/10" />
+                          <Link
+                            href="/services"
+                            role="menuitem"
+                            className="flex items-center gap-1.5 rounded-xl px-2 py-2 text-sm text-brand transition-colors hover:bg-ink/5"
+                          >
+                            View All Services
+                            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                          </Link>
+                        </div>
+                      )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </li>
             );
           })}
