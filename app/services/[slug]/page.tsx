@@ -4,14 +4,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import CTABand from "@/components/CTABand";
 import { Reveal } from "@/components/Motion";
-import { ArrowRight, Check } from "@/components/Icons";
+import { ArrowRight, Check, Download } from "@/components/Icons";
 import { services } from "@/lib/data";
 
 export function generateStaticParams() {
-  // metabolic-syndrome has its own dedicated page at /services/metabolic-syndrome/
-  return services
-    .filter((s) => s.slug !== "metabolic-syndrome")
-    .map((s) => ({ slug: s.slug }));
+  return services.map((s) => ({ slug: s.slug }));
 }
 
 export function generateMetadata({
@@ -187,6 +184,43 @@ export default function ServiceDetailPage({
                             {item.body}
                           </p>
                         </div>
+                      ))}
+                    </div>
+                  ) : null}
+
+                  {section.resources?.length ? (
+                    <div className="mt-8 grid max-w-3xl gap-4 md:grid-cols-2">
+                      {section.resources.map((resource) => (
+                        <a
+                          key={resource.href}
+                          href={resource.href}
+                          download
+                          className="card-surface group flex h-full items-start gap-4 p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-[0_18px_40px_-22px_rgba(11,31,51,0.3)]"
+                        >
+                          <span
+                            className="grid h-11 w-11 flex-none place-items-center rounded-xl text-white"
+                            style={{ backgroundColor: service.tone }}
+                          >
+                            <Download className="h-5 w-5" aria-hidden="true" />
+                          </span>
+                          <span>
+                            <span className="block text-lg font-semibold leading-snug">
+                              {resource.label}
+                            </span>
+                            {resource.note ? (
+                              <span className="mt-1 block text-sm text-ink-muted">
+                                {resource.note}
+                              </span>
+                            ) : null}
+                            <span className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-brand">
+                              Download PDF
+                              <Download
+                                className="h-3.5 w-3.5"
+                                aria-hidden="true"
+                              />
+                            </span>
+                          </span>
+                        </a>
                       ))}
                     </div>
                   ) : null}

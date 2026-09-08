@@ -81,6 +81,8 @@ export type ServiceSection = {
   bullets?: string[];
   /** Labelled detail entries, rendered as cards. */
   items?: { title: string; body: string }[];
+  /** Downloadable documents, rendered as "Download PDF" links. */
+  resources?: { label: string; href: string; note?: string }[];
   /** Closing prose, rendered below any list. */
   footnote?: string[];
 };
@@ -195,6 +197,109 @@ export const services: Service[] = [
     tone: "#104872",
     // STOCK PLACEHOLDER — replace with real practice photo
     stockImage: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    slug: "nephrology-dialysis-hypertension",
+    title: "Nephrology, Dialysis and Hypertension",
+    summary:
+      "Expert, personalized care for kidney health, difficult-to-control blood pressure, and every stage of kidney disease. Spearheaded by Dr. Rekha Pareek.",
+    description:
+      "Your kidneys play a vital role in regulating blood pressure, balancing fluids and electrolytes, removing waste and supporting your overall health. At AmpleHealth, our Nephrology, Dialysis and Hypertension Program provides comprehensive, patient-centered care for adults with kidney disease, difficult-to-control hypertension and related medical conditions.",
+    highlights: [
+      "Led by Rekha Pareek, MD — board-certified nephrologist",
+      "Chronic kidney disease management",
+      "Resistant and difficult-to-control hypertension",
+      "Home hemodialysis and peritoneal dialysis",
+      "Kidney transplant evaluation and coordination",
+      "Electrolyte and acid-base disorders",
+    ],
+    body: [
+      "Our goal is to identify kidney problems early, slow the progression of chronic kidney disease and help each patient make informed decisions about treatment. We coordinate closely with primary care physicians, specialists, hospitals and dialysis providers to deliver seamless care across every stage of kidney disease.",
+    ],
+    sections: [
+      {
+        heading: "Conditions we evaluate and treat",
+        bullets: [
+          "Chronic kidney disease",
+          "Acute kidney injury",
+          "Hypertension and resistant hypertension",
+          "Diabetic kidney disease",
+          "Protein or blood in the urine",
+          "Electrolyte and acid-base disorders",
+          "Glomerular diseases, including lupus-related kidney disease",
+          "Polycystic kidney disease",
+          "Kidney stones, in collaboration with urology",
+          "Renal artery stenosis and other kidney-related vascular disorders",
+          "Fluid retention and edema",
+          "Anemia and mineral or bone disorders associated with kidney disease",
+          "Advanced kidney disease and kidney failure",
+          "Kidney transplant evaluation, preparation and post-transplant coordination",
+        ],
+      },
+      {
+        heading: "Chronic kidney disease management",
+        body: [
+          "Kidney disease may progress silently, with few symptoms during its early stages. Timely evaluation and ongoing monitoring can help preserve kidney function and reduce the risk of complications.",
+          "Our individualized approach may include:",
+        ],
+        bullets: [
+          "Review of kidney function and urine testing",
+          "Blood-pressure and diabetes management",
+          "Medication review and kidney-safe prescribing",
+          "Management of anemia, electrolyte abnormalities and bone-mineral disorders",
+          "Nutrition and lifestyle guidance",
+          "Education about kidney disease and treatment options",
+          "Coordination with other physicians and healthcare professionals",
+          "Planning for dialysis or transplantation when necessary",
+        ],
+      },
+      {
+        heading: "Hypertension care",
+        body: [
+          "High blood pressure is both a major cause and a common complication of kidney disease. Our team evaluates the underlying factors that may contribute to uncontrolled or resistant hypertension and develops an individualized treatment plan.",
+          "Care may include medication optimization, laboratory and diagnostic evaluation, lifestyle recommendations and assessment for secondary causes of hypertension. Our objective is to improve blood-pressure control while protecting the kidneys, heart and blood vessels.",
+        ],
+      },
+      {
+        heading: "Dialysis and advanced kidney care",
+        body: [
+          "For patients with advanced kidney disease, we provide education and guidance regarding kidney replacement therapy so that patients and their families can make informed decisions before dialysis becomes necessary.",
+        ],
+        bullets: [
+          "Preparation and planning for dialysis",
+          "In-center hemodialysis management",
+          "Home hemodialysis",
+          "Peritoneal dialysis",
+          "Guidance regarding dialysis access",
+          "Management of dialysis-related complications",
+          "Kidney transplant referral and care coordination",
+          "Conservative kidney care when dialysis may not align with a patient's health needs or personal goals",
+        ],
+        footnote: [
+          "Whenever appropriate, we support home-based dialysis options that can provide greater independence and flexibility. Treatment recommendations are tailored to each patient's medical condition, lifestyle, support system and preferences.",
+        ],
+      },
+      {
+        heading: "Led by Rekha Pareek, MD",
+        body: [
+          "AmpleHealth's Nephrology, Dialysis and Hypertension Program is spearheaded by Rekha Pareek, MD, a board-certified nephrologist and internist with more than 20 years of experience providing inpatient and outpatient kidney care.",
+          "Dr. Pareek practiced with Kaiser Permanente Medical Group from 2005 through 2025, caring for patients with chronic kidney disease, hypertension, diabetes, acute kidney injury and complex electrolyte disorders. She has extensive leadership experience in home hemodialysis, peritoneal dialysis and therapeutic plasmapheresis.",
+          "For 15 years, Dr. Pareek served as Medical Director of the Fresenius Home Dialysis Unit in Roseville, where she led clinical quality initiatives and helped expand access to home dialysis. She also served as Medical Director of the Kaiser Roseville and Kaiser Morse Avenue plasmapheresis programs, Departmental Lead for Peritoneal Dialysis and a regional workgroup member for home dialysis therapies.",
+          "Since October 2025, Dr. Pareek has served as Program Director of Nephrology at Sacramento Rehabilitation Hospital, where she established the hospital's first inpatient dialysis program and continues to provide comprehensive inpatient nephrology care.",
+          "Dr. Pareek completed her nephrology fellowship at Drexel University College of Medicine, where she served as Chief Nephrology Fellow. She is board certified in nephrology and internal medicine and was recognized by her physician peers as a Sacramento-area Top Doctor in Nephrology by Sactown Magazine in 2025 and 2026.",
+        ],
+      },
+      {
+        heading: "Protect your kidney health",
+        body: [
+          "Whether you have newly abnormal kidney test results, longstanding chronic kidney disease, difficult-to-control blood pressure or need guidance regarding dialysis, our team is here to help.",
+          "Schedule a consultation with Dr. Rekha Pareek and the AmpleHealth nephrology team to receive expert, compassionate care tailored to your individual needs.",
+        ],
+      },
+    ],
+    tone: "#104872",
+    // STOCK PLACEHOLDER — replace with real practice photo
+    stockImage: "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?q=80&w=1200&auto=format&fit=crop",
   },
   {
     slug: "chronic-care-management",
@@ -364,19 +469,68 @@ export const services: Service[] = [
     slug: "metabolic-syndrome",
     title: "Obesity and Metabolic Wellness",
     summary:
-      "Science-backed metabolic medicine — GLP-1 therapy, continuous glucose monitoring, and a dedicated support team working together.",
+      "Physician-guided, evidence-based care for weight, metabolism, and the conditions that travel with them. Program spearheaded by Dr. Rekha Pareek.",
     description:
-      "Traditional weight-loss advice rarely accounts for the biology of obesity and metabolic syndrome. We combine the latest GLP-1 and GIP receptor agonists, real-time CGM data, registered nutritionist guidance, and a dedicated support team to help you achieve lasting change.",
+      "At AmpleHealth, we understand that weight management is about much more than a number on the scale. Our physician-guided Obesity and Metabolic Wellness Program takes a personalized, evidence-based approach to improving your weight, metabolism and overall health.",
     highlights: [
-      "GLP-1 & GIP receptor agonist therapy",
-      "Continuous Glucose Monitor (CGM) integration",
-      "Registered nutritionist coaching",
-      "Dedicated accountability support team",
-      "Metabolic syndrome & insulin resistance care",
+      "Program spearheaded by Dr. Rekha Pareek",
+      "Prescription weight-management medications when appropriate",
+      "Continuous glucose monitoring for selected patients",
+      "Nutrition and healthy-eating guidance",
+      "Regular progress visits and medication monitoring",
+      "Care for prediabetes, type 2 diabetes and fatty liver disease",
+    ],
+    body: [
+      "We begin with a comprehensive evaluation of your medical history, current medications, lifestyle, weight-related concerns and personal goals. When appropriate, laboratory testing may be used to identify metabolic conditions or other factors that can make weight loss more difficult.",
+      "Rather than relying on restrictive diets or short-term solutions, we focus on practical, sustainable changes that fit your health needs, preferences and lifestyle. Ongoing medical support helps us evaluate your progress, address challenges and adjust your treatment plan as your needs evolve.",
+      "Whether you want to lose weight, improve your blood sugar, increase your energy or reduce your risk of future health problems, the AmpleHealth team is here to help you build a healthier path forward.",
+    ],
+    sections: [
+      {
+        heading: "Your individualized care plan",
+        bullets: [
+          "Nutrition and healthy-eating guidance",
+          "Realistic physical-activity recommendations",
+          "Strategies to improve sleep, stress and daily habits",
+          "Prescription weight-management medications, when medically appropriate",
+          "Continuous glucose monitoring for selected patients",
+          "Regular progress visits and medication monitoring",
+          "Management of related conditions such as prediabetes, type 2 diabetes, high blood pressure, high cholesterol and fatty liver disease",
+        ],
+      },
+      {
+        heading: "Who may benefit?",
+        body: ["Our program may be appropriate for adults who:"],
+        bullets: [
+          "Are living with overweight or obesity",
+          "Have struggled to lose weight through diet and exercise alone",
+          "Have prediabetes, type 2 diabetes or insulin resistance",
+          "Have high blood pressure, abnormal cholesterol or fatty liver disease",
+          "Experience weight-related joint pain or reduced mobility",
+          "Want physician-supervised treatment and ongoing accountability",
+          "Are interested in learning how food, physical activity, sleep and stress affect their metabolic health",
+        ],
+      },
+      {
+        heading: "Take the first step",
+        body: [
+          "Schedule a consultation with AmpleHealth to learn whether our Obesity and Metabolic Wellness Program is right for you. Together, we will develop a medically appropriate plan designed around your health, goals and long-term success.",
+        ],
+        resources: [
+          {
+            label: "Obesity and Metabolic Wellness Program — Program Overview",
+            href: "/documents/obesity-and-metabolic-wellness-program.pdf",
+            note: "Program details, pricing, and what's included.",
+          },
+        ],
+        footnote: [
+          "Individual results vary. Prescription medications and continuous glucose monitoring are recommended only when clinically appropriate. Medication availability and insurance coverage vary by health plan.",
+        ],
+      },
     ],
     tone: "#1B75BB",
     // STOCK PLACEHOLDER — replace with real practice photo
-    stockImage: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1200&auto=format&fit=crop",
+    stockImage: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200&auto=format&fit=crop",
   },
   {
     slug: "telehealth",
@@ -507,7 +661,7 @@ export const services: Service[] = [
           "Memory and cognitive therapy",
         ],
         footnote: [
-          "We can also help you or a loved one find long-term care when daily medical support is needed for complex conditions, or hospice care when the priority becomes comfort and dignity.",
+          "We can also help you or a loved one find long-term care when daily medical support is needed for complex conditions, or hospice care when the priority becomes comfort and dignity. Hospice and palliative care is one of our own services, led by Dr. Dheeraj Kamra — so if that is the right next step, it stays with the same team rather than becoming a hand-off to strangers.",
         ],
       },
       {
@@ -530,6 +684,51 @@ export const services: Service[] = [
     tone: "#155E96",
     // STOCK PLACEHOLDER — replace with real practice photo
     stockImage: "https://images.unsplash.com/photo-1512678080530-7760d81faba6?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    slug: "hospice-and-palliative-care",
+    title: "Hospice and Palliative Care",
+    summary:
+      "Compassionate, patient-centered care for individuals facing advanced and life-limiting illness — led by Dr. Dheeraj Kamra.",
+    description:
+      "Dr. Kamra is a highly experienced hospice and palliative care physician dedicated to providing compassionate, patient-centered care for individuals facing advanced and life-limiting illnesses.",
+    highlights: [
+      "Medical Director, Anchor Hospice",
+      "Medical Director, Guardian Angel Home Health",
+      "20+ years of inpatient clinical experience",
+      "Symptom and comfort management",
+      "Goals-of-care and advance-care planning",
+      "Coordination of transitions to hospice",
+    ],
+    body: [
+      "He has served as Medical Director of Anchor Hospice since May 2025 and brings more than 20 years of inpatient clinical experience, including service at Mercy Hospital of Folsom, Vibra Hospital, and Kentfield Hospital. At Vibra and Kentfield — long-term acute care hospitals serving medically complex and terminally ill patients — Dr. Kamra routinely guided patients and families through difficult healthcare decisions.",
+      "His experience includes symptom and comfort management, goals-of-care counseling, advance-care planning, code-status discussions, and coordination of transitions to hospice when appropriate. He works closely with patients, families, caregivers, and interdisciplinary healthcare teams to ensure that care reflects each patient's values, preferences, and quality-of-life goals.",
+      "Dr. Kamra has also served as Medical Director of Guardian Angel Home Health since February 2026, further strengthening his expertise in coordinating compassionate care across hospital, home-health, palliative-care, and hospice settings.",
+    ],
+    sections: [
+      {
+        heading: "Planning ahead",
+        body: [
+          "Putting your wishes in writing while you are well is one of the most useful things you can do for the people who will care for you. These documents let you name someone to speak for you and record the treatment you would and would not want, so those decisions are never guessed at.",
+          "You are welcome to bring either document to an appointment and complete it with us.",
+        ],
+        resources: [
+          {
+            // The fillable build, matching what the Forms page hands out — no
+            // reason to send people here to the print-only copy.
+            label: "Advance Health Care Directive",
+            href: "/documents/advance-health-care-directive-fillable.pdf",
+          },
+          {
+            label: "POLST — Physician Orders for Life-Sustaining Treatment",
+            href: "/documents/polst-fillable.pdf",
+          },
+        ],
+      },
+    ],
+    tone: "#1B75BB",
+    // STOCK PLACEHOLDER — replace with real practice photo
+    stockImage: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1200&auto=format&fit=crop",
   },
 ];
 
@@ -601,23 +800,29 @@ export const providers: Provider[] = [
     slug: "rekha-pareek",
     name: "Rekha Pareek",
     credentials: "MD",
-    title: "Nephrologist",
+    title: "Nephrologist & Internist",
     group: "physicians",
     shortBio:
-      "Nephrologist with 23+ years of clinical experience specializing in kidney care, home dialysis therapies, complex electrolyte disorders, Obesity Medicine, and metabolic syndrome.",
+      "Board-certified nephrologist and internist with more than 20 years of experience in kidney care, home dialysis therapies and complex electrolyte disorders. Dr. Pareek also spearheads AmpleHealth's Obesity and Metabolic Wellness Program.",
     fullBio: [
-      "Dr. Rekha Pareek is a nephrologist with more than 23 years of clinical experience caring for patients with kidney disease and complex metabolic conditions. She brings a depth of expertise that few physicians in the region can match.",
-      "Dr. Pareek earned her medical degree from RNT Medical College in Udaipur, India, before completing her Internal Medicine residency at Graduate Hospital in Philadelphia. She then pursued subspecialty fellowship training at Drexel University Hospital, where she developed her expertise in nephrology.",
-      "Her clinical specialties include kidney care, home dialysis therapies, complex electrolyte disorders, Obesity Medicine, and metabolic syndrome. She is particularly passionate about empowering patients to take an active role in managing their kidney health and weight-related conditions.",
+      "Dr. Rekha Pareek is a board-certified nephrologist and internist with more than 20 years of experience providing inpatient and outpatient kidney care. She spearheads AmpleHealth's Nephrology, Dialysis and Hypertension Program as well as its Obesity and Metabolic Wellness Program.",
+      "Dr. Pareek practiced with Kaiser Permanente Medical Group from 2005 through 2025, caring for patients with chronic kidney disease, hypertension, diabetes, acute kidney injury and complex electrolyte disorders. She has extensive leadership experience in home hemodialysis, peritoneal dialysis and therapeutic plasmapheresis.",
+      "For 15 years, Dr. Pareek served as Medical Director of the Fresenius Home Dialysis Unit in Roseville, where she led clinical quality initiatives and helped expand access to home dialysis. She also served as Medical Director of the Kaiser Roseville and Kaiser Morse Avenue plasmapheresis programs, Departmental Lead for Peritoneal Dialysis and a regional workgroup member for home dialysis therapies.",
+      "Since October 2025, Dr. Pareek has served as Program Director of Nephrology at Sacramento Rehabilitation Hospital, where she established the hospital's first inpatient dialysis program and continues to provide comprehensive inpatient nephrology care.",
+      "Dr. Pareek earned her medical degree from RNT Medical College in Udaipur, India, before completing her Internal Medicine residency at Graduate Hospital in Philadelphia. She completed her nephrology fellowship at Drexel University College of Medicine, where she served as Chief Nephrology Fellow. She is board certified in nephrology and internal medicine, and was recognized by her physician peers as a Sacramento-area Top Doctor in Nephrology by Sactown Magazine in 2025 and 2026.",
       "Outside of medicine, Dr. Pareek enjoys reading and creative art and design — pursuits that reflect the same careful attention and creativity she brings to her clinical work.",
     ],
     highlights: [
-      "23+ years of clinical experience",
-      "Nephrology fellowship at Drexel University Hospital",
+      "Board certified in nephrology and internal medicine",
+      "More than 20 years of clinical experience",
+      "Sactown Magazine Top Doctor in Nephrology, 2025 & 2026",
+      "Program Director of Nephrology, Sacramento Rehabilitation Hospital",
+      "Medical Director, Fresenius Home Dialysis Unit, Roseville (15 years)",
+      "Kaiser Permanente Medical Group, 2005–2025",
+      "Chief Nephrology Fellow — Drexel University College of Medicine",
       "Internal Medicine residency at Graduate Hospital, Philadelphia",
-      "Specializes in kidney care & home dialysis",
-      "Obesity Medicine & metabolic syndrome",
-      "Complex electrolyte disorder management",
+      "MD, RNT Medical College, Udaipur",
+      "Spearheads AmpleHealth's Obesity and Metabolic Wellness Program",
     ],
     tone: "#104872",
   },
@@ -690,6 +895,31 @@ export const providers: Provider[] = [
       "With AmpleHealth since 2022",
     ],
     tone: "#155E96",
+  },
+  {
+    slug: "soni-nageswaran",
+    name: "Soni Nageswaran",
+    credentials: "MD",
+    title: "Family Medicine",
+    group: "physicians",
+    shortBio:
+      "Board-certified Family Medicine physician with more than 20 years of experience across primary care, urgent care, emergency medicine, telemedicine, and complex clinical settings.",
+    fullBio: [
+      "Dr. Soni Nageswaran is a board-certified Family Medicine physician with more than 20 years of experience caring for patients across primary care, urgent care, emergency medicine, telemedicine, and complex clinical settings. Her broad clinical background allows her to care for patients of all ages while managing both acute concerns and chronic medical conditions.",
+      "Dr. Nageswaran has served patients throughout the Sacramento region in a variety of settings, including Sacramento County Primary Care, the Sacramento VA Medical Center, Kaiser Permanente, and Sacramento County Adult Correctional Health. She has also served as clinical faculty at the UC Davis School of Medicine and has extensive experience teaching and supervising physicians and advanced practice providers.",
+      "In addition to clinical practice, Dr. Nageswaran has served as an Expert Reviewer for the Medical Board of California since 2007, reviewing complex cases involving quality of care and professional standards.",
+      "Dr. Nageswaran earned her medical degree from the University of Michigan Medical School and completed her Family Medicine residency at UC Davis Medical Center. She received her undergraduate degree with honors from Johns Hopkins University, where she was elected to Phi Beta Kappa.",
+      "She brings to AmpleHealth a strong commitment to thoughtful, comprehensive, and patient-centered care.",
+    ],
+    highlights: [
+      "Board-certified in Family Medicine",
+      "20+ years across primary care, urgent care and emergency medicine",
+      "Expert Reviewer, Medical Board of California since 2007",
+      "Clinical faculty, UC Davis School of Medicine",
+      "MD, University of Michigan Medical School",
+      "Family Medicine residency, UC Davis Medical Center",
+    ],
+    tone: "#C68A3E",
   },
 
   // ── NURSE PRACTITIONERS & PHYSICIAN ASSISTANTS ───────────────────────────

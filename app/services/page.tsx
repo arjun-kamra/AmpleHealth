@@ -19,7 +19,7 @@ export default function ServicesPage() {
         kicker="Services"
         title="Care for every chapter of your"
         highlight="health."
-        description="Seven focused service lines, one continuous relationship. Explore what we offer and how we can help."
+        description="Focused service lines, one continuous relationship. Explore what we offer and how we can help."
       />
 
       <section className="container-page py-20 md:py-28">

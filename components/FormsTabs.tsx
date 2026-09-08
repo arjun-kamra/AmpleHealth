@@ -111,10 +111,17 @@ export const TABS: {
       "Put your wishes in writing while you're well, so the people who care for you know exactly what you want.",
     forms: [
       {
-        href: "/documents/advance-health-care-directive.pdf",
+        href: "/documents/advance-health-care-directive-fillable.pdf",
         title: "Advance Health Care Directive",
         description:
-          "Appoint a health care agent and record your care preferences. Download, complete, and sign in front of two witnesses or a notary, per California law, then bring or send it to our office.",
+          "Appoint a health care agent and record your care preferences. Complete it on screen, then print it and sign in front of two witnesses or a notary, as California law requires, and bring or send it to our office.",
+        download: true,
+      },
+      {
+        href: "/documents/polst-fillable.pdf",
+        title: "POLST — Physician Orders for Life-Sustaining Treatment",
+        description:
+          "For patients with serious illness or advanced frailty. Complete on screen with your physician, then print on pink paper and sign. A POLST complements your Advance Health Care Directive — it does not replace it.",
         download: true,
       },
     ],
