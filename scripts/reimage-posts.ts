@@ -172,6 +172,17 @@ async function main() {
     // also what keeps hand-chosen images stable across re-runs.
     const override = overrideImageForSlug(row.slug);
     if (override) {
+      // A hand-picked image still has to be unique. Overrides bypass the search
+      // path entirely, so without this check a pick that happens to be a
+      // service-page hero or another post's image would sail through and
+      // reintroduce exactly the duplication this script exists to remove.
+      if (used.has(photoIdOf(override))) {
+        console.warn(
+          `  !! ${row.title}\n     OVERRIDE COLLISION: ${photoIdOf(override)} is already ` +
+            `used by a service page or an earlier post. Pick a different photo ` +
+            `in IMAGE_OVERRIDES.`
+        );
+      }
       used.add(photoIdOf(override));
       plan.push({
         row,
