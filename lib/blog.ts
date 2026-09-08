@@ -61,78 +61,294 @@ export function imageForCategory(category: string | null): string {
   return CATEGORY_IMAGES[category ?? ""] ?? DEFAULT_IMAGE;
 }
 
-// Same filtering as titleSimilarity() in app/api/generate-blog/route.ts —
-// drop connective words so the query carries only the title's subject matter.
+// ── Image search queries ───────────────────────────────────────────────────
+// A post title is a headline, not a description of a photograph. Feeding one
+// to Unsplash verbatim matches its rhetoric instead of its subject: "Warning
+// Signs of Alzheimer's" returned a yellow-and-black POISON sign, "The Truth
+// About Cholesterol" returned a scale captioned "fake news", and "Strong Bones,
+// Sharp Mind" returned a skeleton. The job here is to throw the headline away
+// and keep the clinical subject.
+
+/** Grammatical connectives. Mirrors titleSimilarity() in the generator route. */
 const QUERY_STOP_WORDS = new Set([
   "a", "an", "the", "and", "or", "for", "to", "in", "of", "with",
   "how", "your", "you", "is", "are", "its", "it", "on", "at", "by",
   "what", "why", "when", "can", "does", "do", "about", "from", "that",
-  "this", "know", "need", "should",
+  "this", "know", "need", "should", "into", "than", "then", "but", "not",
+  "was", "were", "has", "have", "will", "would", "could", "any", "all",
 ]);
 
-/** Meaningful words from a post title, capped so the query stays focused. */
-function imageQueryFromTitle(title: string): string {
+/**
+ * Editorial scaffolding. These survive ordinary stop-word filtering and are
+ * exactly what produced the bad matches — Unsplash happily finds a literal
+ * photograph of a "warning sign" or the word "truth".
+ */
+const RHETORICAL_WORDS = new Set([
+  "truth", "beyond", "warning", "warnings", "sign", "signs", "navigating",
+  "navigate", "surprising", "hidden", "myth", "myths", "real", "really",
+  "actually", "everything", "guide", "guides", "tips", "tip", "numbers",
+  "number", "blue", "strong", "sharp", "steady", "spot", "bundle", "fight",
+  "taming", "tame", "era", "new", "newer", "newest", "just", "more", "most",
+  "less", "better", "best", "worse", "worst", "simple", "practical", "easy",
+  "essential", "important", "importance", "matter", "matters", "means",
+  "meaning", "happens", "happening", "worth", "showing", "first", "every",
+  "everyday", "common", "confidence", "confident", "steps", "step", "story",
+  "stories", "secret", "secrets", "ultimate", "complete", "quick", "smooth",
+  "productive", "prepare", "preparing", "ready", "start", "starting", "stop",
+  "stopping", "avoid", "avoiding", "improve", "improving", "build", "building",
+  "keep", "keeping", "make", "making", "take", "taking", "get", "getting",
+  "feeling", "feel", "feels", "look", "looking", "call", "calling", "talk",
+  "talking", "ask", "asking", "say", "saying", "tell", "telling", "think",
+  "thinking", "learn", "learning", "understand", "understanding", "explained",
+  "explain", "answer", "answers", "question", "questions", "reasons", "reason",
+  "ways", "way", "things", "thing", "much", "many", "own", "yours", "mine",
+  "life", "lives", "living", "live", "well", "back", "over", "under", "out",
+  "off", "down", "left", "right", "before", "after", "during", "while",
+  "might", "may", "let", "lets", "who", "which", "where", "whose",
+]);
+
+/**
+ * Practice, person and place tokens. None of these will ever match a stock
+ * photograph, and including them is what made three posts return zero results.
+ */
+const LOCAL_TOKENS = new Set([
+  "amplehealth", "ample", "health-", "sacramento", "carmichael", "california",
+  "kamra", "pareek", "nageswaran", "faraji", "nagaraj", "hernandez",
+]);
+
+/**
+ * Concrete clinical, anatomical and procedural nouns. A title-derived query is
+ * only used when at least one of these survives filtering — otherwise whatever
+ * is left is headline residue, and the category query is the safer photograph.
+ */
+const CLINICAL_TERMS = new Set([
+  // cardiovascular & metabolic
+  "cholesterol", "statin", "statins", "lipid", "lipids", "triglycerides",
+  "heart", "cardiac", "cardiovascular", "cardiology", "artery", "arteries",
+  "stroke", "blood", "pressure", "hypertension", "circulation",
+  "diabetes", "diabetic", "glucose", "insulin", "sugar", "metabolic",
+  "metabolism", "obesity", "weight", "thyroid", "hypothyroidism",
+  "hyperthyroidism", "hormone", "hormones",
+  // organs & systems
+  "kidney", "kidneys", "renal", "dialysis", "liver", "lung", "lungs",
+  "respiratory", "breathing", "asthma", "copd", "stomach", "digestion",
+  "digestive", "gut", "bladder", "prostate", "bone", "bones", "osteoporosis",
+  "joint", "joints", "arthritis", "spine", "muscle", "muscles", "skin",
+  "dermatology", "eye", "eyes", "vision", "hearing", "brain", "nerve",
+  // conditions & screening
+  "cancer", "melanoma", "colorectal", "colonoscopy", "screening", "screenings",
+  "mammogram", "biopsy", "diagnosis", "symptom", "symptoms", "pain", "ache",
+  "inflammation", "infection", "fever", "cough", "flu", "influenza", "cold",
+  "virus", "allergy", "allergies", "vaccine", "vaccination", "vaccines",
+  "immunization", "immunity",
+  // mind, sleep, aging
+  "sleep", "insomnia", "apnea", "fatigue", "exhausted", "stress", "anxiety",
+  "depression", "mental", "mood", "memory", "dementia", "alzheimer",
+  "alzheimers", "cognition", "cognitive", "aging", "senior", "seniors",
+  "elderly", "geriatric", "fall", "falls", "balance", "mobility",
+  // women's & men's health
+  "menopause", "menstrual", "pregnancy", "prenatal", "contraception",
+  "women", "woman", "men", "man", "fertility",
+  // lifestyle & care delivery
+  "nutrition", "diet", "food", "eating", "meal", "meals", "vegetables",
+  "produce", "exercise", "fitness", "walking", "running", "hydration",
+  "vitamin", "vitamins", "smoking", "alcohol",
+  "telehealth", "telemedicine", "virtual", "appointment", "checkup",
+  "physical", "exam", "examination", "clinic", "doctor", "physician",
+  "nurse", "patient", "medication", "medications", "prescription", "treatment",
+  "treatments", "therapy", "surgery", "recovery", "rehabilitation",
+]);
+
+/**
+ * The photograph to look for when a title yields nothing usable. Every category
+ * the generator can emit has an entry, plus the legacy names still on older
+ * posts, so a query is never empty — three posts previously searched for things
+ * like "first telehealth visit amplehealth prepare" and got zero results.
+ */
+const CATEGORY_QUERIES: Record<string, string> = {
+  "Preventive Care": "preventive medicine checkup",
+  Prevention: "doctor stethoscope checkup",
+  "Chronic Disease": "chronic condition monitoring",
+  "Chronic Care": "physician patient bedside",
+  "Heart Health": "heart health cardiology",
+  "Women's Health": "womens health clinic",
+  "Men's Health": "mens health checkup",
+  Nutrition: "healthy food nutrition",
+  "Mental Health": "mental health calm",
+  Wellness: "wellness rest recovery",
+  "Seasonal Health": "seasonal illness vaccine",
+  Geriatrics: "older adult care",
+  Telehealth: "telemedicine video consultation",
+  Aesthetics: "skincare treatment",
+};
+
+const DEFAULT_QUERY = "medical care clinic";
+
+/** Split a title into lowercase word tokens, dropping punctuation entirely. */
+function tokenize(title: string): string[] {
   return title
     .toLowerCase()
+    .replace(/[\u2019']/g, "")
     .replace(/[^a-z0-9\s]/g, " ")
     .split(/\s+/)
-    .filter((w) => w.length > 2 && !QUERY_STOP_WORDS.has(w))
-    .slice(0, 5)
-    .join(" ");
+    .filter(Boolean);
 }
 
 /**
- * Searches Unsplash for a landscape photo matching a generated post's title,
- * returning one of the top few results at random so repeated posts on similar
- * topics don't all land on the same picture.
- *
- * Returns null — never throws — on a missing key, network failure, non-200
- * response, or empty result set, so callers can fall back to imageForCategory.
- * Requires UNSPLASH_ACCESS_KEY; without it this is a no-op.
+ * Clinical subject terms from a title, in title order, capped at three so the
+ * query stays broad enough for Unsplash to return anything at all.
  */
-export async function imageForTitle(title: string): Promise<string | null> {
-  const key = process.env.UNSPLASH_ACCESS_KEY;
-  if (!key) return null;
+function clinicalTermsFromTitle(title: string): string[] {
+  const tokens = tokenize(title);
+  // "back" is anatomical in "back pain" but rhetorical in "fight back", so it
+  // is in RHETORICAL_WORDS by default and only reinstated alongside a pain word.
+  const backIsAnatomical =
+    tokens.includes("back") &&
+    tokens.some((t) => ["pain", "hurts", "hurt", "ache", "aches", "aching"].includes(t));
 
-  const query = imageQueryFromTitle(title);
-  if (!query) return null;
+  const kept: string[] = [];
+  for (const token of tokens) {
+    if (token.length < 3) continue;
+    if (/^\d+$/.test(token)) continue; // bare numerals: "101", "65", "2026"
+    if (LOCAL_TOKENS.has(token)) continue;
+    if (QUERY_STOP_WORDS.has(token)) continue;
+    if (token === "back") {
+      // Bare "back" retrieves backs of heads and landscapes; the pair is what
+      // actually finds the subject.
+      if (backIsAnatomical && !kept.includes("back")) {
+        kept.push("back");
+        if (!kept.includes("pain")) kept.push("pain");
+      }
+      continue;
+    }
+    if (RHETORICAL_WORDS.has(token)) continue;
+    if (!CLINICAL_TERMS.has(token)) continue;
+    if (!kept.includes(token)) kept.push(token);
+    if (kept.length === 3) break;
+  }
+  return kept;
+}
+
+/** Turn a generator topic keyword ("blood-pressure") into a query. */
+function keywordToQuery(keyword: string): string {
+  return keyword.toLowerCase().replace(/[-_]+/g, " ").trim();
+}
+
+/**
+ * The queries to try for a post, most specific first, never empty.
+ *
+ * Order is deliberate: the generator's own curated per-topic keyword is the
+ * best signal available because a human chose it, the title's clinical nouns
+ * come next, and the category query is the guaranteed floor. Callers should try
+ * each in turn and stop at the first that returns results.
+ *
+ * Exported so the backfill script and the live generator derive queries the
+ * same way — this logic must not be duplicated.
+ */
+export function imageQueriesForPost(
+  title: string,
+  category: string | null,
+  keyword?: string | null
+): string[] {
+  const queries: string[] = [];
+
+  if (keyword) {
+    const fromKeyword = keywordToQuery(keyword);
+    if (fromKeyword) queries.push(fromKeyword);
+  }
+
+  const clinical = clinicalTermsFromTitle(title);
+  if (clinical.length > 0) queries.push(clinical.join(" "));
+
+  queries.push(CATEGORY_QUERIES[category ?? ""] ?? DEFAULT_QUERY);
+
+  return queries.filter((q, i) => q.length > 0 && queries.indexOf(q) === i);
+}
+
+/** One Unsplash search hit, reduced to what callers actually use. */
+export type UnsplashCandidate = {
+  url: string;
+  /** Unsplash's own description of what the photo depicts, when it has one. */
+  alt: string | null;
+};
+
+/**
+ * Raw Unsplash landscape search. Returns [] — never throws — on a missing key,
+ * network failure, non-200 response or empty result set.
+ *
+ * Exported so the backfill can collect candidates and their alt text through
+ * exactly the same call the generator makes.
+ */
+export async function searchUnsplash(
+  query: string,
+  perPage = 10
+): Promise<UnsplashCandidate[]> {
+  const key = process.env.UNSPLASH_ACCESS_KEY;
+  if (!key || !query) return [];
 
   try {
     const res = await fetch(
       `https://api.unsplash.com/search/photos?query=${encodeURIComponent(
         query
-      )}&per_page=5&orientation=landscape`,
+      )}&per_page=${perPage}&orientation=landscape`,
       {
         headers: { Authorization: `Client-ID ${key}` },
         cache: "no-store",
       }
     );
     if (!res.ok) {
-      console.warn(`imageForTitle: Unsplash returned ${res.status} for "${query}"`);
-      return null;
+      const remaining = res.headers.get("x-ratelimit-remaining");
+      console.warn(
+        `searchUnsplash: Unsplash returned ${res.status} for "${query}"` +
+          (remaining !== null ? ` (rate limit remaining: ${remaining})` : "")
+      );
+      return [];
     }
 
-    const data: unknown = await res.json();
-    const results =
-      typeof data === "object" && data !== null && "results" in data
-        ? (data as { results: unknown }).results
-        : null;
-    if (!Array.isArray(results)) return null;
-
-    const urls = results
-      .map((r) =>
-        typeof r === "object" && r !== null
-          ? (r as { urls?: { regular?: unknown } }).urls?.regular
-          : undefined
-      )
-      .filter((u): u is string => typeof u === "string" && u.length > 0);
-    if (urls.length === 0) return null;
-
-    return urls[Math.floor(Math.random() * urls.length)];
+    const data = (await res.json()) as {
+      results?: {
+        alt_description?: string | null;
+        description?: string | null;
+        urls?: { regular?: string };
+      }[];
+    };
+    return (data.results ?? [])
+      .map((r) => ({
+        url: r.urls?.regular ?? "",
+        alt: r.alt_description ?? r.description ?? null,
+      }))
+      .filter((c) => c.url.length > 0);
   } catch (err) {
-    console.warn("imageForTitle: Unsplash lookup failed", err);
-    return null;
+    console.warn(`searchUnsplash: lookup failed for "${query}"`, err);
+    return [];
   }
+}
+
+/**
+ * A landscape photo matching a post's clinical subject, or null.
+ *
+ * Tries each query from imageQueriesForPost in turn and stops at the first that
+ * returns anything, so a post whose title yields no usable terms still falls
+ * through to its category query rather than coming back empty. One of the top
+ * few results is chosen at random so posts on adjacent topics don't collide.
+ *
+ * Returns null — never throws — when UNSPLASH_ACCESS_KEY is unset or every
+ * query comes back empty, so callers can fall back to imageForCategory.
+ */
+export async function imageForTitle(
+  title: string,
+  category: string | null = null,
+  keyword?: string | null
+): Promise<string | null> {
+  if (!process.env.UNSPLASH_ACCESS_KEY) return null;
+
+  for (const query of imageQueriesForPost(title, category, keyword)) {
+    const candidates = await searchUnsplash(query, 5);
+    if (candidates.length === 0) continue;
+    const pick = candidates[Math.floor(Math.random() * candidates.length)];
+    return pick.url;
+  }
+  return null;
 }
 
 export function imageForPost(imageUrl: string | null, category: string | null): string {

@@ -178,6 +178,9 @@ async function generateAndStore() {
 
   // First attempt: pick the least-recently-used category.
   const topicEntry = pickTopic(recentCategories);
+  // The similarity retry below can swap the topic out. Track which one actually
+  // produced the post that ships, so its curated image keyword isn't stale.
+  let usedTopic = topicEntry;
   let parsed: PostDraft;
   try {
     parsed = await callModel(client, topicEntry, recentTitles);
@@ -200,6 +203,7 @@ async function generateAndStore() {
     const altTopic = pickTopic(recentCategories, topicEntry.topic);
     try {
       parsed = await callModel(client, altTopic, recentTitles);
+      usedTopic = altTopic;
     } catch {
       // Fall through with original if retry also fails to parse.
       console.warn("generate-blog: retry parse failed, using original output.");
@@ -207,14 +211,22 @@ async function generateAndStore() {
   }
 
   const baseSlug = slugify(parsed.slug || parsed.title);
-  // Derived from the category that actually shipped, not from topicEntry —
-  // the similarity retry above can swap the topic out, and the old code kept
-  // the original keyword. source.unsplash.com, which this previously wrote to,
-  // has been retired and returns 503; those URLs never rendered.
-  // Prefer a photo matched to this post's actual title; imageForTitle returns
-  // null (never throws) if UNSPLASH_ACCESS_KEY is unset or the API misbehaves,
-  // in which case the per-category image below still ships a working image.
-  const titleImage = await imageForTitle(parsed.title);
+
+  // Image selection. source.unsplash.com, which this previously wrote to, has
+  // been retired and returns 503; those URLs never rendered.
+  //
+  // The curated keyword is only trusted when the topic that actually produced
+  // this post still matches the category the model emitted — the model can
+  // return a different category than the topic it was given, and a keyword from
+  // the wrong topic is worse than none.
+  const curatedKeyword =
+    usedTopic.category === parsed.category ? usedTopic.keyword : null;
+
+  const titleImage = await imageForTitle(
+    parsed.title,
+    parsed.category,
+    curatedKeyword
+  );
   if (!titleImage) {
     // Loud on purpose. This is the failure that silently gave every post the
     // same photo: imageForTitle returns null when UNSPLASH_ACCESS_KEY is unset

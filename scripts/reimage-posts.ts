@@ -24,7 +24,7 @@
 
 import { readFileSync } from "node:fs";
 import { createClient } from "@supabase/supabase-js";
-import { imageForCategory } from "../lib/blog.ts";
+import { imageForCategory, imageQueriesForPost, searchUnsplash } from "../lib/blog.ts";
 import { services } from "../lib/data.ts";
 
 const COMMIT = process.argv.includes("--commit");
@@ -76,76 +76,40 @@ function photoIdOf(url: string | null): string {
   return url.match(/photo-[0-9a-z]+-[0-9a-z]+/i)?.[0] ?? url;
 }
 
-// Same stop-word filtering as imageForTitle() in lib/blog.ts, so the queries
-// this script sends match the ones the generator will send.
-const STOP = new Set([
-  "a", "an", "the", "and", "or", "for", "to", "in", "of", "with",
-  "how", "your", "you", "is", "are", "its", "it", "on", "at", "by",
-  "what", "why", "when", "can", "does", "do", "about", "from", "that",
-  "this", "know", "need", "should",
-]);
-
-function queryFromTitle(title: string): string {
-  return title
-    .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, " ")
-    .split(/\s+/)
-    .filter((w) => w.length > 2 && !STOP.has(w))
-    .slice(0, 5)
-    .join(" ");
-}
-
 /**
  * A candidate photo. alt_description is Unsplash's own description of what the
  * photo actually depicts — the only way to judge a match without opening every
  * URL by hand, which matters on a physician's site where a tonally wrong or
  * cliched stock image is worse than a repeated one.
  */
-type Candidate = { url: string; alt: string | null; id: string };
+type Candidate = { url: string; alt: string | null };
 
-/** All candidates for a title, best match first. Empty on any failure. */
-async function candidatesForTitle(title: string): Promise<Candidate[]> {
-  const key = process.env.UNSPLASH_ACCESS_KEY;
-  if (!key) return [];
-  const query = queryFromTitle(title);
-  if (!query) return [];
+/**
+ * Candidates for a post, using the SAME query derivation the live generator
+ * uses. Tries each query in turn and stops at the first that returns results,
+ * so a post whose title yields nothing still falls through to its category
+ * query instead of coming back empty.
+ *
+ * Returns the winning query alongside the candidates so the dry-run table can
+ * show what was actually searched for.
+ */
+async function candidatesForPost(
+  title: string,
+  category: string | null
+): Promise<{ query: string; candidates: Candidate[] }> {
+  const queries = imageQueriesForPost(title, category);
+  let lastQuery = queries[queries.length - 1] ?? "";
 
-  try {
-    const res = await fetch(
-      `https://api.unsplash.com/search/photos?query=${encodeURIComponent(
-        query
-      )}&per_page=${PER_PAGE}&orientation=landscape`,
-      { headers: { Authorization: `Client-ID ${key}` } }
-    );
-    if (!res.ok) {
-      const remaining = res.headers.get("x-ratelimit-remaining");
-      console.error(
-        `  ! Unsplash ${res.status} for "${query}"` +
-          (remaining !== null ? ` (rate limit remaining: ${remaining})` : "")
-      );
-      return [];
+  for (const query of queries) {
+    lastQuery = query;
+    const hits = await searchUnsplash(query, PER_PAGE);
+    await sleep(THROTTLE_MS);
+    if (hits.length > 0) {
+      return { query, candidates: hits.map((h) => ({ url: h.url, alt: h.alt })) };
     }
-    const data = (await res.json()) as {
-      results?: {
-        id?: string;
-        alt_description?: string | null;
-        description?: string | null;
-        urls?: { regular?: string };
-      }[];
-    };
-    return (data.results ?? [])
-      .map((r) => ({
-        url: r.urls?.regular ?? "",
-        // Unsplash leaves alt_description null on some photos; description is
-        // the uploader-written fallback.
-        alt: r.alt_description ?? r.description ?? null,
-        id: r.id ?? "",
-      }))
-      .filter((c) => c.url.length > 0);
-  } catch (err) {
-    console.error(`  ! Unsplash lookup threw for "${title}":`, err);
-    return [];
+    console.warn(`  · "${query}" returned no results; trying the next query.`);
   }
+  return { query: lastQuery, candidates: [] };
 }
 
 type Row = { id: string; title: string; category: string | null; image_url: string | null };
@@ -203,9 +167,7 @@ async function main() {
   const plan: Planned[] = [];
 
   for (const row of rows) {
-    const query = queryFromTitle(row.title);
-    const candidates = await candidatesForTitle(row.title);
-    await sleep(THROTTLE_MS);
+    const { query, candidates } = await candidatesForPost(row.title, row.category);
 
     // Take this post's best-ranked candidate that no earlier post has claimed.
     // Unsplash orders by relevance, so the first unused one is the closest
