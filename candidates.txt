@@ -1,0 +1,611 @@
+Listing candidates for 13 posts (17 queries).
+Pick by number and they will be written into IMAGE_OVERRIDES.
+
+================================================================================================
+#2  The Importance of Your Annual Physical Exam
+     slug    : annual-physical-exam
+     verdict : REJECTED — returned a baby's hand; this is an adult internal medicine practice
+
+     QUERY "physical exam"  [current]
+       [2.a1] photo-1625131135576-97ddbb6f063c
+             person in white long sleeve shirt holding babys hand
+             — Trnava University
+       [2.a2] photo-1725870953863-4ad4db0acfc2
+             A person with a blood pressure device in their hand
+             — Julia Taubitz
+       [2.a3] photo-1758691462123-8a17ae95d203
+             Doctor checks patient's blood pressure with stethoscope
+             — Vitaly Gariev
+       [2.a4] photo-1631815590016-ebce183022ce
+             a woman with a stethoscope listening to a patient
+             — CDC
+       [2.a5] photo-1632054224477-c9cb3aae1b7e
+             a woman holding a cell phone up to her face
+             — CDC
+       [2.a6] photo-1758691462268-fbe66c4f3e28
+             Doctor using stethoscope to examine patient's chest
+             — Vitaly Gariev
+       [2.a7] photo-1632054225741-e071804dfc58
+             a woman pointing at a sign on a door
+             — CDC
+       [2.a8] photo-1764314399496-aa49b4e4d127
+             Woman stands on pressure plate with sensors on-screen interactive game
+             — Neuro Equilibrium
+       [2.a9] photo-1758691463080-30a990ef61bb
+             Doctor examines child with stethoscope in clinic
+             — Vitaly Gariev
+       [2.a10] photo-1758691462445-d03a94aa7656
+             Doctor examines boy's chest with stethoscope while mother watches
+             — Vitaly Gariev
+
+     QUERY "doctor examining adult patient"  [proposed — steers away from pediatric]
+       [2.b1] photo-1581056771107-24ca5f033842
+             A doctor in a white coat talking to a patient in a hospital bed
+             — National Cancer Institute
+       [2.b2] photo-1584516150909-c43483ee7932
+             A doctor in a white coat talking to a patient in a hospital bed
+             — National Cancer Institute
+       [2.b3] photo-1631217871099-88310a909a32
+             woman in white button up long sleeve shirt holding white card
+             — National Cancer Institute
+       [2.b4] photo-1758691462123-8a17ae95d203
+             Doctor checks patient's blood pressure with stethoscope
+             — Vitaly Gariev
+       [2.b5] photo-1631217873436-b0fa88e71f0a
+             man in white button up shirt holding white tablet computer
+             — National Cancer Institute
+       [2.b6] photo-1691139601099-932c01ec198b
+             a woman in a blue scrub suit and a man in a blue scrub suit
+             — CDC
+       [2.b7] photo-1631217872822-1c2546d6b864
+             man in white dress shirt holding black tablet computer
+             — National Cancer Institute
+       [2.b8] photo-1758691461935-202e2ef6b69f
+             Doctor talking to patient in an office
+             — Vitaly Gariev
+       [2.b9] photo-1666214280465-a40313304801
+             a man in a white shirt
+             — Accuray
+       [2.b10] photo-1758691462878-6edc3d3da1be
+             Doctor consults with patient in medical office
+             — Vitaly Gariev
+
+================================================================================================
+#3  Warning Signs of Alzheimer's
+     slug    : warning-signs-alzheimers
+     verdict : BORDERLINE — returned a wheelchair; Alzheimer's is cognitive, not a mobility condition
+
+     QUERY "alzheimers"  [current]
+       [3.a1] photo-1565615833231-e8c91a38a012
+             woman sitting on wheelchair
+             — Steven HWG
+       [3.a2] photo-1559757148-5c350d0d3c56
+             brown brain decor in selective-focus photography
+             — Robina Weermeijer
+       [3.a3] photo-1559757175-5700dde675bc
+             human brain toy
+             — Robina Weermeijer
+       [3.a4] photo-1584515933487-779824d29309
+             person wearing gold wedding band
+             — National Cancer Institute
+       [3.a5] photo-1558284812-399028a33d3b
+             man grayscale photo
+             — Rad Cyrus
+       [3.a6] photo-1559757175-0eb30cd8c063
+             brown brain
+             — Robina Weermeijer
+       [3.a7] photo-1559757175-0828e13882ed
+             brown human organs learning equipment
+             — Robina Weermeijer
+       [3.a8] photo-1743767588082-e754fc9874be
+             Various perspectives of a human brain are displayed
+             — Aakash Dhage
+       [3.a9] photo-1572625259782-94ac200efcdb
+             human anatomy model
+             — David Matos
+       [3.a10] photo-1573511860302-28c524319d2a
+             a neon display of a man's head and brain
+             — Bret Kavanaugh
+
+     QUERY "senior memory care hands"  [proposed — cognitive and caregiving, not mobility]
+       [3.b1] photo-1627752885954-e6956866dcbf
+             Wrinkled hands with a gold ring resting on a black cane handle
+             — Alexas_Fotos
+       [3.b2] photo-1568337339884-18892057f7cf
+             Senior dice on person's palm
+             — Jen Theodore
+       [3.b3] photo-1569245090430-9255968c4877
+             silver-colored ring
+             — أخٌ‌في‌الله
+       [3.b4] photo-1603839834958-ae04ebbb3ec1
+             person wearing gold ring and blue dress
+             — Manny Becerra
+       [3.b5] photo-1616029674726-cdca48fab853
+             person in red long sleeve shirt holding hands
+             — Hunt Han
+       [3.b6] photo-1486382630970-831dcf080d6f
+             persons left hand on white textile
+             — Malin K.
+       [3.b7] photo-1739932885175-5fdaa1bd5989
+             An older person holding the hand of a younger person
+             — Junior REIS
+       [3.b8] photo-1589061434060-a05a5335bfbb
+             person wearing silver round analog watch
+             — Dulcey Lima
+       [3.b9] photo-1775049728396-d641f91f6c62
+             Close-up of elderly hands resting on a blue fabric
+             — Trương Tuyết Ly
+       [3.b10] photo-1630845523933-2d2028d56e41
+             person holding brown wooden stick
+             — Valentin Balan
+
+================================================================================================
+#4  The New Era of Wrinkle Reduction: Botox vs Xeomin in 2026
+     slug    : botox-vs-xeomin-2026
+     verdict : BORDERLINE — returned a spa face mask, which is a different treatment category than neuromodulators
+
+     QUERY "skincare treatment"  [current]
+       [4.a1] photo-1616394584738-fc6e612e71b9
+             woman lying on blue towel with white cream on face
+             — engin akyurt
+       [4.a2] photo-1570172619644-dfd03ed5d881
+             woman receiving facial mask treatment at spa
+             — Rosa Rafael
+       [4.a3] photo-1648203276014-20f97ba1f817
+             a woman with a towel on her head and a jar of cream on her face
+             — Kaeme
+       [4.a4] photo-1586220742613-b731f66f7743
+             A person applying lotion to their hand with a jade roller and gua sha
+             — Content Pixie
+       [4.a5] photo-1728727267814-792db55ce678
+             A woman smiles while she holds her hand to her face
+             — Look Studio
+       [4.a6] photo-1552693673-1bf958298935
+             woman receiving facial skincare treatment
+             — karelys Ruiz
+       [4.a7] photo-1713085085470-fba013d67e65
+             a woman getting a facial peel from a doctor
+             — Look Studio
+       [4.a8] photo-1647004692483-c5d942fe1137
+             a woman getting a facial mask on her face
+             — Soheil Kmp
+       [4.a9] photo-1683579808784-6faf6af67a40
+             a close up of a person getting a botilage treatment
+             — Masum Rahimi
+       [4.a10] photo-1728727242233-0924178c1fb1
+             A woman in a white dress smiling and touching her face
+             — Look Studio
+
+================================================================================================
+#5  Eat Well, Live Well: Simple Nutrition Tips
+     slug    : eat-well-live-well-simple-nutrition-tips-amplehealth
+     verdict : BORDERLINE — proposed the vegetable macro that is now hard-blocked; results below exclude it
+
+     QUERY "nutrition"  [current]
+       [5.a1] photo-1512621776951-a57141f2eefd
+             bowl of vegetable salads
+             — Anna Pelzer
+       [5.a2] photo-1490645935967-10de6ba17061
+             poached egg with vegetables and tomatoes on blue plate
+             — Brooke Lark
+       [5.a3] photo-1535914254981-b5012eebbd15
+             assorted fruits and vegetables on green surface
+             — Vitalii Pavlyshynets
+       [5.a4] photo-1490818387583-1baba5e638af
+             variety of sliced fruits
+             — Brooke Lark
+       [5.a5] photo-1494390248081-4e521a5940db
+             A bowl of yogurt with fruit and a cup of coffee for breakfast
+             — Brooke Lark
+       [5.a6] photo-1547592180-85f173990554
+             vegetable salad
+             — Ella Olsson
+       [5.a7] photo-1493770348161-369560ae357d
+             fruit salad on gray bowls
+             — Brooke Lark
+       [5.a8] photo-1644704170910-a0cdf183649b
+             a woman is holding a bowl of food
+             — Clark Douglas
+       [5.a9] photo-1606787366850-de6330128bfc
+             A large assortment of fresh fruit, eggs, breakfast meats, and donuts on a table
+             — Jimmy Dean
+
+     QUERY "balanced meal vegetables"  [proposed — a plate rather than an abstract]
+       [5.b1] photo-1512621776951-a57141f2eefd
+             bowl of vegetable salads
+             — Anna Pelzer
+       [5.b2] photo-1597362925123-77861d3fbac7
+             a pile of different types of vegetables on a white surface
+             — Randy Fath
+       [5.b3] photo-1490645935967-10de6ba17061
+             poached egg with vegetables and tomatoes on blue plate
+             — Brooke Lark
+       [5.b4] photo-1547592180-85f173990554
+             vegetable salad
+             — Ella Olsson
+       [5.b5] photo-1518843875459-f738682238a6
+             assorted vegetables
+             — Sharon Pittaway
+       [5.b6] photo-1644704170910-a0cdf183649b
+             a woman is holding a bowl of food
+             — Clark Douglas
+       [5.b7] photo-1575218823251-f9d243b6f720
+             red tomatoes
+             — Markus Spiske
+       [5.b8] photo-1641893720944-15c83082f2f5
+             a pile of vegetables sitting on top of a table
+             — Collab Media
+       [5.b9] photo-1583507171283-0d663f8416c8
+             red and green bell pepper and red apple on white plate
+             — Alexander Schimmeck
+       [5.b10] photo-1590779032260-5623d6774f7a
+             assorted vegetables on white ceramic plate
+             — Nathan Dumlao
+
+================================================================================================
+#7  Taming the Tension: Practical Stress Management Tips
+     slug    : practical-stress-management-tips-amplehealth
+     verdict : REJECTED — returned a man at a MacBook; generic office stock with no stress signal
+
+     QUERY "stress"  [current]
+       [7.a1] photo-1456406644174-8ddd4cd52a06
+             man wearing white top using MacBook
+             — Tim Gouw
+       [7.a2] photo-1493836512294-502baa1986e2
+             a man holds his head while sitting on a sofa
+             — Nik Shuliahin 💛💙
+       [7.a3] photo-1541199249251-f713e6145474
+             man covering face with both hands while sitting on bench
+             — Christian Erfurt
+       [7.a4] photo-1516534775068-ba3e7458af70
+             woman biting pencil while sitting on chair in front of computer during daytime
+             — JESHOOTS.COM
+       [7.a5] photo-1620809975674-10b8ff5f8e58
+             stressed woman with head in hands at laptop
+             — Elisa Ventur
+       [7.a6] photo-1613520439218-a69db537ea1d
+             white plastic toy on brown wooden table
+             — engin akyurt
+       [7.a7] photo-1698047681465-a75bcf38379e
+             a woman sitting in front of a laptop computer
+             — Resume Genius
+       [7.a8] photo-1618616191524-a9721186cbe4
+             woman in gray turtleneck long sleeve shirt
+             — Uday Mittal
+       [7.a9] photo-1713947503867-3b27964f042b
+             a man sitting at a desk with his head in his hands
+             — Vitaly Gariev
+       [7.a10] photo-1494459158735-82f8feb14abb
+             man wearing black long-sleeved shirt
+             — Francisco  Moreno
+
+================================================================================================
+#8  Prostate Health 101: What Men Need to Know About Screening
+     slug    : prostate-health-screening-guide-sacramento-carmichael
+     verdict : REJECTED — returned a man holding a smartphone; unrelated to screening
+
+     QUERY "prostate men screening"  [current]
+       [8.a1] photo-1631217873430-6eabf5ee1b0e
+             man in white button up shirt holding black smartphone
+             — National Cancer Institute
+       [8.a2] photo-1739285388427-d6f85d12a8fc
+             Two men sitting at a desk talking to each other
+             — Ninthgrid
+       [8.a3] photo-1711397818267-4d90734b0e47
+             a man and a woman sitting next to each other
+             — Helcim Payments
+       [8.a4] photo-1594730700812-f8971704ff43
+             woman in blue shirt lying on bed
+             — We-Vibe Toys
+       [8.a5] photo-1749128839622-9d75ec5ce5fd
+             A person receives a massage
+             — Viktorya Fedorova
+       [8.a6] photo-1489126430002-d9060545f463
+             man sitting on rolling chair while using smartphone
+             — Marvin Meyer
+       [8.a7] photo-1589279003513-467d320f47eb
+             man in white dress shirt sitting on white chair in front of computer
+             — Johny Georgiadis
+       [8.a8] photo-1581595219618-375a1a48d324
+             person holding black tablet computer
+             — National Cancer Institute
+       [8.a9] photo-1631217872822-1c2546d6b864
+             man in white dress shirt holding black tablet computer
+             — National Cancer Institute
+       [8.a10] photo-1712232420962-605a6b0be026
+             a man laying in a hospital bed with a thermometer in his hand
+             — engin akyurt
+
+================================================================================================
+#9  Bundle Up and Fight Back: Winter Cold & Flu Survival Guide
+     slug    : sacramento-winter-cold-flu-survival-guide
+     verdict : BORDERLINE — returned a mug beside eyeglasses; the tea-and-blanket cliche
+
+     QUERY "cold flu"  [current]
+       [9.a1] photo-1516126491303-6f54240c8491
+             white ceramic mug on white table beside black eyeglasses
+             — Kelly Sikkema
+       [9.a2] photo-1529386317747-0a2a51add902
+             sick man blowing nose into tissue
+             — Brittany Colette
+       [9.a3] photo-1609840112990-4265448268d1
+             white tissue paper in blue box
+             — Diana Polekhina
+       [9.a4] photo-1610021684483-b06bf8ed5a41
+             white and brown bottle beside white tissue box
+             — Diana Polekhina
+       [9.a5] photo-1674049406289-4cdd7eb3c94b
+             a woman sitting in a chair drinking from a cup
+             — Bermix Studio
+       [9.a6] photo-1602932213623-cc17e9541bb4
+             woman in black tank top holding white textile
+             — engin akyurt
+       [9.a7] photo-1606307262607-d6bbfbfe57ee
+             person holding white ceramic bowl with ice cream
+             — Manki Kim
+       [9.a8] photo-1674049406313-abb5511e0111
+             a woman sitting on a couch looking at her cell phone
+             — Bermix Studio
+       [9.a9] photo-1647427017463-ac19f7a245b5
+             a person holding a pack of pills in their hand
+             — Simon Kadula
+       [9.a10] photo-1616408621653-6755190009a3
+             girl in blue white and red plaid shirt hugging brown teddy bear
+             — Vitolda Klein
+
+================================================================================================
+#11  Spot It Early: A Patient's Guide to Skin Cancer Screening
+     slug    : skin-cancer-screening-guide-sacramento-patients
+     verdict : BORDERLINE — returned a magnifying glass; reads as generic 'investigation' stock
+
+     QUERY "skin cancer screening"  [current]
+       [11.a1] photo-1676312754401-d97fe43c2c4b
+             a close up of a person looking through a magnifying glass
+             — Bermix Studio
+       [11.a2] photo-1579154341058-50b75faf8e97
+             woman wearing blue dress
+             — National Cancer Institute
+       [11.a3] photo-1579154341140-5aa3a445d43b
+             female doctor standing near woman patient doing breast cancer screening
+             — National Cancer Institute
+       [11.a4] photo-1678896412871-4b8f6b8a16f9
+             a close up of a person's tanning legs
+             — Óscar Salgado
+       [11.a5] photo-1669979963553-c9b9e347f08a
+             a person making a dough
+             — Anita Austvika
+       [11.a6] photo-1576671081741-c538eafccfff
+             Doctor administers injection to patient in hospital room
+             — National Cancer Institute
+       [11.a7] photo-1597100574998-d6fc90a3a205
+             person in teal long sleeve shirt lying on bed
+             — Jonathan Cooper
+       [11.a8] photo-1748407408885-9b62df0e2527
+             Surgeon is using tools to stitch a wound
+             — Judy Beth Morris
+       [11.a9] photo-1665791566033-83bdc55a42c9
+             a close-up of a person's hands holding a baby's foot
+             — Anthony Wade
+       [11.a10] photo-1746806942799-b4db209e9a6b
+             A medical professional using a laser device on a patient
+             — Judy Beth Morris
+
+================================================================================================
+#12  The Truth About Cholesterol: What Your Numbers Actually Mean
+     slug    : truth-about-cholesterol-what-your-numbers-mean-how-to-improve-them
+     verdict : BORDERLINE — returned a red blood cell render; clinically adjacent but cold for patients
+
+     QUERY "cholesterol"  [current]
+       [12.a1] photo-1638271522560-a247d127deb8
+             A dense cluster of red blood cells floating in a fluid medium
+             — Anirudh
+       [12.a2] photo-1542884841-9f546e727bca
+             person injecting syringe
+             — Hush Naidoo Jade Photography
+       [12.a3] photo-1608475861994-cf7af0f0c1be
+             fried egg on black pan
+             — James Kern
+       [12.a4] photo-1555709237-343b0db365dd
+             human organ toy
+             — Robina Weermeijer
+       [12.a5] photo-1690785884403-2bff26562857
+             a stethoscope with a heart on top of it
+             — Marek Studzinski
+       [12.a6] photo-1660548961854-157e719a0cd8
+             a rock with a design on it
+             — Marek Studzinski
+       [12.a7] photo-1760847664430-ad83b1598ab0
+             Protesters hold sign that says cholesterol do your f'ing job
+             — mana5280
+       [12.a8] photo-1738235404714-2fc68bfdb696
+             A bunch of red balloons floating in the air
+             — Nick Design
+       [12.a9] photo-1693206179326-95a8713d2d0c
+             a stethoscope on top of a pile of red hearts
+             — Marek Studzinski
+       [12.a10] photo-1708433061324-06cfe6d48762
+             a stethoscope with a red heart on top of it
+             — Marek Studzinski
+
+================================================================================================
+#13  Navigating Menopause with Confidence
+     slug    : navigating-menopause-symptoms-treatments-when-to-call-your-doctor
+     verdict : BORDERLINE — returned a generic portrait with no connection to the subject
+
+     QUERY "menopause symptoms treatments"  [current]
+       [13.a1] photo-1553949287-13682b04885f
+             selective focus photo of woman looking up
+             — Anastasia Leonova
+       [13.a2] photo-1713865472921-25487ad6028f
+             a woman laying on top of a bed next to a laptop computer
+             — Look Studio
+       [13.a3] photo-1602932213623-cc17e9541bb4
+             woman in black tank top holding white textile
+             — engin akyurt
+       [13.a4] photo-1522337360788-8b13dee7a37e
+             woman in white long-sleeved shirt standing in front of pink wall
+             — Element5 Digital
+       [13.a5] photo-1665327471842-dc839cd0c915
+             a person with the hands on the face
+             — Daria Trofimova
+       [13.a6] photo-1586436008973-a9ff747dd260
+             white printer paper on brown wooden table
+             — iMattSmart
+       [13.a7] photo-1558713089-d1aad46c19bf
+             woman sitting on sofa holding book
+             — Daily Nouri
+       [13.a8] photo-1539640932125-f1a1fcad819e
+             woman in white top lying on sofa
+             — Andriyko Podilnyk
+       [13.a9] photo-1758600588872-3d340e69650f
+             Woman with eyes closed and wrinkled nose
+             — Vitaly Gariev
+       [13.a10] photo-1631511255797-0960bf061381
+             a woman with red nail polish holding her stomach
+             — Sasun Bughdaryan
+
+================================================================================================
+#14  Strong Bones, Sharp Mind, Steady Steps: Healthy Aging for Adults 65+
+     slug    : healthy-aging-guide-seniors-carmichael-sacramento
+     verdict : REJECTED — "bones aging" keeps returning a skeleton
+
+     QUERY "bones aging"  [current]
+       [14.a1] photo-1530210124550-912dc1381cb8
+             greyscale photography of skeleton
+             — Mathew Schwartz
+       [14.a2] photo-1503429888457-07726f9469ba
+             animal bone photography
+             — Ta Z
+       [14.a3] photo-1598537691125-7e90766e13b4
+             white and black skull on black surface
+             — Chelms Varthoumlien
+       [14.a4] photo-1677948968630-f15495d689e3
+             a close up of a human skull on a black background
+             — Erdei Gréta
+       [14.a5] photo-1631856953892-5882106d5c15
+             a bunch of human skeletons hanging on a wall
+             — Oxana Melis
+       [14.a6] photo-1699679886805-253a303b5a70
+             a close up of a piece of art with a skull on it
+             — Kirk Cameron
+       [14.a7] photo-1631856956537-c5e32cf8b94d
+             a display of human skeleton models in a store
+             — Oxana Melis
+       [14.a8] photo-1677948969439-f75daac6a266
+             a close up of a white object on a black background
+             — Erdei Gréta
+       [14.a9] photo-1677948935094-477c3ed97154
+             a close up of a piece of wood with a black background
+             — Erdei Gréta
+       [14.a10] photo-1743767587874-b6887c888ea1
+             Four views of a human skeleton
+             — Aakash Dhage
+
+     QUERY "senior couple walking"  [proposed — active later life, not anatomy]
+       [14.b1] photo-1625690987114-86f5af994b49
+             An older man and woman with grey hair walking arm in arm down a road
+             — Hector Reyes
+       [14.b2] photo-1647913097114-5975d965a1ff
+             a couple of people that are walking across a bridge
+             — Richard Sagredo
+       [14.b3] photo-1589878607495-6f7c03973ca0
+             man in black suit standing beside woman in white coat
+             — bennett tobias
+       [14.b4] photo-1598286987849-41663a539ff9
+             man and woman walking on the street during daytime
+             — Mark Timberlake
+       [14.b5] photo-1614526261628-295d39158f96
+             woman in black jacket and white pants walking on road during daytime
+             — Wedding Dreamz
+       [14.b6] photo-1647913097155-4859fb131dd6
+             a couple of people that are walking on a bridge
+             — Richard Sagredo
+       [14.b7] photo-1717703620471-0d46e022dadd
+             a couple of people walking across a parking lot
+             — Yalda J
+       [14.b8] photo-1739932907333-e518dc4fb674
+             A man and woman standing next to each other near a tree
+             — Junior REIS
+       [14.b9] photo-1606653392270-607ea8107784
+             man in black jacket and blue denim jeans standing beside woman in beige coat during daytime
+             — ALEXANDRE DINAUT
+       [14.b10] photo-1542397993-0b48089a1a1e
+             man and woman holding hands close-up photography
+             — Lucas Cleutjens
+
+================================================================================================
+#20  Why Your Back Hurts — and What You Can Actually Do About It
+     slug    : why-your-back-hurts-and-what-you-can-do-about-it
+     verdict : REJECTED — returned a woman in a tank top and shorts on a bed; lifestyle stock
+
+     QUERY "back pain"  [current]
+       [20.a1] photo-1618914241652-ff0a094b5a86
+             woman in white tank top and blue denim shorts sitting on bed
+             — Sasun Bughdaryan
+       [20.a2] photo-1539815208687-a0f05e15d601
+             brown and black clipboard with white spinal cord print manual
+             — Joyce Hankins
+       [20.a3] photo-1598555763574-dca77e10427e
+             acupuncture needles inserted into skin
+             — Katherine Hanlon
+       [20.a4] photo-1624716346720-6c96dfd07807
+             white pasta on white paper
+             — CHUTTERSNAP
+       [20.a5] photo-1638604813811-6f3c53deff9c
+             a man with a red ball in his hand
+             — julien Tromeur
+       [20.a6] photo-1650897492414-8661563845a7
+             a person with a light in their head
+             — julien Tromeur
+       [20.a7] photo-1701826510629-051bb954fb8f
+             a woman with her back to the camera
+             — GMB Fitness
+       [20.a8] photo-1628282928936-782950f170d4
+             woman in white sleeveless dress
+             — Sasun Bughdaryan
+       [20.a9] photo-1504279664890-136a82299d1b
+             woman in gray top sitting beside gray tea pot and cup on brown wooden table
+             — Keenan Constance
+       [20.a10] photo-1638604814006-4c17d6de8672
+             a picture of a person with a red ball in their hand
+             — julien Tromeur
+
+================================================================================================
+#21  Eating for Energy: How to Build Balanced Meals
+     slug    : eating-for-energy-balanced-meals-that-keep-you-full
+     verdict : BORDERLINE — returned a person holding cutlery; generic
+
+     QUERY "eating meals"  [current]
+       [21.a1] photo-1625937286074-9ca519d5d9df
+             person holding silver fork and knife
+             — Farhad Ibrahimzade
+       [21.a2] photo-1565895405138-6c3a1555da6a
+             A person eating a salad with cured meat and croutons from a white plate
+             — Louis Hansel
+       [21.a3] photo-1466978913421-dad2ebd01d17
+             People eating burgers, fries, and roasted vegetables at a round table
+             — Dan Gold
+       [21.a4] photo-1547573854-74d2a71d0826
+             white plates with assorted foods
+             — Stefan Vladimirov
+       [21.a5] photo-1565895405137-3ca0cc5088c8
+             person eating vegetable salad
+             — Louis Hansel
+       [21.a6] photo-1565556250012-df4770229a80
+             woman wearing grey shirt
+             — Outcast India
+       [21.a7] photo-1578496780896-7081cc23c111
+             group of person eating indoors
+             — National Cancer Institute
+       [21.a8] photo-1565895405140-6b9830a88c19
+             person eating food
+             — Louis Hansel
+       [21.a9] photo-1520756977789-ebed5554fb70
+             person in front of table with salsa dish
+             — Jasmin Schreiber
+       [21.a10] photo-1515036918611-4b7f32b8406c
+             person eating fish meat
+             — Travis Yewell
+
+================================================================================================
+Reply with tags, e.g. "2.b3, 14.b1, 20.a5".

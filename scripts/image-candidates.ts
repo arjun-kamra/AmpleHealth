@@ -18,7 +18,14 @@
  */
 
 import { readFileSync } from "node:fs";
-import { searchUnsplash } from "../lib/blog.ts";
+import {
+  BLOCKED_PHOTO_IDS,
+  CATEGORY_QUERIES,
+  IMAGE_OVERRIDES,
+  photoIdFromUrl,
+  searchUnsplash,
+} from "../lib/blog.ts";
+import { services } from "../lib/data.ts";
 
 function loadEnvLocal(path = ".env.local") {
   let raw: string;
@@ -172,11 +179,71 @@ const REVIEWS: Review[] = [
   },
 ];
 
+/** The eleven categories the generator can actually emit. */
+const POOL_CATEGORIES = [
+  "Preventive Care", "Chronic Disease", "Heart Health", "Women's Health",
+  "Men's Health", "Nutrition", "Mental Health", "Wellness",
+  "Seasonal Health", "Geriatrics", "Telehealth",
+];
+
+/**
+ * Every photo id already spoken for anywhere on the site. A pool photo must not
+ * appear here, or a new post could duplicate a service page, a category
+ * fallback, or an existing post.
+ */
+function idsAlreadyInUse(): Set<string> {
+  const src = readFileSync("lib/blog.ts", "utf8");
+  const ids = new Set<string>();
+  for (const id of Object.values(IMAGE_OVERRIDES)) ids.add(id);
+  for (const svc of services) ids.add(photoIdFromUrl(svc.stockImage));
+  // CATEGORY_IMAGES and DEFAULT_IMAGE, read from source.
+  const matches = Array.from(
+    src.matchAll(/https:\/\/images\.unsplash\.com\/(photo-[0-9a-z-]+)/g)
+  );
+  for (const m of matches) ids.add(m[1]);
+  BLOCKED_PHOTO_IDS.forEach((id) => ids.add(id));
+  ids.delete("");
+  return ids;
+}
+
+/** Surfaces pool candidates per category, excluding anything already in use. */
+async function listCategoryPools() {
+  const taken = idsAlreadyInUse();
+  console.log(`Excluding ${taken.size} photo ids already used by posts, service`);
+  console.log("pages, category fallbacks or the blocklist.\n");
+  console.log("Pick 5 per category. Reply e.g. \"Nutrition: 2,4,5,7,9\".\n");
+
+  for (const category of POOL_CATEGORIES) {
+    const query = CATEGORY_QUERIES[category];
+    const hits = await searchUnsplash(query, 30);
+    await sleep(1200);
+
+    const fresh = hits.filter((h) => !taken.has(photoIdFromUrl(h.url)));
+    console.log("=".repeat(96));
+    console.log(`${category}   — query "${query}"`);
+    console.log(`   ${hits.length} results, ${fresh.length} not already in use`);
+    if (fresh.length < 5) {
+      console.log("   !! fewer than 5 usable candidates — this category needs a second query");
+    }
+    fresh.slice(0, 12).forEach((h, i) => {
+      console.log(`   ${String(i + 1).padStart(2)}. ${photoIdFromUrl(h.url)}`);
+      console.log(`       ${h.alt ?? "(no alt_description)"}`);
+      console.log(`       — ${h.photographer ?? "unknown"}`);
+    });
+    console.log();
+  }
+}
+
 async function main() {
   loadEnvLocal();
   if (!process.env.UNSPLASH_ACCESS_KEY) {
     console.error("UNSPLASH_ACCESS_KEY is not set.");
     process.exit(1);
+  }
+
+  if (process.argv.includes("--categories")) {
+    await listCategoryPools();
+    return;
   }
 
   const totalQueries = REVIEWS.reduce((n, r) => n + r.queries.length, 0);

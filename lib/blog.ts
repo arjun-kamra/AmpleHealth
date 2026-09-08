@@ -175,7 +175,7 @@ export const IMAGE_OVERRIDES: Record<string, string> = {
  * filtered out of every search result rather than merely avoided, so no future
  * query can reintroduce it.
  */
-const BLOCKED_PHOTO_IDS = new Set<string>([
+export const BLOCKED_PHOTO_IDS = new Set<string>([
   "photo-1498837167922-ddd27525d352",
   // A protest placard carrying profanity, returned in the top ten for the
   // query "cholesterol". Harmless in a review list, unacceptable if the Monday
@@ -305,7 +305,7 @@ const CLINICAL_TERMS = new Set([
  * posts, so a query is never empty — three posts previously searched for things
  * like "first telehealth visit amplehealth prepare" and got zero results.
  */
-const CATEGORY_QUERIES: Record<string, string> = {
+export const CATEGORY_QUERIES: Record<string, string> = {
   "Preventive Care": "preventive medicine checkup",
   Prevention: "doctor stethoscope checkup",
   "Chronic Disease": "chronic condition monitoring",
