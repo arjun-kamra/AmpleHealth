@@ -27,12 +27,16 @@ const CATEGORY_IMAGES: Record<string, string> = {
   "Chronic Disease": "https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=800",
   // physician at a patient's bedside (legacy category name)
   "Chronic Care":    "https://images.unsplash.com/photo-1581056771107-24ca5f033842?w=800",
-  // vegetables and pulses — the diet side of lipid management
-  "Heart Health":    "https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=800",
+  // a clean clinical stethoscope. Replaced photo-1498837167922, which is now on
+  // the hard blocklist: it was simultaneously this category image, the Obesity
+  // and Metabolic Wellness service hero, and the image on two posts.
+  "Heart Health":    "https://images.unsplash.com/photo-1655313719493-16ebe4906441?w=800",
   // strength and conditioning
   "Women's Health":  "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800",
-  // clinician reviewing results at a workstation
-  "Men's Health":    "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800",
+  // a clinician with a tablet. Replaced photo-1576091160550, which is now the
+  // reviewed image for the telehealth-for-everyone post — a fallback must never
+  // be able to duplicate a post.
+  "Men's Health":    "https://images.unsplash.com/photo-1631217872822-1c2546d6b864?w=800",
   // a prepared, balanced meal
   Nutrition:         "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800",
   // meditation at sunrise
@@ -79,35 +83,87 @@ export function imageForCategory(category: string | null): string {
  * size and crop stay under our control.
  */
 export const IMAGE_OVERRIDES: Record<string, string> = {
-  // Reviewed and approved.
+  // ── Telehealth ──
   "telehealth-for-everyone": "photo-1576091160550-2173dba999ef",
-  "understanding-high-blood-pressure-what-every-patient-needs-to-know":
-    "photo-1725870953863-4ad4db0acfc2",
-  "why-youre-exhausted-but-cant-sleep-common-sleep-disorders-guide":
-    "photo-1531353826977-0941b4779a1c",
-  "beyond-statins-newer-cholesterol-treatments-amplehealth":
-    "photo-1587854692152-cbe660dbde88",
-  "thyroid-health-hypothyroidism-hyperthyroidism-sacramento":
-    "photo-1769029174099-30d43d3e86b1",
-  "depression-screening-annual-visit-ample-health":
-    "photo-1493836512294-502baa1986e2",
-  "what-happens-at-a-wellness-visit-why-it-matters":
-    "photo-1603398938378-e54eab446dde",
   "preparing-for-your-first-telehealth-appointment-amplehealth":
     "photo-1758691462743-f9fc9e430d39",
 
-  // Awaiting a reviewed pick — these 13 currently fall through to search:
-  //   annual-physical-exam, warning-signs-alzheimers, botox-vs-xeomin-2026,
-  //   eat-well-live-well-simple-nutrition-tips-amplehealth,
-  //   practical-stress-management-tips-amplehealth,
-  //   prostate-health-screening-guide-sacramento-carmichael,
-  //   sacramento-winter-cold-flu-survival-guide,
-  //   skin-cancer-screening-guide-sacramento-patients,
-  //   truth-about-cholesterol-what-your-numbers-mean-how-to-improve-them,
-  //   navigating-menopause-symptoms-treatments-when-to-call-your-doctor,
-  //   healthy-aging-guide-seniors-carmichael-sacramento,
-  //   why-your-back-hurts-and-what-you-can-do-about-it,
-  //   eating-for-energy-balanced-meals-that-keep-you-full
+  // ── Preventive / general ──
+  // "Doctor talking to patient in an office". The title-derived query returned
+  // an infant's hand; "doctor examining adult patient" is what found this.
+  "annual-physical-exam": "photo-1758691461935-202e2ef6b69f",
+  "what-happens-at-a-wellness-visit-why-it-matters":
+    "photo-1603398938378-e54eab446dde",
+  // "a close up of a person's tanning legs" — sun exposure, the actual risk
+  // factor, rather than the magnifying glass the search preferred.
+  "skin-cancer-screening-guide-sacramento-patients":
+    "photo-1678896412871-4b8f6b8a16f9",
+
+  // ── Chronic disease ──
+  "understanding-high-blood-pressure-what-every-patient-needs-to-know":
+    "photo-1725870953863-4ad4db0acfc2",
+  "thyroid-health-hypothyroidism-hyperthyroidism-sacramento":
+    "photo-1769029174099-30d43d3e86b1",
+
+  // ── Heart health ──
+  // "a stethoscope with a heart on top of it" — warmer than the red blood cell
+  // render the query returned, and safely clear of 12.a7, which is blocked.
+  "truth-about-cholesterol-what-your-numbers-mean-how-to-improve-them":
+    "photo-1690785884403-2bff26562857",
+  "beyond-statins-newer-cholesterol-treatments-amplehealth":
+    "photo-1587854692152-cbe660dbde88",
+
+  // ── Mental health / wellness ──
+  // "man covering face with both hands while sitting on bench" — legible as
+  // distress without the laptop-at-a-desk framing of the top results.
+  "practical-stress-management-tips-amplehealth": "photo-1541199249251-f713e6145474",
+  "depression-screening-annual-visit-ample-health":
+    "photo-1493836512294-502baa1986e2",
+  "why-youre-exhausted-but-cant-sleep-common-sleep-disorders-guide":
+    "photo-1531353826977-0941b4779a1c",
+  // "clipboard with a spinal cord print manual" — anatomical rather than the
+  // lifestyle stock that dominates Unsplash's results for "back pain".
+  "why-your-back-hurts-and-what-you-can-do-about-it":
+    "photo-1539815208687-a0f05e15d601",
+
+  // ── Geriatrics ──
+  // "an older person holding the hand of a younger person". The query
+  // "alzheimers" returned a wheelchair, which misreads a cognitive condition
+  // as a mobility one.
+  "warning-signs-alzheimers": "photo-1739932885175-5fdaa1bd5989",
+  // "an older man and woman with grey hair walking arm in arm down a road".
+  // Every one of the ten results for "bones aging" was a skeleton or a skull.
+  "healthy-aging-guide-seniors-carmichael-sacramento":
+    "photo-1625690987114-86f5af994b49",
+
+  // ── Nutrition ──
+  "eat-well-live-well-simple-nutrition-tips-amplehealth":
+    "photo-1590779032260-5623d6774f7a",
+  "eating-for-energy-balanced-meals-that-keep-you-full":
+    "photo-1565895405137-3ca0cc5088c8",
+
+  // ── Seasonal ──
+  "sacramento-winter-cold-flu-survival-guide": "photo-1529386317747-0a2a51add902",
+
+  // ── Aesthetics ──
+  // "a woman getting a facial peel from a doctor" — clinician-administered,
+  // which is closer to injectables than the spa masks around it.
+  "botox-vs-xeomin-2026": "photo-1713085085470-fba013d67e65",
+
+  // ── Men's health ──
+  // WEAK PICK, REVISIT. "two men sitting at a desk talking to each other."
+  // Unsplash has essentially nothing for prostate screening — the full top ten
+  // for "prostate men screening" were smartphones, tablets, a massage and a
+  // woman on a bed. This was the least bad of a bad set rather than a good
+  // match. Worth replacing with purchased stock or a real practice photo.
+  "prostate-health-screening-guide-sacramento-carmichael":
+    "photo-1739285388427-d6f85d12a8fc",
+
+  // ── Women's health ──
+  // "woman sitting on sofa holding book" — calm and non-clinical; the set had
+  // no photograph that actually depicts menopause care.
+  "navigating-menopause-symptoms-treatments-when-to-call-your-doctor":
+    "photo-1558713089-d1aad46c19bf",
 };
 
 /**
@@ -121,6 +177,10 @@ export const IMAGE_OVERRIDES: Record<string, string> = {
  */
 const BLOCKED_PHOTO_IDS = new Set<string>([
   "photo-1498837167922-ddd27525d352",
+  // A protest placard carrying profanity, returned in the top ten for the
+  // query "cholesterol". Harmless in a review list, unacceptable if the Monday
+  // cron ever picked it unattended.
+  "photo-1760847664430-ad83b1598ab0",
 ]);
 
 /** The Unsplash photo id inside a URL, or "" if there isn't one. */
