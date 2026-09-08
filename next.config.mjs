@@ -7,9 +7,10 @@ const nextConfig = {
       { protocol: "https", hostname: "images.unsplash.com" },
     ],
   },
-  // The six patient forms moved from the pdf-lib/Resend pages to Jotform
-  // embeds under new slugs. Redirects run ahead of filesystem routes, so these
-  // also take the old pages out of service without deleting them.
+  // The six patient forms moved from the old custom-React/Resend pages to
+  // Jotform embeds under new slugs. Those old pages have since been deleted
+  // along with the pipeline behind them, so these redirects are now the only
+  // thing keeping the original URLs alive for existing links and bookmarks.
   async redirects() {
     return [
       {
