@@ -61,6 +61,86 @@ export function imageForCategory(category: string | null): string {
   return CATEGORY_IMAGES[category ?? ""] ?? DEFAULT_IMAGE;
 }
 
+// ── Hand-picked images ─────────────────────────────────────────────────────
+
+/**
+ * Photos chosen by a human for a specific post, keyed by slug.
+ *
+ * Automated Unsplash selection tops out around 60% usable on clinical subjects:
+ * the queries are right, but the library answers "back pain" with lifestyle
+ * stock and "bones aging" with a skeleton. Rather than keep tuning queries
+ * against that ceiling, a reviewed pick is recorded here and wins over anything
+ * the search returns.
+ *
+ * The backfill consults this FIRST and only searches when a slug is absent, so
+ * these survive re-runs and any future backfill.
+ *
+ * Values are Unsplash photo ids ("photo-<id>"), not full URLs, so the rendered
+ * size and crop stay under our control.
+ */
+export const IMAGE_OVERRIDES: Record<string, string> = {
+  // Reviewed and approved.
+  "telehealth-for-everyone": "photo-1576091160550-2173dba999ef",
+  "understanding-high-blood-pressure-what-every-patient-needs-to-know":
+    "photo-1725870953863-4ad4db0acfc2",
+  "why-youre-exhausted-but-cant-sleep-common-sleep-disorders-guide":
+    "photo-1531353826977-0941b4779a1c",
+  "beyond-statins-newer-cholesterol-treatments-amplehealth":
+    "photo-1587854692152-cbe660dbde88",
+  "thyroid-health-hypothyroidism-hyperthyroidism-sacramento":
+    "photo-1769029174099-30d43d3e86b1",
+  "depression-screening-annual-visit-ample-health":
+    "photo-1493836512294-502baa1986e2",
+  "what-happens-at-a-wellness-visit-why-it-matters":
+    "photo-1603398938378-e54eab446dde",
+  "preparing-for-your-first-telehealth-appointment-amplehealth":
+    "photo-1758691462743-f9fc9e430d39",
+
+  // Awaiting a reviewed pick — these 13 currently fall through to search:
+  //   annual-physical-exam, warning-signs-alzheimers, botox-vs-xeomin-2026,
+  //   eat-well-live-well-simple-nutrition-tips-amplehealth,
+  //   practical-stress-management-tips-amplehealth,
+  //   prostate-health-screening-guide-sacramento-carmichael,
+  //   sacramento-winter-cold-flu-survival-guide,
+  //   skin-cancer-screening-guide-sacramento-patients,
+  //   truth-about-cholesterol-what-your-numbers-mean-how-to-improve-them,
+  //   navigating-menopause-symptoms-treatments-when-to-call-your-doctor,
+  //   healthy-aging-guide-seniors-carmichael-sacramento,
+  //   why-your-back-hurts-and-what-you-can-do-about-it,
+  //   eating-for-energy-balanced-meals-that-keep-you-full
+};
+
+/**
+ * Photos barred from ever being selected again.
+ *
+ * photo-1498837167922 is the vegetable macro that started this: it was the
+ * hardcoded "Heart Health" category image, the Obesity and Metabolic Wellness
+ * service hero, and the image on two separate blog posts simultaneously. It is
+ * filtered out of every search result rather than merely avoided, so no future
+ * query can reintroduce it.
+ */
+const BLOCKED_PHOTO_IDS = new Set<string>([
+  "photo-1498837167922-ddd27525d352",
+]);
+
+/** The Unsplash photo id inside a URL, or "" if there isn't one. */
+export function photoIdFromUrl(url: string | null): string {
+  if (!url) return "";
+  return url.match(/photo-[0-9a-z]+-[0-9a-z]+/i)?.[0] ?? "";
+}
+
+/** A rendered URL for a bare Unsplash photo id. */
+export function unsplashUrlForId(photoId: string): string {
+  return `https://images.unsplash.com/${photoId}?q=80&w=1200&auto=format&fit=crop`;
+}
+
+/** The reviewed pick for a post, as a ready-to-store URL, or null. */
+export function overrideImageForSlug(slug: string | null): string | null {
+  if (!slug) return null;
+  const id = IMAGE_OVERRIDES[slug];
+  return id ? unsplashUrlForId(id) : null;
+}
+
 // ── Image search queries ───────────────────────────────────────────────────
 // A post title is a headline, not a description of a photograph. Feeding one
 // to Unsplash verbatim matches its rhetoric instead of its subject: "Warning
@@ -270,6 +350,8 @@ export type UnsplashCandidate = {
   url: string;
   /** Unsplash's own description of what the photo depicts, when it has one. */
   alt: string | null;
+  /** Photographer, for attribution during review. */
+  photographer: string | null;
 };
 
 /**
@@ -310,14 +392,16 @@ export async function searchUnsplash(
         alt_description?: string | null;
         description?: string | null;
         urls?: { regular?: string };
+        user?: { name?: string | null };
       }[];
     };
     return (data.results ?? [])
       .map((r) => ({
         url: r.urls?.regular ?? "",
         alt: r.alt_description ?? r.description ?? null,
+        photographer: r.user?.name ?? null,
       }))
-      .filter((c) => c.url.length > 0);
+      .filter((c) => c.url.length > 0 && !BLOCKED_PHOTO_IDS.has(photoIdFromUrl(c.url)));
   } catch (err) {
     console.warn(`searchUnsplash: lookup failed for "${query}"`, err);
     return [];

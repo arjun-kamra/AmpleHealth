@@ -24,7 +24,13 @@
 
 import { readFileSync } from "node:fs";
 import { createClient } from "@supabase/supabase-js";
-import { imageForCategory, imageQueriesForPost, searchUnsplash } from "../lib/blog.ts";
+import {
+  imageForCategory,
+  imageQueriesForPost,
+  overrideImageForSlug,
+  photoIdFromUrl,
+  searchUnsplash,
+} from "../lib/blog.ts";
 import { services } from "../lib/data.ts";
 
 const COMMIT = process.argv.includes("--commit");
@@ -61,20 +67,9 @@ function loadEnvLocal(path = ".env.local") {
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-/**
- * The Unsplash photo id inside an images.unsplash.com URL.
- *
- * Uniqueness MUST be tracked on this, not on the whole URL. The same photograph
- * is served under different query strings depending on where the URL came from
- * — the API returns "...?crop=entropy&cs=tinysrgb&ixid=..." while CATEGORY_IMAGES
- * hardcodes "...?w=800". Comparing full URLs reports two posts as distinct while
- * they display the identical picture, which is the exact bug this backfill is
- * supposed to eliminate.
- */
-function photoIdOf(url: string | null): string {
-  if (!url) return "";
-  return url.match(/photo-[0-9a-z]+-[0-9a-z]+/i)?.[0] ?? url;
-}
+/** Uniqueness is tracked on the photo id — see photoIdFromUrl in lib/blog.ts
+ *  for why comparing whole URLs silently reports duplicates as distinct. */
+const photoIdOf = (url: string | null): string => photoIdFromUrl(url) || (url ?? "");
 
 /**
  * A candidate photo. alt_description is Unsplash's own description of what the
@@ -112,7 +107,13 @@ async function candidatesForPost(
   return { query: lastQuery, candidates: [] };
 }
 
-type Row = { id: string; title: string; category: string | null; image_url: string | null };
+type Row = {
+  id: string;
+  slug: string;
+  title: string;
+  category: string | null;
+  image_url: string | null;
+};
 
 async function main() {
   loadEnvLocal();
@@ -136,7 +137,7 @@ async function main() {
 
   const { data, error } = await db
     .from("blog_posts")
-    .select("id, title, category, image_url")
+    .select("id, slug, title, category, image_url")
     .order("published_at", { ascending: true });
 
   if (error) {
@@ -167,6 +168,21 @@ async function main() {
   const plan: Planned[] = [];
 
   for (const row of rows) {
+    // A reviewed pick always wins; only search when there isn't one. This is
+    // also what keeps hand-chosen images stable across re-runs.
+    const override = overrideImageForSlug(row.slug);
+    if (override) {
+      used.add(photoIdOf(override));
+      plan.push({
+        row,
+        query: "(override)",
+        next: override,
+        alt: "hand-picked — see IMAGE_OVERRIDES in lib/blog.ts",
+        note: "override",
+      });
+      continue;
+    }
+
     const { query, candidates } = await candidatesForPost(row.title, row.category);
 
     // Take this post's best-ranked candidate that no earlier post has claimed.
