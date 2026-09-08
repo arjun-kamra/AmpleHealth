@@ -744,6 +744,15 @@ export type Provider = {
   tone: string;
   /** Optional vertical (9:16) intro clip served from /public/team/. */
   video?: string;
+  /**
+   * Poster for `video`, generated from the clip's own first frame by
+   * scripts/make-video-posters.ts. Named explicitly rather than inferred from
+   * the slug because <video poster> has no fallback: a conventional path would
+   * silently 404 into an empty box for any clip whose poster hadn't been
+   * generated. Omit it and the page falls back to the static portrait, which is
+   * what produced the outfit jump on Dr. Kamra's page.
+   */
+  videoPoster?: string;
 };
 
 export const providers: Provider[] = [
@@ -771,6 +780,7 @@ export const providers: Provider[] = [
     ],
     tone: "#1B75BB",
     video: "/team/dheeraj-kamra.mp4",
+    videoPoster: "/team/dheeraj-kamra-poster.jpg",
   },
   {
     slug: "mythli-nagaraj",

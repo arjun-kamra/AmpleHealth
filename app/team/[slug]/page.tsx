@@ -58,13 +58,18 @@ export default function ProviderPage({ params }: { params: { slug: string } }) {
             <Reveal delay={0.05}>
               {provider.video ? (
                 // Vertical 9:16 clip — narrower than the 3:4 portraits so it
-                // doesn't dominate the hero. Poster falls back to the photo.
+                // doesn't dominate the hero. The poster is the clip's own first
+                // frame, so the still and the opening frame are the same image;
+                // using the static portrait here made the outfit and the
+                // framing visibly jump the moment the video rendered. Falls
+                // back to the portrait only for a clip with no generated
+                // poster.
                 <video
                   controls
                   loop
                   playsInline
                   preload="metadata"
-                  poster={`/team/${provider.slug}.jpg`}
+                  poster={provider.videoPoster ?? `/team/${provider.slug}.jpg`}
                   src={provider.video}
                   aria-label={`Introduction from ${provider.name}`}
                   className="w-full max-w-[280px] rounded-2xl bg-ink/5 object-cover"
