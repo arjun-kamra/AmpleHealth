@@ -214,8 +214,22 @@ async function generateAndStore() {
   // Prefer a photo matched to this post's actual title; imageForTitle returns
   // null (never throws) if UNSPLASH_ACCESS_KEY is unset or the API misbehaves,
   // in which case the per-category image below still ships a working image.
-  const imageUrl =
-    (await imageForTitle(parsed.title)) ?? imageForCategory(parsed.category);
+  const titleImage = await imageForTitle(parsed.title);
+  if (!titleImage) {
+    // Loud on purpose. This is the failure that silently gave every post the
+    // same photo: imageForTitle returns null when UNSPLASH_ACCESS_KEY is unset
+    // just as readily as when the API errors, and the category fallback hides
+    // it by still producing a valid-looking image. Surfacing it as a warning
+    // means it shows up in Vercel runtime logs instead of going unnoticed.
+    console.warn(
+      `generate-blog: imageForTitle returned null for "${parsed.title}" — ` +
+        `falling back to the shared "${parsed.category}" category image. ` +
+        `UNSPLASH_ACCESS_KEY is ${
+          process.env.UNSPLASH_ACCESS_KEY ? "set" : "NOT SET"
+        }.`
+    );
+  }
+  const imageUrl = titleImage ?? imageForCategory(parsed.category);
 
   const record = {
     title: parsed.title,
