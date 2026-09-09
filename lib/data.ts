@@ -87,6 +87,12 @@ export type ServiceSection = {
   footnote?: string[];
 };
 
+/** A run of body text; `href` renders it as an inline link. */
+export type ServiceTextRun = { text: string; href?: string };
+
+/** A body paragraph — either plain text or runs, some of which are links. */
+export type ServiceParagraph = string | ServiceTextRun[];
+
 export type Service = {
   slug: string;
   title: string;
@@ -97,7 +103,7 @@ export type Service = {
   /** STOCK PLACEHOLDER — Unsplash hero image; replace with real practice photo. */
   stockImage: string;
   /** Overview paragraphs shown under "What to expect". */
-  body?: string[];
+  body?: ServiceParagraph[];
   /** Further detail sections rendered below the overview. */
   sections?: ServiceSection[];
 };
@@ -105,11 +111,11 @@ export type Service = {
 export const services: Service[] = [
   {
     slug: "family-medicine",
-    title: "Family Medicine",
+    title: "Internal Medicine",
     summary:
       "Comprehensive primary care for every stage of life, built on long-term relationships.",
     description:
-      "From annual physicals and chronic disease management to acute illness and preventive screenings, our family medicine practice cares for patients of all ages. We focus on continuity — knowing your history so we can make the right call when it matters.",
+      "From annual physicals and chronic disease management to acute illness and preventive screenings, our internal and family medicine practice cares for patients of all ages. We focus on continuity — knowing your history so we can make the right call when it matters.",
     highlights: [
       "Annual wellness & physical exams",
       "Chronic condition management (diabetes, hypertension, cholesterol)",
@@ -117,9 +123,17 @@ export const services: Service[] = [
       "Preventive screenings & immunizations",
     ],
     body: [
-      "Internal medicine is the practice of understanding how the adult body works as a whole. We are trained to manage both the ordinary and the genuinely complicated — and, more to the point, to think carefully when symptoms overlap, when the diagnosis is not obvious, or when the picture does not fit the textbook.",
+      [
+        {
+          text: "Internal medicine is the practice of understanding how the adult body works as a whole.",
+          href: "https://www.acponline.org/about-acp/about-internal-medicine",
+        },
+        {
+          text: " We are trained to manage both the ordinary and the genuinely complicated — and, more to the point, to think carefully when symptoms overlap, when the diagnosis is not obvious, or when the picture does not fit the textbook.",
+        },
+      ],
       "That ability to connect findings across systems is what makes an internist useful to you. Most of the people we care for are managing more than one thing at once, and someone has to hold the whole picture and coordinate the long-term plan rather than treating each problem in isolation.",
-      "The name comes from the German innere medizin, a nineteenth-century term for a more scientific, patient-centered approach to adult medicine. That is still the idea: current evidence, applied with judgment, to one person at a time.",
+      "The term Internal Medicine comes from the German phrase Innere Medizin, which became popular in the late 19th century. It described a new approach to medicine that combined scientific knowledge and laboratory discoveries with thoughtful, hands-on care of patients—an approach that remains at the heart of internal medicine today. That is still the idea: current evidence, applied with judgment, to one person at a time.",
     ],
     sections: [
       {

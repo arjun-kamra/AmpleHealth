@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -5,7 +6,38 @@ import { notFound } from "next/navigation";
 import CTABand from "@/components/CTABand";
 import { Reveal } from "@/components/Motion";
 import { ArrowRight, Check, Download } from "@/components/Icons";
-import { services } from "@/lib/data";
+import { services, type ServiceParagraph } from "@/lib/data";
+
+/** Plain text of a paragraph, used for React keys. */
+function paragraphKey(para: ServiceParagraph) {
+  const text =
+    typeof para === "string" ? para : para.map((run) => run.text).join("");
+  return text.slice(0, 40);
+}
+
+/** Renders a body paragraph, which may contain inline links. */
+function BodyParagraph({ para }: { para: ServiceParagraph }) {
+  if (typeof para === "string") return <p>{para}</p>;
+  return (
+    <p>
+      {para.map((run) =>
+        run.href ? (
+          <a
+            key={run.text}
+            href={run.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-underline inline underline decoration-brand/40 underline-offset-4 transition-colors hover:decoration-brand"
+          >
+            {run.text}
+          </a>
+        ) : (
+          <Fragment key={run.text}>{run.text}</Fragment>
+        ),
+      )}
+    </p>
+  );
+}
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -98,7 +130,7 @@ export default function ServiceDetailPage({
             <div className="mt-5 space-y-4 text-pretty text-lg leading-relaxed text-ink-muted">
               <p>{service.description}</p>
               {service.body?.map((para) => (
-                <p key={para.slice(0, 40)}>{para}</p>
+                <BodyParagraph key={paragraphKey(para)} para={para} />
               ))}
             </div>
 
