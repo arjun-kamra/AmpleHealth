@@ -4,12 +4,12 @@ import PageHero from "@/components/PageHero";
 import CTABand from "@/components/CTABand";
 import { Stagger, StaggerItem } from "@/components/Motion";
 import { ArrowRight } from "@/components/Icons";
-import { services } from "@/lib/data";
+import { paragraphText, services } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Family medicine, women's health, geriatrics, telehealth, hospital care, post-acute care, and Botox & fillers — the full range of AmpleHealth services.",
+    "Internal medicine, women's health, geriatrics, telehealth, hospital care, post-acute care, and Botox & fillers — the full range of AmpleHealth services.",
 };
 
 export default function ServicesPage() {
@@ -42,7 +42,7 @@ export default function ServicesPage() {
                 </span>
                 <h2 className="mt-5 text-2xl font-semibold">{s.title}</h2>
                 <p className="mt-2 flex-1 text-pretty text-sm leading-relaxed text-ink-muted">
-                  {s.summary}
+                  {paragraphText(s.summary)}
                 </p>
                 <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-brand">
                   Learn more

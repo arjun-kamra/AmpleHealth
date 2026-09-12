@@ -6,20 +6,19 @@ import { notFound } from "next/navigation";
 import CTABand from "@/components/CTABand";
 import { Reveal } from "@/components/Motion";
 import { ArrowRight, Check, Download } from "@/components/Icons";
-import { services, type ServiceParagraph } from "@/lib/data";
+import OutcomeChart from "@/components/OutcomeCharts";
+import { paragraphText, services, type ServiceParagraph } from "@/lib/data";
 
 /** Plain text of a paragraph, used for React keys. */
 function paragraphKey(para: ServiceParagraph) {
-  const text =
-    typeof para === "string" ? para : para.map((run) => run.text).join("");
-  return text.slice(0, 40);
+  return paragraphText(para).slice(0, 40);
 }
 
-/** Renders a body paragraph, which may contain inline links. */
-function BodyParagraph({ para }: { para: ServiceParagraph }) {
-  if (typeof para === "string") return <p>{para}</p>;
+/** Renders the runs of a paragraph inline, linking any run with an href. */
+function Runs({ para }: { para: ServiceParagraph }) {
+  if (typeof para === "string") return <>{para}</>;
   return (
-    <p>
+    <>
       {para.map((run) =>
         run.href ? (
           <a
@@ -35,6 +34,15 @@ function BodyParagraph({ para }: { para: ServiceParagraph }) {
           <Fragment key={run.text}>{run.text}</Fragment>
         ),
       )}
+    </>
+  );
+}
+
+/** Renders a body paragraph, which may contain inline links. */
+function BodyParagraph({ para }: { para: ServiceParagraph }) {
+  return (
+    <p>
+      <Runs para={para} />
     </p>
   );
 }
@@ -52,7 +60,7 @@ export function generateMetadata({
   if (!service) return { title: "Service not found" };
   return {
     title: service.title,
-    description: service.summary,
+    description: paragraphText(service.summary),
   };
 }
 
@@ -97,7 +105,7 @@ export default function ServiceDetailPage({
                 {service.title}
               </h1>
               <p className="mt-5 max-w-xl text-pretty text-lg leading-relaxed text-ink-muted">
-                {service.summary}
+                <Runs para={service.summary} />
               </p>
             </Reveal>
             <Reveal delay={0.12}>
@@ -128,7 +136,7 @@ export default function ServiceDetailPage({
               What to expect
             </h2>
             <div className="mt-5 space-y-4 text-pretty text-lg leading-relaxed text-ink-muted">
-              <p>{service.description}</p>
+              <BodyParagraph para={service.description} />
               {service.body?.map((para) => (
                 <BodyParagraph key={paragraphKey(para)} para={para} />
               ))}
@@ -151,14 +159,16 @@ export default function ServiceDetailPage({
               </p>
               <ul className="mt-5 space-y-4">
                 {service.highlights.map((h) => (
-                  <li key={h} className="flex items-start gap-3">
+                  <li key={paragraphKey(h)} className="flex items-start gap-3">
                     <span
                       className="mt-0.5 grid h-5 w-5 flex-none place-items-center rounded-full text-white"
                       style={{ backgroundColor: service.tone }}
                     >
                       <Check className="h-3.5 w-3.5" />
                     </span>
-                    <span className="text-ink-soft">{h}</span>
+                    <span className="text-ink-soft">
+                      <Runs para={h} />
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -178,10 +188,18 @@ export default function ServiceDetailPage({
                     {section.heading}
                   </h2>
 
+                  {section.figures?.length ? (
+                    <div className="mt-8 grid gap-5 lg:grid-cols-2">
+                      {section.figures.map((figure) => (
+                        <OutcomeChart key={figure} figure={figure} />
+                      ))}
+                    </div>
+                  ) : null}
+
                   {section.body?.length ? (
                     <div className="mt-5 max-w-3xl space-y-4 text-pretty text-lg leading-relaxed text-ink-muted">
                       {section.body.map((para) => (
-                        <p key={para.slice(0, 40)}>{para}</p>
+                        <BodyParagraph key={paragraphKey(para)} para={para} />
                       ))}
                     </div>
                   ) : null}

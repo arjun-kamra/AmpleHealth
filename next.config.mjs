@@ -43,6 +43,12 @@ const nextConfig = {
         destination: "/forms/authorization-for-release",
         permanent: true,
       },
+      // The primary-care service was renamed from Family Medicine to Internal Medicine.
+      {
+        source: "/services/family-medicine",
+        destination: "/services/internal-medicine",
+        permanent: true,
+      },
       // Leftover PatientPop location URLs, still referenced by Google Ads, old backlinks, and the GMB listings.
       {
         source: "/location/carmichael-ca",

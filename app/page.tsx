@@ -13,6 +13,7 @@ import {
   providers,
   reviews,
   services,
+  paragraphText,
 } from "@/lib/data";
 
 export default function HomePage() {
@@ -60,7 +61,7 @@ export default function HomePage() {
                 </span>
                 <h3 className="mt-5 text-2xl font-semibold">{s.title}</h3>
                 <p className="mt-2 flex-1 text-pretty text-sm leading-relaxed text-ink-muted">
-                  {s.summary}
+                  {paragraphText(s.summary)}
                 </p>
                 <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-brand">
                   Learn more

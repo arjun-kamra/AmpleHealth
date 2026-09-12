@@ -74,10 +74,15 @@ export const navLinks: NavLink[] = [
   { label: "Contact", href: "/contact" },
 ];
 
+/** Outcome charts that a section can embed; see components/OutcomeCharts.tsx. */
+export type ServiceFigure = "a1c-outcomes" | "bp-outcomes";
+
 export type ServiceSection = {
   heading: string;
+  /** Charts rendered directly under the heading, before any prose. */
+  figures?: ServiceFigure[];
   /** Intro prose, rendered above any list. */
-  body?: string[];
+  body?: ServiceParagraph[];
   bullets?: string[];
   /** Labelled detail entries, rendered as cards. */
   items?: { title: string; body: string }[];
@@ -93,12 +98,17 @@ export type ServiceTextRun = { text: string; href?: string };
 /** A body paragraph — either plain text or runs, some of which are links. */
 export type ServiceParagraph = string | ServiceTextRun[];
 
+/** Plain text of a paragraph, for metadata, keys, and places links can't render. */
+export function paragraphText(para: ServiceParagraph): string {
+  return typeof para === "string" ? para : para.map((run) => run.text).join("");
+}
+
 export type Service = {
   slug: string;
   title: string;
-  summary: string;
-  description: string;
-  highlights: string[];
+  summary: ServiceParagraph;
+  description: ServiceParagraph;
+  highlights: ServiceParagraph[];
   tone: string;
   /** STOCK PLACEHOLDER — Unsplash hero image; replace with real practice photo. */
   stockImage: string;
@@ -110,12 +120,12 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    slug: "family-medicine",
+    slug: "internal-medicine",
     title: "Internal Medicine",
     summary:
       "Comprehensive primary care for every stage of life, built on long-term relationships.",
     description:
-      "From annual physicals and chronic disease management to acute illness and preventive screenings, our internal and family medicine practice cares for patients of all ages. We focus on continuity — knowing your history so we can make the right call when it matters.",
+      "From annual physicals and chronic disease management to acute illness and preventive screenings, our internal medicine practice cares for patients of all ages. We focus on continuity — knowing your history so we can make the right call when it matters.",
     highlights: [
       "Annual wellness & physical exams",
       "Chronic condition management (diabetes, hypertension, cholesterol)",
@@ -318,20 +328,37 @@ export const services: Service[] = [
   {
     slug: "chronic-care-management",
     title: "Chronic Care Management",
-    summary:
-      "Proactive remote monitoring for diabetes and hypertension, in partnership with Unified Care.",
-    description:
-      "AmpleHealth partners with Unified Care to provide continuous remote monitoring for patients managing diabetes and hypertension. Between visits, your care team tracks your vitals and key metrics, catching problems early and adjusting your plan before small changes become big ones.",
+    summary: [
+      { text: "Proactive remote monitoring for diabetes and hypertension, in partnership with " },
+      { text: "Unika Health", href: "https://www.unika.health/" },
+      { text: "." },
+    ],
+    description: [
+      { text: "AmpleHealth partners with " },
+      { text: "Unika Health", href: "https://www.unika.health/" },
+      {
+        text: " to provide continuous remote monitoring for patients managing diabetes and hypertension. Between visits, your care team tracks your vitals and key metrics, catching problems early and adjusting your plan before small changes become big ones.",
+      },
+    ],
     highlights: [
       "Remote glucose & blood pressure monitoring",
-      "Partnership with Unified Care",
+      [
+        { text: "Partnership with " },
+        { text: "Unika Health", href: "https://www.unika.health/" },
+      ],
       "Between-visit check-ins from your care team",
       "Proactive plan adjustments",
       "Coordinated with your in-office care",
     ],
     body: [
       "Chronic conditions are not managed in the exam room. They are managed on the ordinary days between appointments — and the gap between those visits is exactly where blood sugar drifts, blood pressure creeps, and small problems become large ones unnoticed.",
-      "This program is built to close that gap. In partnership with Unified Care, we combine medical supervision, remote monitoring, and lifestyle coaching so your numbers are visible to your care team continuously rather than twice a year.",
+      [
+        { text: "This program is built to close that gap. In partnership with " },
+        { text: "Unika Health", href: "https://www.unika.health/" },
+        {
+          text: ", we combine medical supervision, remote monitoring, and lifestyle coaching so your numbers are visible to your care team continuously rather than twice a year.",
+        },
+      ],
       "We use this approach for hypertension, diabetes, obesity, and COPD — the conditions where steady, between-visit attention makes the largest difference both to how you feel day to day and to where you end up in five years.",
     ],
     sections: [
@@ -361,9 +388,24 @@ export const services: Service[] = [
         ],
       },
       {
-        heading: "Why we partner with Unified Care",
+        heading: "Real world results on our patients",
+        figures: ["a1c-outcomes", "bp-outcomes"],
         body: [
-          "Unified Care's onsite-plus-online model was designed to bridge precisely the gap described above: the one between what happens in the office and what happens at home. It pairs remote monitoring devices with an easy-to-use mobile app and ongoing nutrition and lifestyle coaching.",
+          "These are real outcomes from our own patients. When someone joins our Chronic Care Management program, we check where they stand - then we keep checking.",
+          "For our diabetic patients, 37.5% had a controlled A1c at enrollment. By three months it was 62.5%. By six months, 75%.",
+          "Blood pressure tells the same story: 54% controlled at the start, 62% at six weeks, and 79% at three months, with the severely uncontrolled group shrinking from 8% to about 2%.",
+          "That's what chronic care management is for: regular check-ins, medication adjustments, and a care team watching your numbers between visits.",
+        ],
+      },
+      {
+        heading: "Why we partner with Unika Health",
+        body: [
+          [
+            { text: "Unika Health", href: "https://www.unika.health/" },
+            {
+              text: "'s onsite-plus-online model was designed to bridge precisely the gap described above: the one between what happens in the office and what happens at home. It pairs remote monitoring devices with an easy-to-use mobile app and ongoing nutrition and lifestyle coaching.",
+            },
+          ],
           "For people managing diabetes and hypertension, what that produces is steady, measurable improvement over time rather than the sawtooth pattern of good intentions after each appointment followed by drift. It also tends to lower overall healthcare costs, largely by preventing the complications and hospitalizations that uncontrolled chronic disease reliably causes.",
         ],
       },
@@ -1713,5 +1755,13 @@ export const insurers: Insurer[] = [
     description: "California-based Medicare Advantage plan built around personalized senior care and 24/7 clinical support.",
     color: "#1B3A5C",
     logoUrl: "/insurance/alignment-health-plan.png",
+  },
+  {
+    name: "Imperial Health Plan",
+    type: "Managed Care",
+    description: "California Medicare Advantage plan offering coordinated care and supplemental benefits for seniors.",
+    color: "#6B3F8C",
+    domain: "imperialhealthplan.com",
+    logoUrl: "/insurance/imperial-health-plan.png",
   },
 ];
