@@ -473,8 +473,8 @@ export const services: Service[] = [
     stockImage: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1200&auto=format&fit=crop",
   },
   {
-    slug: "botox-and-fillers",
-    title: "Botox & Fillers",
+    slug: "aesthetics",
+    title: "Aesthetics",
     summary:
       "Aesthetic treatments delivered with clinical precision and a natural touch.",
     description:

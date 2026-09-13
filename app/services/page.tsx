@@ -9,7 +9,7 @@ import { paragraphText, services } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Internal medicine, women's health, geriatrics, telehealth, hospital care, post-acute care, and Botox & fillers — the full range of AmpleHealth services.",
+    "Internal medicine, women's health, geriatrics, telehealth, hospital care, post-acute care, and aesthetics — the full range of AmpleHealth services.",
 };
 
 export default function ServicesPage() {

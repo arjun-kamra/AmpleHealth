@@ -49,6 +49,12 @@ const nextConfig = {
         destination: "/services/internal-medicine",
         permanent: true,
       },
+      // The aesthetics service was renamed from "Botox & Fillers".
+      {
+        source: "/services/botox-and-fillers",
+        destination: "/services/aesthetics",
+        permanent: true,
+      },
       // Leftover PatientPop location URLs, still referenced by Google Ads, old backlinks, and the GMB listings.
       {
         source: "/location/carmichael-ca",
